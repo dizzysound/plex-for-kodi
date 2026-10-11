@@ -19,6 +19,7 @@ from lib import util
 from lib.kodijsonrpc import builtin
 from lib.util import T
 from lib.language_util import getNativeLanguages
+from lib.osd import markerNeedsOSD
 from . import busy
 from . import dropdown
 from . import kodigui
@@ -368,6 +369,7 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
         self._currentMarker = None
         self._creditsAutoSkipped = False
         self.markers = None
+        self._updateOSDSignal()
 
     @property
     def DPPlayerOffset(self):
@@ -769,6 +771,7 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
                             markerDef = self._currentMarker
                             if markerDef:
                                 markerDef["hidden"] = True
+                            self._updateOSDSignal()
                             return
 
                 if controlID == self.MAIN_BUTTON_ID:
@@ -1126,6 +1129,9 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
 
     def doClose(self, delete=False, **kw):
         util.DEBUG_LOG("SeekDialog: Closing")
+        if not self._closing:
+            self._closing = True
+            util.setGlobalProperty('osd_active', '')
         if self.handler.playlist:
             self.handler.playlist.off('change', self.updateProperties)
             self.handler.playlist.off('current.changed', self.updateProperties)
@@ -2530,6 +2536,8 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
             # no marker to display, hide it
             self.setProperty('show.markerSkip', '')
             self.setProperty('show.markerSkip_OSDOnly', '')
+            if not onlyReturnIntroMD:
+                self._updateOSDSignal()
 
             # this might be counter intuitive, but self._currentMarker is a reference to a dict
             if self._currentMarker:
@@ -2575,6 +2583,8 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
             markerDef["hidden"] = True
             setattr(self, markerDef["markerAutoSkipShownTimer"], None)
             self.setProperty('show.markerSkip', '')
+            if not onlyReturnIntroMD:
+                self._updateOSDSignal()
             return False
 
         autoSkippingNow = markerDef \
@@ -2592,6 +2602,8 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
             setattr(self, markerDef["markerAutoSkipShownTimer"], None)
             self.setProperty('show.markerSkip', '')
             self.setProperty('show.markerSkip_OSDOnly', '')
+            if not onlyReturnIntroMD:
+                self._updateOSDSignal()
             self.resetAutoSeekTimer(None)
             self.countingDownMarker = False
 
@@ -2670,6 +2682,8 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
                 not self.getProperty('show.markerSkip_OSDOnly') and self.getProperty('show.markerSkip') \
                 and not markerAutoSkip:
             self.setFocusId(self.SKIP_MARKER_BUTTON_ID)
+        if not onlyReturnIntroMD:
+            self._updateOSDSignal()
 
     def tick(self, offset=None, waitForBuffer=False):
         """
@@ -2715,6 +2729,9 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
             if (offset is None and not self.handler.seekOnStart and not self.handler.waitingForSOS
                     and not self.handler.seekBackTo and self.player.playState == self.player.STATE_PLAYING):
                 cancelTick = self.displayMarkers()
+            else:
+                # Paused frames can still change picture or animated button bounds.
+                self._updateOSDSignal()
 
             if cancelTick:
                 return
@@ -2775,9 +2792,25 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
     def osdVisible(self):
         return xbmc.getCondVisibility('Control.IsVisible(801)')
 
+    def _standaloneMarkerVisible(self):
+        return (self.getBoolProperty('initialized') and self.getBoolProperty('show.markerSkip') and
+                not self.getBoolProperty('show.markerSkip_OSDOnly'))
+
+    def _updateOSDSignal(self):
+        if self._closing:
+            return
+        needsMarker = True
+        if not self.getBoolProperty('show.OSD') and self._standaloneMarkerVisible():
+            needsMarker = markerNeedsOSD(self._winID, self.SKIP_MARKER_BUTTON_ID)
+        # Native label reads may yield while the dialog is being retired.
+        if self._closing:
+            return
+        active = self.getBoolProperty('show.OSD') or (self._standaloneMarkerVisible() and needsMarker)
+        util.setGlobalProperty('osd_active', '1' if active else '')
+
     def showOSD(self, focusButton=True):
         self.setProperty('show.OSD', '1')
-        util.setGlobalProperty('osd_active', '1')
+        self._updateOSDSignal()
         xbmc.executebuiltin('Dialog.Close(videoosd,true)')
         if xbmc.getCondVisibility('Player.showinfo'):
             xbmc.executebuiltin('Action(Info)')
@@ -2788,8 +2821,9 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
     def hideOSD(self, skipMarkerFocus=False, closing=False):
         util.DEBUG_LOG("SeekDialog: HideOSD: {}, {}", skipMarkerFocus, closing)
         self.setProperty('show.OSD', '')
-        util.setGlobalProperty('osd_active', '')
         if closing:
+            self._closing = True
+            util.setGlobalProperty('osd_active', '')
             return
 
         self.setFocusId(self.NO_OSD_BUTTON_ID)
@@ -2804,6 +2838,7 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
             self.playlistDialog.doClose()
             self.playlistDialogVisible = False
             self.playlistDialog = None
+        self._updateOSDSignal()
 
 
 class PlaylistDialog(kodigui.BaseDialog, SpoilersMixin):

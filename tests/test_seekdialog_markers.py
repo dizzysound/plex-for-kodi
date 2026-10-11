@@ -1,15 +1,18 @@
 # coding=utf-8
-"""Marker timing uses landed time; marker overlays do not signal the full OSD."""
+"""Marker timing uses landed time; signalling protects only overlays needing it."""
 from __future__ import absolute_import
 
 from types import SimpleNamespace
 from unittest.mock import patch
+
+import json
 
 from kodienv import ENV
 ENV.abort_requested = True
 from lib import player
 from lib.windows import seekdialog
 from tests.base import KodiTestCase
+from tests.test_osd import PICTURE_LABEL, BUTTON_LABEL, WINDOW_ID, picture, button
 
 
 class RecordingDialog(seekdialog.SeekDialog):
@@ -19,7 +22,10 @@ class RecordingDialog(seekdialog.SeekDialog):
         p.getTime = lambda: p.position
         self.handler = SimpleNamespace(player=p, seekOnStart=None, waitingForSOS=False,
                                        seekBackTo=None, playlist=None, creditMarkerHit=None)
-        self.props = {}
+        self.props = {'initialized': '1'}
+        self._winID = WINDOW_ID
+        self._closing = False
+        self.playlistDialog = None
         self.initialized = True
         self._ignoreTick = False
         self.offset = 1492040
@@ -87,6 +93,8 @@ class SeekDialogMarkerTest(KodiTestCase):
         self.setting.start()
         self.addCleanup(self.setting.stop)
         self.d = RecordingDialog()
+        ENV.infolabels[PICTURE_LABEL] = json.dumps(picture())
+        ENV.infolabels[BUTTON_LABEL] = json.dumps(button())
 
     def test_optimistic_chapter_target_does_not_flash_then_hide_countdown(self):
         visible = []
@@ -164,7 +172,7 @@ class SeekDialogMarkerTest(KodiTestCase):
         self.assertFalse(self.d.getProperty('show.markerSkip'))
         self.assertEqual(self.d.seeks, [])
 
-    def test_standalone_intro_and_credits_buttons_do_not_signal_osd(self):
+    def test_contained_standalone_intro_and_credits_buttons_do_not_signal_osd(self):
         for marker_type in ('intro', 'credits'):
             for auto_skip in (False, True):
                 with self.subTest(marker_type=marker_type, auto_skip=auto_skip):
@@ -225,3 +233,191 @@ class SeekDialogMarkerTest(KodiTestCase):
                 self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
                 d.hideOSD(closing=True)
                 self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_unavailable_geometry_restores_old_visible_marker_signal(self):
+        for label in (PICTURE_LABEL, BUTTON_LABEL):
+            with self.subTest(label=label):
+                ENV.infolabels[PICTURE_LABEL] = json.dumps(picture())
+                ENV.infolabels[BUTTON_LABEL] = json.dumps(button())
+                ENV.infolabels[label] = ''
+                d = RecordingDialog()
+                d.player.position = 1493
+                d.tick()
+                self.assertTrue(d.getProperty('show.markerSkip'))
+                self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+                d.displayMarkers(cancelTimer=True)
+                self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_outside_marker_signal_clears_on_timeout_and_disappearance(self):
+        ENV.infolabels[BUTTON_LABEL] = json.dumps(button(bottom=960))
+        for disappear in (False, True):
+            with self.subTest(disappear=disappear):
+                d = RecordingDialog()
+                d.autoSkipCredits = False
+                d.player.position = 1493
+                d.tick()
+                self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+                if disappear:
+                    d.player.position = 1400
+                else:
+                    d._creditsSkipShownStarted = 0
+                d.tick()
+                self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_paused_tick_refreshes_geometry_without_changing_marker_countdown(self):
+        self.d.player.position = 1493
+        self.d.tick()
+        countdown = self.d._markers[0]['countdown']
+        self.d.player.playState = self.d.player.STATE_PAUSED
+        self.d.pausedAt = 0
+        ENV.infolabels[BUTTON_LABEL] = json.dumps(button(bottom=960))
+        self.d.tick()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+        ENV.infolabels[BUTTON_LABEL] = json.dumps(button())
+        self.d.tick()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+        ENV.infolabels[PICTURE_LABEL] = ''
+        self.d.tick()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+        self.assertEqual(self.d._markers[0]['countdown'], countdown)
+        self.assertEqual(self.d.seeks, [])
+
+    def test_hiding_full_osd_keeps_protection_for_an_outside_marker(self):
+        ENV.infolabels[BUTTON_LABEL] = json.dumps(button(bottom=960))
+        self.d.player.position = 1493
+        self.d.tick()
+        self.d.showOSD(focusButton=False)
+        self.d.hideOSD()
+        self.assertTrue(self.d.getProperty('show.markerSkip'))
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+
+    def test_closing_fences_late_marker_signal_refresh(self):
+        ENV.infolabels[BUTTON_LABEL] = json.dumps(button(bottom=960))
+        self.d.player.position = 1493
+        self.d.tick()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+        self.d.hideOSD(closing=True)
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+        self.d.tick()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+        seekdialog.util.setGlobalProperty('osd_active', '1')  # a new playback owns it now
+        self.d.tick()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+
+    def test_direct_close_clears_and_fences_signal(self):
+        ENV.infolabels[BUTTON_LABEL] = json.dumps(button(bottom=960))
+        self.d.player.position = 1493
+        self.d.tick()
+        with patch.object(self.d, 'killTimeKeeper'), \
+                patch.object(seekdialog.kodigui.BaseDialog, 'doClose'):
+            self.d.doClose()
+        self.assertTrue(self.d._closing)
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+        self.d.tick()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_closing_during_snapshot_read_does_not_reassert_signal(self):
+        self.d.setProperty('show.markerSkip', '1')
+
+        def close_during_read(window_id, control_id):
+            self.d.hideOSD(closing=True)
+            return True
+
+        with patch.object(seekdialog, 'markerNeedsOSD', side_effect=close_during_read):
+            self.d._updateOSDSignal()
+        self.assertTrue(self.d._closing)
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_osd_opening_during_snapshot_read_keeps_full_osd_signal(self):
+        self.d.setProperty('show.markerSkip', '1')
+
+        def open_during_read(window_id, control_id):
+            self.d.showOSD(focusButton=False)
+            return False
+
+        with patch.object(seekdialog, 'markerNeedsOSD', side_effect=open_during_read):
+            self.d._updateOSDSignal()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+
+    def test_marker_hidden_during_snapshot_read_does_not_reassert_signal(self):
+        self.d.setProperty('show.markerSkip', '1')
+
+        def hide_during_read(window_id, control_id):
+            self.d.setProperty('show.markerSkip', '')
+            return True
+
+        with patch.object(seekdialog, 'markerNeedsOSD', side_effect=hide_during_read):
+            self.d._updateOSDSignal()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_hidden_parent_and_marker_reset_clear_marker_owned_signal(self):
+        ENV.infolabels[BUTTON_LABEL] = json.dumps(button(bottom=960))
+        self.d.player.position = 1493
+        self.d.tick()
+        self.d.setProperty('initialized', '')
+        self.d._updateOSDSignal()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+        self.d.setProperty('initialized', '1')
+        self.d._updateOSDSignal()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+        self.d.resetMarkerStates()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_metadata_only_marker_queries_do_not_write_osd_signal(self):
+        with patch.object(seekdialog.util, 'setGlobalProperty') as write:
+            self.d.displayMarkers(setMarkersSkipped=True, offset=1)
+            self.d._markers = []
+            self.d.displayMarkers(onlyReturnIntroMD=True, offset=1000)
+            # An early intro query returns before display/visibility handling.
+            marker = seekdialog.MARKERS['intro'].copy()
+            marker.update(marker_type='intro', marker=seekdialog.Marker({
+                'startTimeOffset': 1000, 'endTimeOffset': 5000}))
+            self.d._markers = [marker]
+            self.d.autoSkipIntro = True
+            self.d.offset = 1000
+            self.d.displayMarkers(onlyReturnIntroMD=True, offset=1000)
+        write.assert_not_called()
+
+    def test_back_hides_marker_and_clears_its_fallback_signal(self):
+        class Action(object):
+            def getId(self):
+                return seekdialog.xbmcgui.ACTION_NAV_BACK
+
+            def __eq__(self, other):
+                return self.getId() == other
+
+        ENV.infolabels[PICTURE_LABEL] = ''
+        self.d.autoSkipCredits = False
+        self.d.player.position = 1493
+        self.d.tick()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+        self.d._lastAction = None
+        self.d._ignoreInput = self.d._playerNativePPIActive = False
+        with patch.object(self.d, 'resetTimeout'), \
+                patch.object(self.d, 'getFocusId', return_value=self.d.SKIP_MARKER_BUTTON_ID), \
+                patch.object(seekdialog.util.MONITOR, 'tv_standby', False), \
+                patch.object(seekdialog.util, 'ERROR', side_effect=AssertionError('action failed')):
+            self.d.onAction(Action())
+        self.assertFalse(self.d.getProperty('show.markerSkip'))
+        self.assertTrue(self.d.getProperty('show.markerSkip_OSDOnly'))
+        self.assertTrue(self.d._currentMarker['hidden'])
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+        self.assertEqual(self.d.seeks, [])
+
+    def test_auto_skip_clears_marker_signal_before_seeking(self):
+        ENV.infolabels[PICTURE_LABEL] = ''
+        self.d.player.position = 1493
+        self.d.tick()
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+        self.d._currentMarker['countdown'] = 0
+        self.d._currentMarker['marker'].final = False
+
+        def seek(target):
+            self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+            self.assertEqual(target, 1600000 + seekdialog.MARKER_END_JUMP_OFF)
+
+        with patch.object(self.d, 'doSeek', side_effect=seek) as call:
+            self.assertTrue(self.d.displayMarkers())
+        call.assert_called_once()
+        self.assertFalse(self.d.getProperty('show.markerSkip'))
+        self.assertIsNone(self.d._currentMarker['countdown'])

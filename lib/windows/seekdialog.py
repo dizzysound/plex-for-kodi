@@ -2530,8 +2530,6 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
             # no marker to display, hide it
             self.setProperty('show.markerSkip', '')
             self.setProperty('show.markerSkip_OSDOnly', '')
-            if not self.getBoolProperty('show.OSD'):
-                util.setGlobalProperty('osd_active', '')
 
             # this might be counter intuitive, but self._currentMarker is a reference to a dict
             if self._currentMarker:
@@ -2577,8 +2575,6 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
             markerDef["hidden"] = True
             setattr(self, markerDef["markerAutoSkipShownTimer"], None)
             self.setProperty('show.markerSkip', '')
-            if not self.getBoolProperty('show.OSD'):
-                util.setGlobalProperty('osd_active', '')
             return False
 
         autoSkippingNow = markerDef \
@@ -2596,8 +2592,6 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
             setattr(self, markerDef["markerAutoSkipShownTimer"], None)
             self.setProperty('show.markerSkip', '')
             self.setProperty('show.markerSkip_OSDOnly', '')
-            if not self.getBoolProperty('show.OSD'):
-                util.setGlobalProperty('osd_active', '')
             self.resetAutoSeekTimer(None)
             self.countingDownMarker = False
 
@@ -2630,7 +2624,6 @@ class SeekDialog(kodigui.BaseDialog, windowutils.GoHomeMixin, PlexSubtitleDownlo
             self.setProperty('show.markerSkip', '1')
             if not markerDef["hidden"]:
                 self.setProperty('show.markerSkip_OSDOnly', '')
-                util.setGlobalProperty('osd_active', '1')
         # marker auto skip and already skipped, or no autoskip and manually skipped - hide in OSD
         else:
             self.setProperty('show.markerSkip_OSDOnly', '1')

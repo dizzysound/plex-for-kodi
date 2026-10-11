@@ -1,5 +1,5 @@
 # coding=utf-8
-"""Production marker selection/countdown uses landed time, not seek notification targets."""
+"""Marker timing uses landed time; marker overlays do not signal the full OSD."""
 from __future__ import absolute_import
 
 from types import SimpleNamespace
@@ -163,3 +163,65 @@ class SeekDialogMarkerTest(KodiTestCase):
         self.d.displayMarkers(cancelTimer=True)
         self.assertFalse(self.d.getProperty('show.markerSkip'))
         self.assertEqual(self.d.seeks, [])
+
+    def test_standalone_intro_and_credits_buttons_do_not_signal_osd(self):
+        for marker_type in ('intro', 'credits'):
+            for auto_skip in (False, True):
+                with self.subTest(marker_type=marker_type, auto_skip=auto_skip):
+                    d = RecordingDialog()
+                    marker = seekdialog.MARKERS[marker_type].copy()
+                    marker.update(marker_type=marker_type, marker=d._markers[0]['marker'])
+                    d._markers = [marker]
+                    setattr(d, marker['markerAutoSkip'], auto_skip)
+                    setattr(d, marker['markerAutoSkipShownTimer'], None)
+                    setattr(d, marker['markerSkipBtnTimeout'], 100)
+                    d.player.position = 1493
+                    d.tick()
+                    self.assertTrue(d.getProperty('show.markerSkip'))
+                    self.assertFalse(d.getProperty('show.markerSkip_OSDOnly'))
+                    self.assertFalse(d.getProperty('show.OSD'))
+                    self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_marker_timeout_does_not_signal_osd(self):
+        self.d.autoSkipCredits = False
+        self.d.player.position = 1493
+        self.d.tick()
+        self.assertTrue(self.d.getProperty('show.markerSkip'))
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+        self.d._creditsSkipShownStarted = 0
+        self.d.tick()
+        self.assertTrue(self.d.getProperty('show.markerSkip_OSDOnly'))
+        self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_osd_show_hide_with_marker_does_not_reassert_signal(self):
+        self.d.playlistDialog = None
+        with patch.object(self.d, 'osdVisible', lambda: bool(self.d.getProperty('show.OSD'))):
+            self.d.player.position = 1493
+            self.d.tick()
+            self.d.showOSD(focusButton=False)
+            self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+            self.d.tick()
+            self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+            self.d.hideOSD()
+            self.assertTrue(self.d.getProperty('show.markerSkip'))
+            self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+            self.d.tick()
+            self.assertTrue(self.d.getProperty('show.markerSkip'))
+            self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')
+
+    def test_marker_disappearance_and_cancellation_keep_open_osd_signalled(self):
+        for cancel in (False, True):
+            with self.subTest(cancel=cancel):
+                d = RecordingDialog()
+                d.player.position = 1493
+                d.tick()
+                d.showOSD(focusButton=False)
+                if cancel:
+                    d.displayMarkers(cancelTimer=True)
+                else:
+                    d.player.position = 1400
+                    d.tick()
+                self.assertFalse(d.getProperty('show.markerSkip'))
+                self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '1')
+                d.hideOSD(closing=True)
+                self.assertEqual(seekdialog.util.getGlobalProperty('osd_active'), '')

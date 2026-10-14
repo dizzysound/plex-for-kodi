@@ -3458,7 +3458,7 @@ class HomeWindow(kodigui.BaseWindow, util.CronReceiver, CommonMixin, SpoilersMix
                 self.toggleWatched(item=ds, state=True)
 
             elif choice["key"] == "mark_unwatched":
-                mli.dataSource.markUnwatched()
+                CommonMixin.toggleWatched(self, mli.dataSource, state=False, confirmed=True)
                 self._updateOnDeckHubs()
 
         elif choice["key"] == "remove_cw":

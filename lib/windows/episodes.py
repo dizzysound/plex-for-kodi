@@ -35,6 +35,7 @@ from .mixins.ratings import RatingsMixin
 from .mixins.roles import RolesMixin
 from .mixins.common import CommonMixin
 from .mixins.tasks import TasksMixin
+from .mixins.playbackreturn import PlaybackReturnMixin
 
 VIDEO_RELOAD_KW = dict(includeExtras=1, includeExtrasCount=10, includeChapters=1)
 
@@ -229,9 +230,28 @@ def close_safe(func):
 
 VIDEO_PROGRESS = OrderedDict()
 
+
+def clearVideoProgress(item):
+    """Don't replay an older playback event over an explicit manual watch action."""
+    key = str(item.ratingKey)
+    for show_key, seasons in list(VIDEO_PROGRESS.items()):
+        if item.TYPE == 'show' and str(show_key) == key:
+            del VIDEO_PROGRESS[show_key]
+            continue
+        for season_key, items in list(seasons.items()):
+            if item.TYPE == 'season' and str(season_key) == key:
+                del seasons[season_key]
+            elif item.TYPE == 'episode':
+                items.pop(key, None)
+                if not items:
+                    del seasons[season_key]
+        if not seasons:
+            del VIDEO_PROGRESS[show_key]
+
+
 class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMixin, RatingsMixin, SpoilersMixin,
                      RolesMixin, PlaybackBtnMixin, ThemeMusicMixin, WatchlistUtilsMixin, CommonMixin, TasksMixin,
-                     playbacksettings.PlaybackSettingsMixin):
+                     playbacksettings.PlaybackSettingsMixin, PlaybackReturnMixin):
     xmlFile = 'script-plex-episodes.xml'
     path = util.ADDON.getAddonInfo('path')
     theme = 'Main'
@@ -283,6 +303,7 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
         PlaybackBtnMixin.__init__(self, *args, **kwargs)
         WatchlistUtilsMixin.__init__(self)
         TasksMixin.__init__(self)
+        PlaybackReturnMixin.__init__(self)
         self.episode = None
         self.reset(kwargs.get('episode'), kwargs.get('season'), kwargs.get('show'))
         self.parentList = kwargs.get('parentList')
@@ -294,6 +315,9 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
         self.debouncing = False
 
     def reset(self, episode, season=None, show=None):
+        self.invalidatePlaybackReturn(clear_progress=True)
+        self._playbackReturning = False
+        self._returnRefreshFailed = False
         self.episode = episode
         self.initialEpisode = episode
         self.season = season if season is not None else self.episode.season()
@@ -327,6 +351,7 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
             util.LOG("Episodes: Already closing")
             return
         self.closing = True
+        self.invalidatePlaybackReturn(closed=True)
         self.episodesPaginator = None
         self.relatedPaginator = None
         TasksMixin.doClose(self)
@@ -390,6 +415,20 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
 
     @busy.dialog()
     def onReInit(self):
+        progress = copy.deepcopy(VIDEO_PROGRESS.get(self.show_.ratingKey, {}))
+        self._playbackReturning = bool(progress)
+        self._returnCompleted = tuple(str(key) for season in progress.values()
+                                      for key, state in season.items() if state is True)
+        self._returnCacheKeys = tuple('episode_{}'.format(key) for season in progress.values() for key in season)
+        self._returnCacheKeys += tuple('season_{}'.format(key) for key in progress)
+        self._returnParents = {str(key): (str(self.show_.ratingKey), str(season_key))
+                               for season_key, items in progress.items() for key in items}
+        try:
+            self._reinit()
+        finally:
+            self._playbackReturning = False
+
+    def _reinit(self):
         self.playBtnClicked = False
         self.themeMusicReinit(self.show_)
         if not self.tasks:
@@ -414,6 +453,11 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
         try:
             self.selectEpisode(from_reinit=True)
         except RedirectToEpisode as redirect:
+            if self._playbackReturning:
+                # A different season is an actual view load; persist completion
+                # separately before rebuilding the old page and its controls.
+                self.startPlaybackReturn([(self.show_, dict(checkFiles=1, **VIDEO_RELOAD_KW))],
+                                         completed=self._returnCompleted, watchlist_ref=self.show_)
             if redirect.select_episode:
                 util.DEBUG_LOG("Got episode progress for a different season, redirecting")
             self.episodeListControl.reset()
@@ -437,9 +481,10 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
         if not mli or not self.episodesPaginator:
             return
 
-        self.checkIsWatchlisted(self.show_)
+        if not self._playbackReturning:
+            self.checkIsWatchlisted(self.show_)
 
-        if vp:
+        if vp and not self._playbackReturning:
             self.show_.reload(checkFiles=1, **VIDEO_RELOAD_KW)
             self.wl_auto_remove(self.show_)
 
@@ -472,8 +517,9 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
             self.selectPlayButton()
         self.reloadItems(items=reload_items, with_progress=True, skip_progress_for=skip_progress_for,
                          set_item_info=True)
-        self.postpone_simple(self.fillSeasons, self.show_, seasonsFilter=lambda x: len(x) > 1,
-                             selectSeason=self.season, update=True, do_focus=not self.manuallySelectedSeason)
+        if not self._playbackReturning:
+            self.postpone_simple(self.fillSeasons, self.show_, seasonsFilter=lambda x: len(x) > 1,
+                                 selectSeason=self.season, update=True, do_focus=not self.manuallySelectedSeason)
 
     def postSetup(self, select_play_button=True):
         self.checkForHeaderFocus(xbmcgui.ACTION_MOVE_DOWN, initial=True)
@@ -586,7 +632,8 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
                             mli.setProperty('unwatched.count.large', '')
                             mli.dataSource.set('viewCount', mli.dataSource.get('viewCount', 0).asInt() + 1)
                             mli.dataSource.set('viewOffset', 0)
-                            mli.dataSource.markWatched()
+                            if not self._playbackReturning:
+                                mli.dataSource.markWatched()
                             self.setUserItemInfo(mli, fully_watched=True)
 
                         elif progress > 60000:
@@ -604,7 +651,10 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
                             self.setUserItemInfo(mli)
                             set_main_progress_to = 0
 
-                        mli.dataSource.clearCache()
+                        if self._playbackReturning:
+                            self.storePlaybackProgress(mli.dataSource, progress)
+                        else:
+                            mli.dataSource.clearCache()
 
                         if self.noRatings:
                             self.populateRatings(mli.dataSource, mli, hide_ratings=self.hideSpoilers(mli.dataSource))
@@ -795,7 +845,7 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
         return True
 
     def onVideoProgress(self, data=None, **kwargs):
-        if not data:
+        if not data or self._returnClosed:
             return
 
         util.DEBUG_LOG("Storing video progress data: {}", data)
@@ -1086,6 +1136,18 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
     def episodeListClicked(self, force_episode=None, from_auto_play=False, force_resume_menu=False,
                            start_over=False):
 
+        if self._returnRefreshFailed and not from_auto_play:
+            self._returnRefreshFailed = False
+            self.invalidatePlaybackReturn()
+            selected = self.episodeListControl.getSelectedItem()
+            if not selected or not selected.dataSource:
+                return
+            # A failed automatic refresh settles into an explicit retry on Play,
+            # using the existing foreground loading/error path for that action.
+            self.reloadItems([selected], with_progress=True, set_item_info=True)
+            if self.closing:
+                return
+
         if self.playBtnClicked and not from_auto_play:
             util.DEBUG_LOG("Not honoring play action: currentItemLoaded: {0}, "
                            "playBtnClicked: {1}, from_auto_play: {2}",
@@ -1097,6 +1159,7 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
             amount = 0
             while not self.currentItemLoaded and amount < util.MONITOR.waitAmount(5):
                 util.MONITOR.waitFor()
+                self.processPendingPlaybackReturn()
                 amount += 1
 
             amount = 0
@@ -1146,6 +1209,8 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
 
         if not from_auto_play:
             self.playBtnClicked = True
+
+        self.invalidatePlaybackReturn(clear_progress=True)
 
         items = playlist.reorder_with_specials(
             self.show_.all(),
@@ -1594,6 +1659,8 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
         return mli
 
     def fillEpisodes(self, update=False, from_redirect=False):
+        if not self._playbackReturning:
+            self.invalidatePlaybackReturn()
         items = self.episodesPaginator.paginate()
         if from_redirect:
             self.episodeListControl.setSelectedItemByPos(0)
@@ -1604,6 +1671,20 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
     @close_safe
     def reloadItems(self, items, with_progress=False, skip_progress_for=None, set_item_info=False):
         if self.closing:
+            return
+
+        if self._playbackReturning:
+            targets = list({str(m.dataSource.ratingKey): m.dataSource for m in items if m.dataSource}.values())
+            requests = [(item, dict(checkFiles=1, includeChapters=1, includeMarkers=1)) for item in targets]
+            requests.append((self.show_, dict(checkFiles=1, includeOnDeck=1, **VIDEO_RELOAD_KW)))
+            self.startPlaybackReturn(requests, completed=self._returnCompleted, watchlist_ref=self.show_,
+                                     seasons=str(self.show_.key) + '/children')
+            self._returnRefreshFailed = False
+            selected = self.episodeListControl.getSelectedItem()
+            self.currentItemLoaded = bool(selected and selected.dataSource and selected.dataSource.mediaChoice)
+            self.setBoolProperty('current_item.loaded', self.currentItemLoaded)
+            self.initialized = True
+            self.selectPlayButton()
             return
 
         tasks = []
@@ -1618,6 +1699,7 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
 
             try:
                 cur_mli.dataSource.reload(checkFiles=1, includeChapters=1, fromMediaChoice=cur_mli.dataSource.mediaChoice is not None)
+                self.applyPlaybackProgress(cur_mli.dataSource)
                 util.DEBUG_LOG("Episodes: Sync-loading currently selected item: {}", cur_mli.dataSource)
                 self._reloadItem(cur_mli, with_progress=item_progress, set_item_info=set_item_info)
             except:
@@ -1653,6 +1735,41 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
         tasks.append(task)
 
         backgroundthread.BGThreader.addTasks(tasks)
+
+    def onPlaybackReturnMetadata(self, data):
+        # Resolve current list items on the owner thread; workers never retain them.
+        generation = self._returnGeneration
+        from lib import playback_sync
+        scope = playback_sync.accountScope()
+        for mli in self.episodeListControl:
+            if not self.playbackReturnCurrent(generation, scope):
+                return
+            if (mli.dataSource and str(mli.dataSource.ratingKey) in data
+                    and self._returnTargets.get(str(mli.dataSource.ratingKey)) is mli.dataSource):
+                self._reloadItem(mli, with_progress=True, set_item_info=True)
+        if not self.playbackReturnCurrent(generation, scope):
+            return
+        mli = self.episodeListControl.getSelectedItem()
+        if mli and mli.dataSource and str(mli.dataSource.ratingKey) in data:
+            self._returnRefreshFailed = False
+            self.currentItemLoaded = True
+            self.setBoolProperty('current_item.loaded', True)
+            self.setProgress(mli)
+        elif mli and mli.dataSource and self._returnTargets.get(str(mli.dataSource.ratingKey)) is mli.dataSource:
+            self.onPlaybackReturnDiscarded()
+
+    def onPlaybackReturnDiscarded(self):
+        if not self.currentItemLoaded:
+            self._returnRefreshFailed = True
+            self.currentItemLoaded = True
+            self.setBoolProperty('current_item.loaded', True)
+            self.selectPlayButton()
+
+    def onPlaybackReturnSeasons(self, data):
+        seasons = [plexobjects.buildItem(self.show_.server, item, str(self.show_.key) + '/children',
+                                         container=self.show_) for item in data if item.tag == 'Directory']
+        self.fillSeasons(self.show_, seasonsFilter=lambda x: len(x) > 1, selectSeason=self.season,
+                         update=True, do_focus=not self.manuallySelectedSeason, seasons=seasons)
 
     def getPlayButtonID(self, mli, base=None):
         return (base and base or self.PLAY_BUTTON_ID) + (mli.getProperty('media.multiple') and 1000 or 0)

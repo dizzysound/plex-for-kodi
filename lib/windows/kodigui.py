@@ -501,7 +501,12 @@ class ControlledBase:
 
     def wait(self):
         while not self._closing and not MONITOR.waitFor():
-            pass
+            deliver = getattr(self, 'processPendingPlaybackReturn', None)
+            if deliver and not self._closing:
+                try:
+                    deliver()
+                except Exception:
+                    util.ERROR('Playback return: could not deliver background result')
 
     def close(self):
         self._closing = True

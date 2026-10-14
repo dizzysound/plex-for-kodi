@@ -48,6 +48,63 @@ ABSSOS_LANDING_TOLERANCE_MS = 10000
 # and keep playing from where we are rather than looping the user on ~1s.
 ABSSOS_MAX_RESEEKS = 5
 
+_ANY_STARTUP = object()
+
+
+class VideoStartup(object):
+    """Own the initialization signal for one request, even on a reused handler."""
+    _lock = threading.RLock()
+    _current = None
+
+    def __init__(self, player):
+        self.submitted = False
+        with self._lock:
+            VideoStartup._current = self
+            player._preparingVideoStartup = self
+            player._closed = False
+            # Also retire an abandoned request before preparation can fail or
+            # take the transcoded/no-seek path, which never arms initialization.
+            util.setGlobalProperty('playback_initializing', '', wait=True)
+
+    def current(self):
+        with self._lock:
+            return VideoStartup._current is self
+
+    def initialize(self):
+        with self._lock:
+            if VideoStartup._current is self:
+                util.setGlobalProperty('playback_initializing', '1', wait=True)
+
+    def finish(self):
+        with self._lock:
+            if VideoStartup._current is self:
+                util.setGlobalProperty('playback_initializing', '', wait=True)
+                VideoStartup._current = None
+
+
+def finishVideoStartup(startup):
+    if startup is not None:
+        startup.finish()
+
+
+def startupCurrent(handler, startup):
+    return (handler._videoStartup is startup and handler.player._videoStartup is startup and
+            handler.player._preparingVideoStartup is None)
+
+
+def cleanupStartupOnError(fn):
+    @wraps(fn)
+    def inner(self, *args, **kwargs):
+        startup = self._videoStartup
+        if not startupCurrent(self, startup):
+            return
+        try:
+            return fn(self, *args, **kwargs)
+        except:
+            finishVideoStartup(startup)
+            raise
+    return inner
+
 
 class BasePlayerHandler(object):
     def __init__(self, player, session_id=None):
@@ -156,6 +213,7 @@ class BasePlayerHandler(object):
         return self._lastDuration
 
     def onKodiExit(self, *args, **kwargs):
+        finishVideoStartup(getattr(self, '_videoStartup', None))
         if util.MONITOR:
             util.MONITOR.off("system.exit", self.onKodiExit)
 
@@ -327,9 +385,12 @@ class SeekPlayerHandler(BasePlayerHandler):
         self.isMapped = False
         self.reused = False
         self.prePlayVolume = None
+        self._videoStartup = None
         self.reset()
 
     def reset(self):
+        finishVideoStartup(self._videoStartup)
+        self._videoStartup = None
         self.duration = 0
         self.offset = 0
         self.baseOffset = 0
@@ -623,10 +684,13 @@ class SeekPlayerHandler(BasePlayerHandler):
             util.setGlobalBoolProperty('playback_started_event', False)
             self.pbStartedRemoved = True
 
+    @cleanupStartupOnError
     def seekAbsolute(self, seek=None, skip_alt_seek_fix=False):
+        startup = self._videoStartup
         self.seekOnStart = seek if seek is not None else self.seekOnStart if self.seekOnStart is not None else None
 
         if self.player.isExternal:
+            finishVideoStartup(startup)
             return True
 
         if self.seekOnStart is not None:
@@ -634,9 +698,11 @@ class SeekPlayerHandler(BasePlayerHandler):
             try:
                 if seekSeconds >= self.player.getTotalTime():
                     util.DEBUG_LOG("SeekAbsolute: Bad offset: {0}", seekSeconds)
+                    finishVideoStartup(startup)
                     return False
             except RuntimeError:  # Not playing a file
                 util.DEBUG_LOG("SeekAbsolute: runtime error")
+                finishVideoStartup(startup)
                 return False
 
             util.setGlobalProperty('playback_seeking', '1', wait=True)
@@ -661,6 +727,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                     tries = 0
                     while self.player.getTime() < 0 and tries < util.MONITOR.waitAmount(4):
                         util.MONITOR.waitFor()
+                        if not startupCurrent(self, startup):
+                            return
                         tries += 1
                     util.DEBUG_LOG("SeekAbsolute: Player time after waiting: {0}", self.player.getTime())
 
@@ -687,12 +755,16 @@ class SeekPlayerHandler(BasePlayerHandler):
                         while (self.player.playState in (self.player.STATE_PLAYING, self.player.STATE_BUFFERING) and
                                tries < util.MONITOR.waitAmount(4)):
                             util.MONITOR.waitFor()
+                            if not startupCurrent(self, startup):
+                                return
                             tries += 1
 
                     self.reportedSeekPlayerTime = None
                     util.DEBUG_LOG("SeekAbsolute: Relative-seeking to offset: {0}, current time: {1}, relative seek: {2}".format(
                         seekSeconds, currentTime, relativeSeekSeconds))
                     util.MONITOR.waitFor(0.25)
+                    if not startupCurrent(self, startup):
+                        return
                     xbmc.executebuiltin('Seek({})'.format(relativeSeekSeconds))
                 else:
                     util.DEBUG_LOG(
@@ -701,6 +773,7 @@ class SeekPlayerHandler(BasePlayerHandler):
                     self.seekOnStart = None
                     self.seekBackTo = None
                     self.seekingBackTo = False
+                    finishVideoStartup(startup)
                     if doPause:
                         self.player.control('play')
                     if self.blackout:
@@ -718,6 +791,7 @@ class SeekPlayerHandler(BasePlayerHandler):
                 util.DEBUG_LOG("SeekAbsolute: Seeking to {0}", self.seekOnStart)
                 self.player.seekTime(seekSeconds)
         return True
+
 
     def onAVChange(self):
         util.DEBUG_LOG('SeekHandler: onAVChange')
@@ -758,7 +832,9 @@ class SeekPlayerHandler(BasePlayerHandler):
         if self.dialog:
             self.dialog.onAVChange()
 
+    @cleanupStartupOnError
     def onAVStarted(self):
+        startup = self._videoStartup
         util.DEBUG_LOG('SeekHandler: onAVStarted')
         if self.blackoutWasWanted and self.blackout:
             self.start_blackout()
@@ -766,6 +842,8 @@ class SeekPlayerHandler(BasePlayerHandler):
         elif self.blackoutWasWanted and not self.blackout and self.pbStartedSet:
             if not self.pbStartedRemoved:
                 util.MONITOR.waitFor(0.1)
+                if not startupCurrent(self, startup):
+                    return
                 util.setGlobalBoolProperty('playback_started_event', False)
                 self.pbStartedRemoved = True
         else:
@@ -774,10 +852,14 @@ class SeekPlayerHandler(BasePlayerHandler):
                 util.setGlobalBoolProperty('playback_started_event', True)
                 self.pbStartedSet = True
                 util.MONITOR.waitFor(0.1)
+                if not startupCurrent(self, startup):
+                    return
                 util.setGlobalBoolProperty('playback_started_event', False)
                 self.pbStartedRemoved = True
 
         self.player.trigger('started.video')
+        if not startupCurrent(self, startup):
+            return
 
         # fixme: move below embedded subtitle check?
         if self.isDirectPlay:
@@ -803,6 +885,8 @@ class SeekPlayerHandler(BasePlayerHandler):
             waited = 0
             while not self._absSeekSettled and waited < 150 and not util.MONITOR.abortRequested():
                 util.MONITOR.waitForAbort(0.1)
+                if not startupCurrent(self, startup):
+                    return
                 waited += 1
             if not self._absSeekSettled:
                 util.LOG("onAVStarted: seek-settle gate timed out before embedded subtitle "
@@ -839,15 +923,20 @@ class SeekPlayerHandler(BasePlayerHandler):
                                        "switch to engage rendering (kernel-fix build)")
                         self.player.setSubtitleStream(-1)
                         util.MONITOR.waitForAbort(0.05)
+                        if not startupCurrent(self, startup):
+                            return
                         self.player.setSubtitleStream(target)
                         self.player.showSubtitles(True)
                 except IndexError:
                     util.DEBUG_LOG("Player not available yet, retrying ({}/{})".format(tries, 50))
                     tries += 1
                     util.MONITOR.waitForAbort(0.1)
+                    if not startupCurrent(self, startup):
+                        return
                 except:
                     util.ERROR("Exception when trying to check for embedded subtitles")
                     break
+
 
     def onPrePlayStarted(self):
         util.DEBUG_LOG('SeekHandler: onPrePlayStarted, DP: {}', self.isDirectPlay)
@@ -960,6 +1049,10 @@ class SeekPlayerHandler(BasePlayerHandler):
         return self._progressHld.get(rk, default)
 
     def onPlayBackStopped(self):
+        startup = self._videoStartup
+        finishVideoStartup(startup)
+        if not startupCurrent(self, startup):
+            return
         util.DEBUG_LOG('SeekHandler: onPlayBackStopped - '
                        'Seeking={0}, QueueingNext={1}, BingeMode={2}, StoppedManually={3}, SkipPostPlay={4}'
                        .format(self.seeking, self.queuingNext, self.inBingeMode, self.stoppedManually,
@@ -967,6 +1060,8 @@ class SeekPlayerHandler(BasePlayerHandler):
 
         if self.dialog:
             self.dialog.onPlayBackStopped()
+        if not startupCurrent(self, startup):
+            return
 
         if self.queuingNext or self.queuingSpecific:
             if self.isDirectPlay and self.playlist and (self.playlist.hasNext() or self.queuingSpecific):
@@ -997,14 +1092,21 @@ class SeekPlayerHandler(BasePlayerHandler):
         if (self.seeking not in (self.SEEK_IN_PROGRESS, self.SEEK_PLAYLIST) or
                 (self.seeking == self.SEEK_PLAYLIST and (self.stoppedManually or self.endedManually))):
             self.hideOSD(delete=True)
-            self.sessionEnded()
+            if startupCurrent(self, startup):
+                self.sessionEnded()
 
     def onPlayBackEnded(self):
+        startup = self._videoStartup
+        finishVideoStartup(startup)
+        if not startupCurrent(self, startup):
+            return
         util.DEBUG_LOG('SeekHandler: onPlayBackEnded - Seeking={0}, External={1}',
                        self.seeking, self.player.isExternal)
 
         if self.dialog:
             self.dialog.onPlayBackEnded()
+        if not startupCurrent(self, startup):
+            return
 
         if self.player.playerObject.hasMoreParts():
             self.updateNowPlaying(state=self.player.STATE_PAUSED)  # To for update after seek
@@ -1033,7 +1135,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                 self.hideOSD()
 
             if self.seeking not in (self.SEEK_IN_PROGRESS, self.SEEK_PLAYLIST) or self.player.isExternal:
-                self.sessionEnded()
+                if startupCurrent(self, startup):
+                    self.sessionEnded()
 
     def onPlayBackPaused(self):
         if self.pausedForSeek:
@@ -1049,13 +1152,21 @@ class SeekPlayerHandler(BasePlayerHandler):
         if self.dialog:
             self.dialog.onPlayBackPaused()
 
+    @cleanupStartupOnError
     def onPlayBackSeek(self, stime, offset):
+        startup = self._videoStartup
+
         def seekBackToStart():
             util.DEBUG_LOG("SeekHandler: onPlayBackSeek: Seeking back to: {} after: {} ms",
                            self.seekBackTo, util.addonSettings.seekbackonstartDelay)
             # Add delay before seeking back to give decoders time to stabilize
             # This is especially important for VC-1 hardware decoding
             util.MONITOR.waitFor(util.addonSettings.seekbackonstartDelay / 1000.0)
+            if not startupCurrent(self, startup):
+                return
+            if util.MONITOR.abortRequested() or (startup is not None and not startup.current()):
+                finishVideoStartup(startup)
+                return
             try:
                 to = self.seekBackTo
                 self.seekBackTo = None
@@ -1111,6 +1222,8 @@ class SeekPlayerHandler(BasePlayerHandler):
 
         if self.dialog:
             self.dialog.onPlayBackSeek(stime, offset)
+        if not startupCurrent(self, startup):
+            return
 
         if self.dialog and self.isDirectPlay and origSOS is not None:
             seekWindow = util.addonSettings.altseekValidSeekWindow
@@ -1128,6 +1241,8 @@ class SeekPlayerHandler(BasePlayerHandler):
             tries = 0
             while not self.player.isPlayingVideo() and tries < 100 and not util.MONITOR.abortRequested():
                 util.MONITOR.waitForAbort(0.1)
+                if not startupCurrent(self, startup):
+                    return
                 tries += 1
 
             p_time = getTime()
@@ -1160,6 +1275,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                     # CoreELEC, which doesn't necessarily properly honor this
                     withinSOSHigh += 250
                     util.MONITOR.waitForAbort(0.25)
+                    if not startupCurrent(self, startup):
+                        return
 
                 # player time can change at any point as we're waiting for the seek to apply
                 p_time = getTime()
@@ -1213,6 +1330,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                     seekWait = util.addonSettings.coreelecResumeSeekWait2
                     withinSOSHigh += seekWait
                     util.MONITOR.waitForAbort(seekWait / 1000.0)
+                    if not startupCurrent(self, startup):
+                        return
 
                     if self.player.isPlayingVideo():
                         util.DEBUG_LOG("OnPlayBackSeek: SeekOnStart: "
@@ -1252,6 +1371,8 @@ class SeekPlayerHandler(BasePlayerHandler):
 
                         withinSOSHigh += 250
                         util.MONITOR.waitForAbort(0.25)
+                        if not startupCurrent(self, startup):
+                            return
 
                         # special case for CE and start seek back
                         if self.seekBackTo is not None and getTime() * 1000 > origSOS:
@@ -1268,6 +1389,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                         tries += 1
                         withinSOSHigh += seekWait
                         util.MONITOR.waitForAbort(seekWait / 1000.0)
+                        if not startupCurrent(self, startup):
+                            return
                     if tries >= max_tries:
                         util.DEBUG_LOG("OnPlayBackSeek: SeekOnStart: Couldn't properly seek on start within ~10 seconds.")
                         SOSSuccess = False
@@ -1292,6 +1415,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                 # accumulate during a mode switch, doubling the offset past end of file.
                 if origSOS > 5000 and self.player.isPlayingVideo():
                     util.MONITOR.waitForAbort(0.35)
+                    if not startupCurrent(self, startup):
+                        return
                     actual_time = getTime(force_player=True)
                     if actual_time >= 0 and actual_time < 2.0:
                         util.DEBUG_LOG("SeekHandler: onPlayBackSeek: resumeFix: post-seek verification detected "
@@ -1302,6 +1427,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                         verified = False
                         for verify_try in range(12):
                             util.MONITOR.waitForAbort(0.5)
+                            if not startupCurrent(self, startup):
+                                return
                             if not self.player.isPlayingVideo() or util.MONITOR.abortRequested():
                                 break
                             actual_time = getTime(force_player=True)
@@ -1357,6 +1484,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                         while waited < 75 and not util.MONITOR.abortRequested():
                             if not self.player.isPlayingVideo():
                                 util.MONITOR.waitForAbort(0.2)
+                                if not startupCurrent(self, startup):
+                                    return
                                 waited += 1
                                 continue
                             raw = getTime(force_player=True)
@@ -1384,6 +1513,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                                 last_reseek = waited
                                 reseeks += 1
                             util.MONITOR.waitForAbort(0.2)
+                            if not startupCurrent(self, startup):
+                                return
                             waited += 1
                         if not converged:
                             SOSSuccess = False
@@ -1392,6 +1523,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                                      origSOS / 1000.0)
                     finally:
                         self.waitingForSOS = False
+                if not startupCurrent(self, startup):
+                    return
                 # seek has landed (or we gave up) — release the embedded-subtitle re-enable
                 self._absSeekSettled = True
 
@@ -1406,6 +1539,8 @@ class SeekPlayerHandler(BasePlayerHandler):
                 elif SOSSuccess:
                     appliedOffset = max(int(getTime() * 1000) if useSeekFix else origSOS, 0)
 
+            if not startupCurrent(self, startup):
+                return
             if SOSSuccess:
                 util.DEBUG_LOG("SeekHandler: onPlayBackSeek: SeekOnStart applied: {}", appliedOffset)
             else:
@@ -1436,6 +1571,8 @@ class SeekPlayerHandler(BasePlayerHandler):
 
         self.skipFixForNextSeek = False
         self.updateOffset(offset=appliedOffset)
+        if not startupCurrent(self, startup):
+            return
         # self.showOSD(from_seek=True)
 
         if self.seekingBackTo:
@@ -1449,7 +1586,7 @@ class SeekPlayerHandler(BasePlayerHandler):
         else:
             self.reportedSeekPlayerTime = None
 
-            util.setGlobalProperty('playback_initializing', '', wait=True)
+            finishVideoStartup(startup)
             util.setGlobalProperty('playback_seeking', '', wait=True)
 
         if not self.seekBackTo:
@@ -1460,6 +1597,7 @@ class SeekPlayerHandler(BasePlayerHandler):
             if self.unPauseAfterSeek:
                 self.unPauseAfterSeek = False
                 self.player.control('play')
+
 
     @property
     def subtitleStreamOffset(self):
@@ -1778,6 +1916,10 @@ class SeekPlayerHandler(BasePlayerHandler):
             self.setAudioTrack()
 
     def onPlayBackFailed(self):
+        startup = self._videoStartup
+        finishVideoStartup(startup)
+        if not startupCurrent(self, startup):
+            return
         # we might've crashed, make sure we set a correct volume again
         self.stop_blackout()
         if self.ended:
@@ -1785,10 +1927,13 @@ class SeekPlayerHandler(BasePlayerHandler):
 
         if self.dialog:
             self.dialog.onPlayBackFailed()
+        if not startupCurrent(self, startup):
+            return
 
         util.DEBUG_LOG('SeekHandler: onPlayBackFailed - Seeking={0}', self.seeking)
         if self.seeking not in (self.SEEK_IN_PROGRESS, self.SEEK_PLAYLIST):
-            self.sessionEnded()
+            if startupCurrent(self, startup):
+                self.sessionEnded()
 
         if self.seeking == self.SEEK_IN_PROGRESS:
             return False
@@ -1851,6 +1996,7 @@ class SeekPlayerHandler(BasePlayerHandler):
             self.dialog.tick()
 
     def close(self):
+        finishVideoStartup(self._videoStartup)
         self.hideOSD(delete=True)
         if self.blackoutDialog:
             try:
@@ -1863,6 +2009,10 @@ class SeekPlayerHandler(BasePlayerHandler):
                 pass
 
     def sessionEnded(self):
+        startup = self._videoStartup
+        finishVideoStartup(startup)
+        if not startupCurrent(self, startup):
+            return
         self.player.sessionID = None
         self.ensureCorrectVolume()
         if self.ended:
@@ -2315,6 +2465,10 @@ def consumeStaleTerminal(event):
     def wrap(fn):
         @wraps(fn)
         def inner(self, *args, **kwargs):
+            if self._preparingVideoStartup is not None:
+                self._pendingStaleStop = False
+                util.DEBUG_LOG('Player - ignoring outgoing {} event during preparation', event)
+                return
             if self._pendingStaleStop:
                 self._pendingStaleStop = False
                 util.DEBUG_LOG('Player - ignoring stale {} event of the previous playback', event)
@@ -2336,6 +2490,8 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
         xbmc.Player.__init__(self, *args, **kwargs)
         signalsmixin.SignalsMixin.__init__(self)
         self.sessionID = None
+        self._videoStartup = None
+        self._preparingVideoStartup = None
         self._pendingStaleStop = False
         # serialises theme switches, and retires the fades of the theme being switched away from. Monotonic
         # on purpose and never reset: a handler that compares equal to a generation it no longer owns would
@@ -2347,7 +2503,20 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
 
         self.on('action', self.playerAction)
 
+    def _ownsVideoStartup(self, startup):
+        with VideoStartup._lock:
+            return self._videoStartup is startup and self._preparingVideoStartup is None
+
+    def _finishVideoStartup(self):
+        # Snapshot both before a GUI write can yield to a newer request.
+        with VideoStartup._lock:
+            active, preparing = self._videoStartup, self._preparingVideoStartup
+        finishVideoStartup(active)
+        finishVideoStartup(preparing)
+
     def init(self):
+        self._finishVideoStartup()
+        self._videoStartup = None
         self._closed = False
         self._nextItem = None
         self._ignorePlaybackFailure = False
@@ -2383,12 +2552,20 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
         self._closed = False
         self.monitor()
 
-    def close(self, shutdown=False):
-        self._closed = True
+    def close(self, shutdown=False, startup=_ANY_STARTUP):
+        with VideoStartup._lock:
+            if startup is not _ANY_STARTUP and not self._ownsVideoStartup(startup):
+                return
+            if startup is _ANY_STARTUP:
+                self._finishVideoStartup()
+            else:
+                finishVideoStartup(startup)
+            self._closed = True
         if shutdown:
             self.off('action', self.playerAction)
 
     def reset(self):
+        self._finishVideoStartup()
         self.video = None
         self.started = False
         self.bgmPlaying = False
@@ -2561,8 +2738,22 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
         return cleaned_path
 
     def _playVideo(self, offset=0, seeking=0, force_update=False, playerObject=None, session_id=None):
+        startup = VideoStartup(self)
+        try:
+            return self._prepareVideo(startup, offset, seeking, force_update, playerObject, session_id)
+        finally:
+            with VideoStartup._lock:
+                if not startup.submitted:
+                    finishVideoStartup(startup)
+                if self._preparingVideoStartup is startup:
+                    self._preparingVideoStartup = None
+
+    def _prepareVideo(self, startup, offset, seeking, force_update, playerObject, session_id):
+        handler = self.handler
         self.sessionID = session_id or self.sessionID
         self.trigger('new.video', video=self.video)
+        if not startup.current():
+            return
         self.trigger(
             'change.background',
             url=self.video.defaultArt.asTranscodedImageURL(1920, 1080, opacity=60, background=colors.noAlpha.Background)
@@ -2579,6 +2770,8 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
             util.ERROR(notify=True)
             return
 
+        if not startup.current():
+            return
         meta = self.playerObject.metadata
         url = meta.streamUrls[0]
 
@@ -2590,13 +2783,15 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
             # Kodi delivers the stopped playback's terminal event on its own time; if it lands
             # after the fence below is lifted, it must not be mistaken for the new item failing
             self._pendingStaleStop = True
-        self.stopAndWait()  # Stop before setting up the handler to prevent player events from causing havoc
-        if self.handler and self.handler.queuingNext and util.addonSettings.consecutiveVideoPbWait:
+        self.stopAndWait(preserveStartup=True)  # Stop the outgoing file, not this preparation.
+        if handler and handler.queuingNext and util.addonSettings.consecutiveVideoPbWait:
             util.DEBUG_LOG(
                 "Waiting for {}s until playing back next item".format(util.addonSettings.consecutiveVideoPbWait))
             util.MONITOR.waitForAbort(util.addonSettings.consecutiveVideoPbWait)
 
         self.ignoreStopEvents = False
+        if not startup.current() or util.MONITOR.abortRequested():
+            return
 
         # Seamless branching LAV filter workaround (CoreELEC U3k B9+)
         # Check if this movie needs LAV filters enabled
@@ -2642,35 +2837,39 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
                     lavSettingControl.set(lav_mode)
                     self.lavSettingControl = lavSettingControl
                     # Disable alternate seek (internal handler flag, not Kodi setting)
-                    if self.handler.useAlternateSeek:
+                    if handler.useAlternateSeek:
                         util.DEBUG_LOG('Alternate seek disabled for seamless branching')
                         self._originalAlternateSeek = True
-                        self.handler.useAlternateSeek = False
+                        handler.useAlternateSeek = False
                 else:
                     util.DEBUG_LOG('LAV mode switch not necessary')
 
         # fixme: this handler might be accessing a new playerObject, not the one it's expecting to access,
         #        especially when .next() is used
-        self.handler.reset()
-        self.handler.setup(self.video.duration.asInt(), meta, offset, bifURL, title=self.video.grandparentTitle,
-                           title2=self.video.title, seeking=seeking, chapters=self.video.chapters,
-                           is_mapped=meta.isMapped)
+        with VideoStartup._lock:
+            if not startup.current():
+                return
+            handler.reset()
+            handler._videoStartup = startup
+        handler.setup(self.video.duration.asInt(), meta, offset, bifURL, title=self.video.grandparentTitle,
+                      title2=self.video.title, seeking=seeking, chapters=self.video.chapters,
+                      is_mapped=meta.isMapped)
 
         # try to get an early intro offset so we can skip it if necessary
         introOffset = None
         if not offset:
-            probOff = self.handler.getIntroOffset(offset, setSkipped=True)
+            probOff = handler.getIntroOffset(offset, setSkipped=True)
             if probOff:
                 introOffset = probOff
 
         if meta.isTranscoded:
-            self.handler.mode = self.handler.MODE_RELATIVE
+            handler.mode = handler.MODE_RELATIVE
 
             if introOffset:
                 # cheat our way into an early intro skip by modifying the offset in the stream URL
                 util.DEBUG_LOG("Immediately seeking behind intro: {}", introOffset)
                 url = self.OFFSET_RE.sub(r"\g<1>{}".format(introOffset // 1000), url)
-                self.handler.dialog.baseOffset = introOffset
+                handler.dialog.baseOffset = introOffset
 
                 # probably not necessary
                 meta.playStart = introOffset // 1000
@@ -2678,39 +2877,37 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
             blackout = util.getSetting('initial_seek_blackout')
             if offset:
                 util.DEBUG_LOG("SeekOnStart: Using as SeekOnStart: {0}; offset: {1}", meta.playStart, offset)
-                self.handler.seekOnStart = meta.playStart * 1000
-                self.handler.blackout = self.handler.blackoutWasWanted = blackout
-                self.handler.skipMarkersBefore(meta.playStart * 1000)
+                handler.seekOnStart = meta.playStart * 1000
+                handler.blackout = handler.blackoutWasWanted = blackout
+                handler.skipMarkersBefore(meta.playStart * 1000)
             elif introOffset:
                 util.DEBUG_LOG("SeekOnStart: Seeking behind intro after playstart: {}", introOffset)
-                self.handler.seekOnStart = introOffset
-                self.handler.blackout = self.handler.blackoutWasWanted = blackout
+                handler.seekOnStart = introOffset
+                handler.blackout = handler.blackoutWasWanted = blackout
 
             # seek back on start
-            if not self.handler.seekOnStart and util.getSetting('seek_back_on_start'):
+            if not handler.seekOnStart and util.getSetting('seek_back_on_start'):
                 util.DEBUG_LOG("Seek back on start enabled, instructing the SeekPlayerHandler to seek forward, then backwards")
 
                 to = max(util.addonSettings.altseekValidSeekWindow, 5000)
-                self.handler.ignoreTimelines = True
+                handler.ignoreTimelines = True
                 util.DEBUG_LOG("SeekOnStart: Seeking temporarily to: {}", max(to, 1000))
-                self.handler.seekOnStart = to
-                self.handler.seekBackTo = 50
-                self.handler.blackout = self.handler.blackoutWasWanted = blackout
+                handler.seekOnStart = to
+                handler.seekBackTo = 50
+                handler.blackout = handler.blackoutWasWanted = blackout
 
-            if self.handler.seekOnStart is not None:
-                util.setGlobalProperty('playback_initializing', '1', wait=True)
+            if handler.seekOnStart is not None:
+                startup.initialize()
                 # Defer audio only when external audio is actually present — otherwise the
                 # late post-seek setAudioStream() knocks out the embedded subtitle set at preplay.
                 if hasattr(self.video, '_externalAudioStreams') and self.video._externalAudioStreams:
                     util.DEBUG_LOG("Player: Enabling deferred audio track (external audio detected)")
-                    self.handler._deferAudioTrack = True
-            else:
-                util.setGlobalProperty('playback_initializing', '', wait=True)
+                    handler._deferAudioTrack = True
 
             util.setGlobalBoolProperty('playback_started', False)
             util.setGlobalBoolProperty('playback_started_event', False)
 
-            self.handler.mode = self.handler.MODE_ABSOLUTE
+            handler.mode = handler.MODE_ABSOLUTE
 
         if not meta.isMapped:
             # Kodi 19 will try to look for subtitles in the directory containing the file. '/' and `/file.mkv` both
@@ -2831,9 +3028,19 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
             li.setInfo('video', info)
 
         self.trigger('starting.video')
-        self.handler.queuingNext = False
-        self.handler.queuingSpecific = False
+        if not startup.current() or util.MONITOR.abortRequested():
+            return
+        handler.queuingNext = False
+        handler.queuingSpecific = False
+        # Terminal callbacks before this handoff belong to the outgoing file.
+        # Publish ownership before play(), which may itself report failure.
+        with VideoStartup._lock:
+            if not startup.current():
+                return
+            self._videoStartup = startup
+            self._preparingVideoStartup = None
         self.play(url, li)
+        startup.submitted = True
 
     def playVideoPlaylist(self, playlist, resume=False, handler=None, session_id=None):
         if self.bgmPlaying:
@@ -3063,37 +3270,45 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
 
     @consumeStaleTerminal('stop')
     def onPlayBackStopped(self):
+        startup = self._videoStartup
+        handler = self.handler
         if not self.sessionID:
             return
         util.DEBUG_LOG('Player - STOPPED' + (not self.started and ': FAILED' or ''))
         if self.ignoreStopEvents:
             return
 
+        finishVideoStartup(startup)
         if not self.started:
             self.onPlayBackFailed()
 
-        if not self.handler:
+        if not self._ownsVideoStartup(startup) or not handler:
             return
-        self.handler.onPlayBackStopped()
+        handler.onPlayBackStopped()
 
     @consumeStaleTerminal('ended')
     def onPlayBackEnded(self):
+        startup = self._videoStartup
+        handler = self.handler
         if not self.sessionID:
             return
 
         if self.isExternal:
             self.trigger('videowindow.closed', session_id=self.sessionID, video=self.video)
 
+        if not self._ownsVideoStartup(startup):
+            return
         util.DEBUG_LOG('Player - ENDED' + (not self.started and ': FAILED' or ''))
         if self.ignoreStopEvents:
             return
 
+        finishVideoStartup(startup)
         if not self.started:
             self.onPlayBackFailed()
 
-        if not self.handler:
+        if not self._ownsVideoStartup(startup) or not handler:
             return
-        self.handler.onPlayBackEnded()
+        handler.onPlayBackEnded()
 
     def onPlayBackSeek(self, time, offset):
         if not self.sessionID:
@@ -3105,38 +3320,55 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
 
     @consumeStaleTerminal('error')
     def onPlayBackError(self):
+        startup = self._videoStartup
+        handler = self.handler
+        finishVideoStartup(startup)
         if not self._ignorePlaybackFailure:
             self.trigger('playback.failed')
 
-        if not self.sessionID:
+        if not self._ownsVideoStartup(startup) or not self.sessionID:
             return
         util.DEBUG_LOG('Player - ERROR: {}', self.handler)
-        if not self.handler:
+        if not handler:
             return
 
-        if self.handler.onPlayBackFailed() and not self._ignorePlaybackFailure:
+        if handler.onPlayBackFailed() and not self._ignorePlaybackFailure:
+            if not self._ownsVideoStartup(startup):
+                return
             # Re-evaluate server connections so a subsequent retry uses the best available connection
             try:
                 plexapp.SERVERMANAGER.periodicReachabilityCheck()
             except:
                 util.ERROR("Failed to trigger reachability re-check after playback error")
 
+            if not self._ownsVideoStartup(startup):
+                return
             self.ignoreStopEvents = True
             util.showNotification('Playback Error!')
-            self.stopAndWait()
-            self.close()
+            if not self._ownsVideoStartup(startup):
+                return
+            self.stopAndWait(startup=startup)
+            if self._ownsVideoStartup(startup):
+                self.close(startup=startup)
 
     def onPlayBackFailed(self):
+        if self._preparingVideoStartup is not None:
+            return
+        startup = self._videoStartup
+        handler = self.handler
+        finishVideoStartup(startup)
         if not self._ignorePlaybackFailure:
             self.trigger('playback.failed')
 
-        if not self.sessionID:
+        if not self._ownsVideoStartup(startup) or not self.sessionID:
             return
         util.DEBUG_LOG('Player - FAILED: {}', self.handler)
-        if not self.handler:
+        if not handler:
             return
 
-        if self.handler.onPlayBackFailed() and not self._ignorePlaybackFailure:
+        if handler.onPlayBackFailed() and not self._ignorePlaybackFailure:
+            if not self._ownsVideoStartup(startup):
+                return
             # Re-evaluate server connections so a subsequent retry uses the best available connection
             try:
                 plexapp.SERVERMANAGER.periodicReachabilityCheck()
@@ -3144,8 +3376,11 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
                 util.ERROR("Failed to trigger reachability re-check after playback failure")
 
             util.showNotification(util.T(32448, 'Playback Failed!'))
-            self.stopAndWait()
-            self.close()
+            if not self._ownsVideoStartup(startup):
+                return
+            self.stopAndWait(startup=startup)
+            if self._ownsVideoStartup(startup):
+                self.close(startup=startup)
             # xbmcgui.Dialog().ok('Failed', 'Playback failed')
 
     def onVideoWindowOpened(self):
@@ -3185,7 +3420,15 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
         except:
             util.ERROR()
 
-    def stopAndWait(self, fade=False, fade_fast=False, deferred=False):
+    def stopAndWait(self, fade=False, fade_fast=False, deferred=False, preserveStartup=False,
+                    startup=_ANY_STARTUP):
+        if startup is not _ANY_STARTUP and not self._ownsVideoStartup(startup):
+            return
+        if not preserveStartup:
+            if startup is _ANY_STARTUP:
+                self._finishVideoStartup()
+            else:
+                finishVideoStartup(startup)
         if self.isPlaying():
             util.DEBUG_LOG('Player: Stopping and waiting...')
             self.dontRequeueBGM = True
@@ -3209,9 +3452,13 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
                         # rather than the theme we were asked to end
                         util.DEBUG_LOG('Player: Stopping and waiting...superseded during fade, not stopping')
                         return
+            if startup is not _ANY_STARTUP and not self._ownsVideoStartup(startup):
+                return
             self.stop()
             if not util.MONITOR.abortRequested():
                 while not util.MONITOR.waitFor() and self.isPlaying():
+                    if startup is not _ANY_STARTUP and not self._ownsVideoStartup(startup):
+                        return
                     if util.MONITOR.abortRequested():
                         break
             util.MONITOR.waitForAbort(0.2)
@@ -3258,11 +3505,13 @@ class PlexPlayer(xbmc.Player, signalsmixin.SignalsMixin):
             self.trigger('session.ended')
 
     def _preplayMonitor(self):
+        startup = self._videoStartup
         self.onPrePlayStarted()
         while self.isPlaying() and not self.isPlayingVideo() and not self.isPlayingAudio() and not util.MONITOR.abortRequested() and not self._closed:
             util.MONITOR.waitForAbort(0.1)
 
-        if not self.isPlayingVideo() and not self.isPlayingAudio():
+        if (self._videoStartup is startup and self._preparingVideoStartup is None and
+                not self.isPlayingVideo() and not self.isPlayingAudio()):
             self.onPlayBackFailed()
 
     def _videoMonitor(self):

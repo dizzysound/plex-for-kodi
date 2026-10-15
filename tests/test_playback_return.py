@@ -103,8 +103,8 @@ class EpisodeScreen(episodes.EpisodesWindow):
         self._winID = 13020
         self.wl_enabled = False
         self.is_watchlisted = False
-        self.show_ = video.Show(ET.fromstring('<Directory type="show" ratingKey="show" key="/library/metadata/show" leafCount="2" viewedLeafCount="0"/>'),
-                                initpath='/library/metadata/show', server=server)
+        self.show_ = video.Show(ET.fromstring('<Directory type="show" ratingKey="show" key="/library/metadata/show/children" leafCount="2" viewedLeafCount="0"/>'),
+                                initpath='/library/metadata/show/children', server=server)
         self.season = SimpleNamespace(ratingKey='season', isFullyWatched=False, index='1')
         self.episodeListControl = Items([Item(model(server, 'e1', 'episode'), 0), Item(model(server, 'e2', 'episode'), 1)])
         self.episode = self.episodeListControl[0].dataSource
@@ -199,8 +199,21 @@ class PlaybackReturnTest(KodiTestCase):
         self.assertEqual(screen.episodeListControl.selected, 1)
         self.assertEqual(self.jobs[-1].completed, ('e1',))
         self.assertEqual({key for key, _ in self.jobs[-1].requests}, {'e1', 'e2', 'show'})
+        self.assertEqual(self.jobs[-1].seasons, str(screen.show_.key))
         self.assertFalse(screen.currentItemLoaded)
         screen.postpone_simple.assert_not_called()
+
+    def test_returned_seasons_use_the_show_children_key_as_their_initpath(self):
+        screen = EpisodeScreen(self.server)
+        data = ET.fromstring('<MediaContainer><Directory type="season" ratingKey="season" '
+                             'key="/library/metadata/season/children" index="1"/></MediaContainer>')
+        with patch.object(screen, 'fillSeasons') as fill:
+            screen.onPlaybackReturnSeasons(data)
+        seasons = fill.call_args.kwargs['seasons']
+        self.assertEqual(len(seasons), 1)
+        self.assertIsInstance(seasons[0], video.Season)
+        self.assertEqual(seasons[0].initpath, str(screen.show_.key))
+        self.server.query.assert_not_called()
 
     def test_stale_server_metadata_cannot_undo_local_completion_or_resume(self):
         for state, watched, offset in [(True, True, 0), (234567, False, 234567)]:

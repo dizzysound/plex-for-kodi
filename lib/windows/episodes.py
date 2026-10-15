@@ -1678,7 +1678,7 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
             requests = [(item, dict(checkFiles=1, includeChapters=1, includeMarkers=1)) for item in targets]
             requests.append((self.show_, dict(checkFiles=1, includeOnDeck=1, **VIDEO_RELOAD_KW)))
             self.startPlaybackReturn(requests, completed=self._returnCompleted, watchlist_ref=self.show_,
-                                     seasons=str(self.show_.key) + '/children')
+                                     seasons=str(self.show_.key))
             self._returnRefreshFailed = False
             selected = self.episodeListControl.getSelectedItem()
             self.currentItemLoaded = bool(selected and selected.dataSource and selected.dataSource.mediaChoice)
@@ -1766,7 +1766,7 @@ class EpisodesWindow(kodigui.ControlledWindow, windowutils.UtilMixin, SeasonsMix
             self.selectPlayButton()
 
     def onPlaybackReturnSeasons(self, data):
-        seasons = [plexobjects.buildItem(self.show_.server, item, str(self.show_.key) + '/children',
+        seasons = [plexobjects.buildItem(self.show_.server, item, str(self.show_.key),
                                          container=self.show_) for item in data if item.tag == 'Directory']
         self.fillSeasons(self.show_, seasonsFilter=lambda x: len(x) > 1, selectSeason=self.season,
                          update=True, do_focus=not self.manuallySelectedSeason, seasons=seasons)

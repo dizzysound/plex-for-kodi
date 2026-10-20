@@ -248,6 +248,18 @@ class TemplateContextTest(KodiTestCase):
         # from base
         self.assertTrue(indicators["show"])
 
+    def test_every_theme_defines_every_color_token(self):
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        tokens = set(context["themes"]["base"]["colors"])
+        for theme in THEMES:
+            resolved = prepare_template_data(theme, copy.deepcopy(TEMPLATE_CONTEXTS))
+            self.assertEqual(tokens, set(resolved["theme"]["colors"]), theme)
+
+    def test_only_the_plx_theme_sets_the_plx_flag(self):
+        for theme in THEMES:
+            resolved = prepare_template_data(theme, copy.deepcopy(TEMPLATE_CONTEXTS))
+            self.assertEqual(theme == "plx", bool(resolved["theme"].get("plx")), theme)
+
     def test_unknown_theme_is_a_hard_error(self):
         engine = make_engine(self.mktemp())
         with self.assertRaises(KeyError):

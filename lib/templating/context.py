@@ -236,6 +236,27 @@ TEMPLATE_CONTEXTS = {
                 "useFocusColor": False,
                 "zoomPlayButton": False,
             }
+        },
+        # Restyled look: cool dark surfaces, white focus pills, hero-led home screen.
+        # `plx` gates the structural changes in the templates; stock themes leave it unset.
+        "plx": {
+            "INHERIT": "modern",
+            "plx": True,
+            "colors": {
+                "accent": "FFFFFFFF",
+                "accent_alt": "FFB9C2D0",
+                "focus": "FFFFFFFF",
+                "text_on_focus": "FF0B0F14",
+                "text_inv": "FF0B0F14",
+                "surface": "FF141A22",
+                "surface_hi": "FF2A3340",
+                "surface_33": "FF222A35",
+                "scrim": "CC05080C"
+            },
+            "buttons": {
+                "useFocusColor": False,
+                "zoomPlayButton": False,
+            }
         }
     }
 }

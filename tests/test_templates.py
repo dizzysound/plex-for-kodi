@@ -201,6 +201,17 @@ class TemplateRenderTest(KodiTestCase):
             with self.subTest(template=name):
                 ET.fromstring(scaled[name])
 
+    def test_plx_renders_scaled(self):
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        context["core"]["resolution"] = (1280, 1024)
+        context["core"]["needs_scaling"] = True
+        scaled = render_theme(make_engine(self.mktemp(), context=context), "plx")
+        for name, xml in sorted(scaled.items()):
+            with self.subTest(template=name):
+                self.assertNotIn("vscale(", xml)
+                self.assertIsNone(re.search(r"\[\s*'[A-Za-z_]+'\s*\]", xml))
+                ET.fromstring(xml)
+
     def test_hub_count_flows_into_the_home_template(self):
         base = copy.deepcopy(TEMPLATE_CONTEXTS)
         base["core"]["hub_count"] = 4

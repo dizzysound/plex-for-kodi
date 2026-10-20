@@ -3591,6 +3591,11 @@ class HomeWindow(kodigui.BaseWindow, util.CronReceiver, CommonMixin, SpoilersMix
         if item.dataSource != self.lastSection or force:
             self.sectionChanged(force=force)
 
+    @property
+    def tracksFocusedItem(self):
+        # plx hero follows the focused item even with dynamic backgrounds off
+        return util.addonSettings.dynamicBackgrounds or util.getSetting('theme', util.DEF_THEME) == 'plx'
+
     HERO_ART_DIM = (1920, 1080)
     HERO_LOGO_DIM = (640, 180)
 
@@ -3652,7 +3657,7 @@ class HomeWindow(kodigui.BaseWindow, util.CronReceiver, CommonMixin, SpoilersMix
                 return
             return True
 
-        if util.addonSettings.dynamicBackgrounds and is_valid_mli:
+        if self.tracksFocusedItem and is_valid_mli:
             self.updateBackgroundFrom(mli.dataSource)
 
         if not mli or not mli.getProperty('is.end') or mli.getProperty('is.updating') == '1':
@@ -3777,7 +3782,7 @@ class HomeWindow(kodigui.BaseWindow, util.CronReceiver, CommonMixin, SpoilersMix
                 util.MONITOR.waitFor()
 
             self.setProperty('hub.focus', '')
-            if util.addonSettings.dynamicBackgrounds:
+            if self.tracksFocusedItem:
                 self.backgroundSet = False
 
             util.DEBUG_LOG('Section changed ({0}): {1}', section.key, repr(section.title))

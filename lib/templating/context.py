@@ -266,6 +266,9 @@ TEMPLATE_CONTEXTS = {
             "buttons": {
                 "useFocusColor": False,
                 "zoomPlayButton": False,
+            },
+            "episodes": {
+                "use_button_bg": False,
             }
         }
     }

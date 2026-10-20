@@ -119,6 +119,19 @@ def resolve_variable(arg, context=None):
     return ibis.nodes.ResolveContextVariable(arg)
 
 
+@ibis.filters.register('plx_nav')
+@register_builtin
+def plx_nav(ids, cur, step, edge=None):
+    """neighbouring control id of cur in the ordered ids list (edge, if given, past either end)"""
+    try:
+        idx = list(ids).index(cur) + step
+    except (TypeError, ValueError):
+        return ""
+    if 0 <= idx < len(ids):
+        return ids[idx]
+    return edge if edge is not None and not isinstance(edge, Undefined) else ""
+
+
 @ibis.filters.register('merge_dict')
 @ibis.filters.register('merge')
 @register_builtin('merge')

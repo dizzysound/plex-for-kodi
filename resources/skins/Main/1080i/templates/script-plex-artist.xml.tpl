@@ -28,7 +28,7 @@
             <scrolltime tween="quadratic" easing="out">200</scrolltime>
             <usecontrolcoords>true</usecontrolcoords>
 
-            {% with attr = {"width": 174, "height": 139} & template = "includes/themed_button.xml.tpl" & hitrect = {"w": 94, "h": 59} %}
+            {% with attr = {"width": 174, "height": 139} & template = "includes/themed_button.xml.tpl" & navids=[301,302,303,304] & navup=200 & navdown=400 & hitrect = {"w": 94, "h": 59} %}
                 {% include template with name="info" & id=301 %}
                 {% include template with name="play" & id=302 %}
                 {% include template with name="shuffle" & id=303 %}

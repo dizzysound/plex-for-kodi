@@ -49,7 +49,7 @@
                 <ondown condition="!String.IsEmpty(Window.Property(no.content.filtered))">600</ondown>
                 <font>font12</font>
                 <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
-                <texturefocus colordiffuse="{{ theme.colors.focus }}">script.plex/buttons/home-focus.png</texturefocus>
+                <texturefocus colordiffuse="{% if theme.plx %}{{ theme.colors.text_on_focus }}{% else %}{{ theme.colors.focus }}{% endif %}">script.plex/buttons/home-focus.png</texturefocus>
                 <texturenofocus colordiffuse="99FFFFFF">script.plex/buttons/home.png</texturenofocus>
                 <label> </label>
             </control>
@@ -83,7 +83,7 @@
                 <ondown condition="!String.IsEmpty(Window.Property(no.content.filtered))">600</ondown>
                 <font>font12</font>
                 <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
-                <texturefocus colordiffuse="{{ theme.colors.focus }}">script.plex/buttons/search-focus.png</texturefocus>
+                <texturefocus colordiffuse="{% if theme.plx %}{{ theme.colors.text_on_focus }}{% else %}{{ theme.colors.focus }}{% endif %}">script.plex/buttons/search-focus.png</texturefocus>
                 <texturenofocus colordiffuse="99FFFFFF">script.plex/buttons/search.png</texturenofocus>
                 <label> </label>
             </control>

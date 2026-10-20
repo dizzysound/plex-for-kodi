@@ -1,3 +1,4 @@
+{% if theme.plx %}{% include "includes/plx/button.xml.tpl" %}{% else %}
 <control type="button" id="{{ id }}">
     {% if visible %}<visible{% if allowhiddenfocus %} allowhiddenfocus="true"{% endif %}>{{ visible }}</visible>{% endif %}
     <hitrect x="{{ hitrect.x|default(40) }}" y="{{ hitrect.y|default(40)|vscale }}" w="{{ hitrect.w|default(96) }}" h="{{ hitrect.h|default(60)|vscale }}" />
@@ -26,3 +27,4 @@
         {% endfor %}
     {% endspaceless %}{% endif %}
 </control>
+{% endif %}

@@ -57,7 +57,7 @@
             <scrolltime tween="quadratic" easing="out">200</scrolltime>
             <usecontrolcoords>true</usecontrolcoords>
 
-            {% with attr = {"width": 174, "height": 139} & template = "includes/themed_button.xml.tpl" & hitrect = {"w": 94, "h": 59} %}
+            {% with attr = {"width": 174, "height": 139} & template = "includes/themed_button.xml.tpl" & navids=[301,302,303] & navup=200 & navr=101 & hitrect = {"w": 94, "h": 59} %}
                 {% include template with name="play" & id=301 %}
                 {% include template with name="shuffle" & id=302 %}
                 {% include template with name="more" & id=303 & visible="!String.IsEmpty(Window.Property(show.options)) | Player.HasAudio" %}

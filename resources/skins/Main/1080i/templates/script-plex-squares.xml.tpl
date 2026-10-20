@@ -167,14 +167,14 @@
                             <posy>0</posy>
                             <width>244</width>
                             <height>{{ vscale(244) }}</height>
-                            <texture>$INFO[ListItem.Property(thumb.fallback)]</texture>
+                            <texture{% if theme.plx %} diffuse="script.plex/plx/mask-square.png"{% endif %}>$INFO[ListItem.Property(thumb.fallback)]</texture>
                         </control>
                         <control type="image">
                             <posx>0</posx>
                             <posy>0</posy>
                             <width>244</width>
                             <height>{{ vscale(244) }}</height>
-                            <texture background="true">$INFO[ListItem.Thumb]</texture>
+                            <texture background="true"{% if theme.plx %} diffuse="script.plex/plx/mask-square.png"{% endif %}>$INFO[ListItem.Thumb]</texture>
                             <aspectratio>scale</aspectratio>
                         </control>
                         <control type="image">
@@ -239,14 +239,14 @@
                                 <posy>0</posy>
                                 <width>244</width>
                                 <height>{{ vscale(244) }}</height>
-                                <texture>$INFO[ListItem.Property(thumb.fallback)]</texture>
+                                <texture{% if theme.plx %} diffuse="script.plex/plx/mask-square.png"{% endif %}>$INFO[ListItem.Property(thumb.fallback)]</texture>
                             </control>
                             <control type="image">
                                 <posx>0</posx>
                                 <posy>0</posy>
                                 <width>244</width>
                                 <height>{{ vscale(244) }}</height>
-                                <texture background="true">$INFO[ListItem.Thumb]</texture>
+                                <texture background="true"{% if theme.plx %} diffuse="script.plex/plx/mask-square.png"{% endif %}>$INFO[ListItem.Thumb]</texture>
                                 <aspectratio>scale</aspectratio>
                             </control>
                             <control type="image">
@@ -279,7 +279,7 @@
                                 <posy>0</posy>
                                 <width>254</width>
                                 <height>{{ vscale(254) }}</height>
-                                <texture border="10">script.plex/home/selected.png</texture>
+                                <texture border="{% if theme.plx %}20{% else %}10{% endif %}"{% if theme.plx %} colordiffuse="{{ theme.colors.focus }}"{% endif %}>{% if theme.plx %}script.plex/plx/card-outline.png{% else %}script.plex/home/selected.png{% endif %}</texture>
                             </control>
                             <control type="image">
                                 <visible>!String.IsEmpty(ListItem.Property(is.folder))</visible>
@@ -287,7 +287,7 @@
                                 <posy>0</posy>
                                 <width>254</width>
                                 <height>{{ vscale(294) }}</height>
-                                <texture border="10">script.plex/home/selected.png</texture>
+                                <texture border="{% if theme.plx %}20{% else %}10{% endif %}"{% if theme.plx %} colordiffuse="{{ theme.colors.focus }}"{% endif %}>{% if theme.plx %}script.plex/plx/card-outline.png{% else %}script.plex/home/selected.png{% endif %}</texture>
                             </control>
                         </control>
                     </control>

@@ -57,6 +57,7 @@ def main():
     rounded(128, 64, 32, "pill.png")
     rounded(128, 64, 32, "pill-outline.png", outline=3)
     rounded(100, 100, 20, "card.png")
+    rounded(100, 100, 20, "card-outline.png", outline=4)
     # circle for avatars / round buttons
     rounded(256, 256, 128, "circle.png")
     rounded(256, 256, 128, "circle-outline.png", outline=4)

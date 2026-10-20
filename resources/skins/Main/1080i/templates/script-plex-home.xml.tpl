@@ -1,13 +1,4 @@
 {% extends "default.xml.tpl" %}
-{% block background %}{% if theme.plx %}
-<control type="image">
-    <posx>0</posx>
-    <posy>0</posy>
-    <width>1920</width>
-    <height>1080</height>
-    <texture colordiffuse="{{ theme.colors.bg }}">script.plex/white-square.png</texture>
-</control>
-{% else %}{% include "includes/default_background.xml.tpl" %}{% endif %}{% endblock %}
 {% block content %}
 <control type="grouplist" id="50">
     <animation effect="slide" end="0,{{ vscale(-135) }}" time="200" tween="sine" easing="inout" condition="!String.IsEmpty(Window(10000).Property(script.plex.off.sections))">Conditional</animation>

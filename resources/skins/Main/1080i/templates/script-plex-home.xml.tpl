@@ -1,8 +1,33 @@
 {% extends "default.xml.tpl" %}
+{% block background %}{% if theme.plx %}
+<control type="image">
+    <posx>0</posx>
+    <posy>0</posy>
+    <width>1920</width>
+    <height>1080</height>
+    <texture colordiffuse="{{ theme.colors.bg }}">script.plex/white-square.png</texture>
+</control>
+{% else %}{% include "includes/default_background.xml.tpl" %}{% endif %}{% endblock %}
 {% block content %}
 <control type="grouplist" id="50">
     <animation effect="slide" end="0,{{ vscale(-135) }}" time="200" tween="sine" easing="inout" condition="!String.IsEmpty(Window(10000).Property(script.plex.off.sections))">Conditional</animation>
 
+    {% if theme.plx %}
+    {% with plx_hero_h = 700 %}
+    <!-- plx: focus in any hub scrolls the hero away, each further hub row scrolls one row -->
+    <animation type="Conditional" condition="!String.IsEmpty(Window.Property(hub.focus)) + Control.IsVisible(500)" reversible="true">
+        <effect type="slide" end="0,{{ (0 - plx_hero_h + 275)|vscale }}" time="200" tween="sine" easing="inout"/>
+    </animation>
+    <animation type="Conditional" condition="Integer.IsGreater(Window.Property(hub.focus),0) + Control.IsVisible(500)" reversible="true">
+        <effect type="slide" end="0,{{ vscale(-500) }}" time="200" tween="sine" easing="inout"/>
+    </animation>
+    {% for i in range(1, core.hub_count) %}
+    <animation type="Conditional" condition="Integer.IsGreater(Window.Property(hub.focus),{{ i }}) + Control.IsVisible({{ i + 499 }})" reversible="true">
+        <effect type="slide" end="0,{{ vscale(-555) }}" time="200" tween="sine" easing="inout"/>
+    </animation>
+    {% endfor %}
+    {% endwith %}
+    {% else %}
     <!-- Dynamic focus animations for hub rows -->
     <!-- First hub (500) slides up less since it's after the section bar -->
     <animation type="Conditional" condition="Integer.IsGreater(Window.Property(hub.focus),0) + Control.IsVisible(500)" reversible="true">
@@ -16,9 +41,11 @@
     </animation>
     {% endfor %}
 
+    {% endif %}
+
     <defaultcontrol>101</defaultcontrol>
     <posx>0</posx>
-    <posy>{{ vscale(96) }}</posy>
+    <posy>{% if theme.plx %}0{% else %}{{ vscale(96) }}{% endif %}</posy>
     <width>2130</width>
     {% with n = core.hub_count %}{% with grouplist_height = n * 555 + 320 %}
     <height>{{ vscale(grouplist_height) }}</height>
@@ -27,6 +54,9 @@
     <orientation>vertical</orientation>
     <usecontrolcoords>true</usecontrolcoords>
     <scrolltime tween="quadratic" easing="out">200</scrolltime>
+    {% if theme.plx %}
+    {% with plx_hero_h = 700 %}{% include "includes/plx/home_top.xml.tpl" %}{% endwith %}
+    {% else %}
     <control type="group" id="100">
         <width>2130</width>
         <height>{{ vscale(200) }}</height>
@@ -258,6 +288,7 @@
             </focusedlayout>
         </control>
     </control>
+    {% endif %}
 
     <!-- DYNAMIC HUB ROWS - Generated from hub_count setting -->
     {% for i in range(core.hub_count) %}
@@ -276,6 +307,19 @@
             <texture>script.plex/white-square.png</texture>
             <colordiffuse>A0000000</colordiffuse>
         </control>
+        {% if theme.plx %}
+        <control type="label">
+            <posx>60</posx>
+            <posy>0</posy>
+            <width>1400</width>
+            <height>{{ vscale(87) }}</height>
+            <font>font14</font>
+            <align>left</align>
+            <aligny>center</aligny>
+            <textcolor>{{ theme.colors.text }}</textcolor>
+            <label>[B]$INFO[Window.Property(hub.{{ hub_id }})][/B]</label>
+        </control>
+        {% else %}
         <control type="label">
             <posx>60</posx>
             <posy>0</posy>
@@ -287,6 +331,7 @@
             <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$INFO[Window.Property(hub.{{ hub_id }})][/UPPERCASE]</label>
         </control>
+        {% endif %}
         <control type="list" id="{{ hub_id }}">
             <posx>0</posx>
             <posy>{{ vscale(29) }}</posy>
@@ -301,6 +346,14 @@
             <preloaditems>4</preloaditems>
 
             <!-- Conditional item layouts - Kodi selects layout based on condition attribute -->
+            {% if theme.plx %}
+            {% include "includes/plx/hub_card.xml.tpl" with display="poster" & mask="mask-poster.png" & cw=244 & ch=361 & focused=False %}
+            {% include "includes/plx/hub_card.xml.tpl" with display="square" & mask="mask-square.png" & cw=244 & ch=244 & focused=False %}
+            {% include "includes/plx/hub_card.xml.tpl" with display="ar16x9" & mask="mask-16x9.png" & cw=532 & ch=299 & focused=False %}
+            {% include "includes/plx/hub_card.xml.tpl" with display="poster" & mask="mask-poster.png" & cw=244 & ch=361 & focused=True %}
+            {% include "includes/plx/hub_card.xml.tpl" with display="square" & mask="mask-square.png" & cw=244 & ch=244 & focused=True %}
+            {% include "includes/plx/hub_card.xml.tpl" with display="ar16x9" & mask="mask-16x9.png" & cw=532 & ch=299 & focused=True %}
+            {% else %}
             {% include "includes/hub_itemlayout_poster.xml.tpl" %}
             {% include "includes/hub_itemlayout_square.xml.tpl" %}
             {% include "includes/hub_itemlayout_ar16x9.xml.tpl" %}
@@ -308,6 +361,7 @@
             {% include "includes/hub_focusedlayout_poster.xml.tpl" %}
             {% include "includes/hub_focusedlayout_square.xml.tpl" %}
             {% include "includes/hub_focusedlayout_ar16x9.xml.tpl" %}
+            {% endif %}
         </control>
     </control>
     {% endwith %}
@@ -346,10 +400,35 @@
     </control>
     <control type="group">
         <visible>String.IsEmpty(Window.Property(search.dialog))</visible>
+        {% if theme.plx %}
+        <control type="image">
+            <posx>60</posx>
+            <posy>{{ vscale(35.5) }}</posy>
+            <width>64</width>
+            <height>{{ vscale(64) }}</height>
+            <texture colordiffuse="{{ theme.colors.glass }}">script.plex/plx/circle.png</texture>
+        </control>
+        <control type="image">
+            <visible>!Control.HasFocus(203)</visible>
+            <posx>60</posx>
+            <posy>{{ vscale(35.5) }}</posy>
+            <width>64</width>
+            <height>{{ vscale(64) }}</height>
+            <texture colordiffuse="{{ theme.colors.glass_hi }}">script.plex/plx/circle-outline.png</texture>
+        </control>
+        <control type="image">
+            <visible>Control.HasFocus(203)</visible>
+            <posx>60</posx>
+            <posy>{{ vscale(35.5) }}</posy>
+            <width>64</width>
+            <height>{{ vscale(64) }}</height>
+            <texture colordiffuse="{{ theme.colors.focus }}">script.plex/plx/circle.png</texture>
+        </control>
+        {% endif %}
         <control type="button" id="203">
             <animation effect="zoom" start="100" end="144" time="100" center="80,{{ vscale(67.5) }}" reversible="false">Focus</animation>
             <animation effect="zoom" start="144" end="100" time="100" center="80,{{ vscale(67.5) }}" reversible="false">UnFocus</animation>
-            <posx>60</posx>
+            <posx>{% if theme.plx %}72{% else %}60{% endif %}</posx>
             <posy>{{ vscale(47.5) }}</posy>
             <width>40</width>
             <height>{{ vscale(40) }}</height>
@@ -360,6 +439,7 @@
             <texturenofocus colordiffuse="99FFFFFF">script.plex/buttons/search.png</texturenofocus>
             <label> </label>
         </control>
+        {% if not theme.plx %}
         <control type="label">
             <posx>160</posx>
             <posy>{{ vscale(35) }}</posy>
@@ -371,6 +451,7 @@
             <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$ADDON[script.plexmod 32430][/UPPERCASE]</label>
         </control>
+        {% endif %}
     </control>
     <control type="group">
         <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plex.theme_playing))</visible>
@@ -389,8 +470,13 @@
             <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
             <align>right</align>
             <aligny>center</aligny>
+            {% if theme.plx %}
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="32">script.plex/plx/pill.png</texturefocus>
+            <texturenofocus colordiffuse="{{ theme.colors.glass }}" border="32">script.plex/plx/pill.png</texturenofocus>
+            {% else %}
             <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
             <texturenofocus>-</texturenofocus>
+            {% endif %}
             <textoffsetx>100</textoffsetx>
             <textoffsety>0</textoffsety>
             <label> </label>
@@ -468,6 +554,7 @@
             <info>Player.Progress</info>
         </control>
     </control>
+    {% if not theme.plx %}
     <control type="label">
         <right>213</right>
         <posy>{{ vscale(35) }}</posy>
@@ -486,8 +573,9 @@
         <height>{{ vscale(43) }}</height>
         <texture>script.plex/home/plex.png</texture>
     </control>
+    {% endif %}
     <control type="group">
-        <posx>576</posx>
+        <posx>{% if theme.plx %}860{% else %}576{% endif %}</posx>
         <posy>{{ vscale(34) }}</posy>
         <width>1000</width>
         <height>{{ vscale(1046) }}</height>
@@ -512,8 +600,13 @@
                 <disabledcolor>{{ theme.colors.text }}</disabledcolor>
                 <align>right</align>
                 <aligny>center</aligny>
+                {% if theme.plx %}
+                <texturefocus colordiffuse="{{ theme.colors.focus }}" border="32">script.plex/plx/pill.png</texturefocus>
+                <texturenofocus colordiffuse="{{ theme.colors.glass }}" border="32">script.plex/plx/pill.png</texturenofocus>
+                {% else %}
                 <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
                 <texturenofocus>-</texturenofocus>
+                {% endif %}
                 <textoffsetx>100</textoffsetx>
                 <textoffsety>0</textoffsety>
                 <label>$INFO[Window.Property(server.name)]</label>
@@ -904,8 +997,13 @@
                 <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
                 <align>right</align>
                 <aligny>center</aligny>
+                {% if theme.plx %}
+                <texturefocus colordiffuse="{{ theme.colors.focus }}" border="32">script.plex/plx/pill.png</texturefocus>
+                <texturenofocus colordiffuse="{{ theme.colors.glass }}" border="32">script.plex/plx/pill.png</texturenofocus>
+                {% else %}
                 <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
                 <texturenofocus>-</texturenofocus>
+                {% endif %}
                 <textoffsetx>100</textoffsetx>
                 <textoffsety>0</textoffsety>
                 <label>$INFO[Window.Property(user.name)]</label>

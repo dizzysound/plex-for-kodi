@@ -151,6 +151,17 @@ class TemplateRenderTest(KodiTestCase):
                 self.assertIsNone(leftover, "unrendered ibis syntax at offset {0} in {1}".format(
                     leftover.start() if leftover else -1, name))
 
+    def test_no_unevaluated_expressions_survive_rendering(self):
+        """
+        vscale(a - b) is not evaluated by the engine and renders as a Python
+        list repr or a literal call; (a - b)|vscale must be used instead.
+        """
+        for theme in THEMES:
+            for name, xml in sorted(render_theme(make_engine(self.mktemp()), theme).items()):
+                with self.subTest(theme=theme, template=name):
+                    self.assertNotIn("vscale(", xml)
+                    self.assertIsNone(re.search(r"\[\s*'[A-Za-z_]+'\s*\]", xml))
+
     def test_every_indicator_style_renders(self):
         """
         Watched/unwatched indicator styles are a separate inheritance axis from

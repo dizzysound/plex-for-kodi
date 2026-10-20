@@ -3591,6 +3591,50 @@ class HomeWindow(kodigui.BaseWindow, util.CronReceiver, CommonMixin, SpoilersMix
         if item.dataSource != self.lastSection or force:
             self.sectionChanged(force=force)
 
+    HERO_ART_DIM = (1920, 1080)
+    HERO_LOGO_DIM = (640, 180)
+
+    def updateBackgroundFrom(self, ds):
+        ret = super(HomeWindow, self).updateBackgroundFrom(ds)
+        if ds and util.getSetting('theme', util.DEF_THEME) == 'plx':
+            return self.updateHeroFrom(ds) or ret
+        return ret
+
+    def updateHeroFrom(self, ds):
+        def get(name):
+            return str(ds.get(name, '') or '')
+
+        try:
+            is_episode = get('type') == 'episode'
+            title = (get('grandparentTitle') if is_episode else '') or get('title')
+
+            meta = []
+            if is_episode:
+                if get('parentIndex') and get('index'):
+                    meta.append(u'S{0} · E{1}'.format(get('parentIndex'), get('index')))
+                if get('title') != title:
+                    meta.append(get('title'))
+            else:
+                meta.append(get('year'))
+            meta.append(get('contentRating'))
+            duration = ds.get('duration', 0).asInt()
+            if duration:
+                meta.append(util.durationToShortText(duration))
+
+            art = ds.get('art', ds.get('parentArt', ds.get('grandparentArt', None)))
+            art_url = art.asTranscodedImageURL(*self.HERO_ART_DIM) if art else ''
+            logo = util.clearLogoFrom(ds, *util.scaleResolution(*self.HERO_LOGO_DIM))
+        except Exception:
+            util.ERROR()
+            return
+
+        self.setProperty('hero.title', title)
+        self.setProperty('hero.meta', u'  ·  '.join([m for m in meta if m]))
+        self.setProperty('hero.summary', get('summary'))
+        self.setProperty('hero.art', art_url)
+        self.setProperty('clear.logo', logo)
+        return bool(art_url)
+
     def checkHubItem(self, controlID, action=None):
         control = self.hubControls[controlID - 400]
         mli = control.getSelectedItem()

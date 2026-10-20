@@ -83,7 +83,12 @@ TEMPLATE_CONTEXTS = {
                 "surface_hi": "FF404040",
                 "surface_33": "FF333333",
                 "scrim": "C0000000",
-                "shade": "40000000"
+                "shade": "40000000",
+                "bg": "FF000000",
+                "bg_d9": "D9000000",
+                "glass": "66000000",
+                "glass_hi": "33FFFFFF",
+                "progress": "FFCC7B19"
             },
             "buttons": {
                 "useFocusColor": True,
@@ -244,14 +249,19 @@ TEMPLATE_CONTEXTS = {
             "plx": True,
             "colors": {
                 "accent": "FFFFFFFF",
-                "accent_alt": "FFB9C2D0",
+                "accent_alt": "FFC9C2BB",
                 "focus": "FFFFFFFF",
-                "text_on_focus": "FF0B0F14",
-                "text_inv": "FF0B0F14",
-                "surface": "FF141A22",
-                "surface_hi": "FF2A3340",
-                "surface_33": "FF222A35",
-                "scrim": "CC05080C"
+                "text_on_focus": "FF14110F",
+                "text_inv": "FF14110F",
+                "surface": "FF221F1D",
+                "surface_hi": "FF38332F",
+                "surface_33": "FF2B2724",
+                "scrim": "CC0C0A09",
+                "bg": "FF161412",
+                "bg_d9": "D9161412",
+                "glass": "66000000",
+                "glass_hi": "33FFFFFF",
+                "progress": "FFE5A00D"
             },
             "buttons": {
                 "useFocusColor": False,

@@ -54,9 +54,9 @@
     <height>{{ vscale(40) }}</height>
     <ondown>900</ondown>
     <font>font12</font>
-    <focusedcolor>FF000000</focusedcolor>
-    <texturefocus colordiffuse="FFE5A00D">script.plex/buttons/search-focus.png</texturefocus>
-    <texturenofocus colordiffuse="FFCC7B19">script.plex/buttons/search.png</texturenofocus>
+    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+    <texturefocus colordiffuse="{{ theme.colors.focus }}">script.plex/buttons/search-focus.png</texturefocus>
+    <texturenofocus colordiffuse="{{ theme.colors.accent_alt }}">script.plex/buttons/search.png</texturenofocus>
     <onclick>Close</onclick>
     <label> </label>
 </control>
@@ -69,7 +69,7 @@
     <font>font12</font>
     <align>left</align>
     <aligny>center</aligny>
-    <textcolor>FFFFFFFF</textcolor>
+    <textcolor>{{ theme.colors.text }}</textcolor>
     <label>[UPPERCASE]$ADDON[script.plexmod 32431][/UPPERCASE]</label>
 </control>
 
@@ -89,7 +89,7 @@
                 <posy>0</posy>
                 <width>151</width>
                 <height>{{ vscale(60) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="group">
                 <visible>String.IsEqual(Window.Property(search.section),all)</visible>
@@ -98,7 +98,7 @@
                     <posy>0</posy>
                     <width>151</width>
                     <height>{{ vscale(60) }}</height>
-                    <texture colordiffuse="FFCC7B19">script.plex/white-square.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent_alt }}">script.plex/white-square.png</texture>
                 </control>
                 <control type="label">
                     <scroll>false</scroll>
@@ -109,7 +109,7 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <textcolor>FF000000</textcolor>
+                    <textcolor>{{ theme.colors.text_inv }}</textcolor>
                     <label>All</label>
                 </control>
             </control>
@@ -123,7 +123,7 @@
                 <font>font12</font>
                 <align>center</align>
                 <aligny>center</aligny>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <label>$ADDON[script.plexmod 32345]</label>
             </control>
         </control>
@@ -135,7 +135,7 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(60) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <visible>String.IsEqual(Window.Property(search.section),movie)</visible>
@@ -143,7 +143,7 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(60) }}</height>
-                <texture colordiffuse="FFCC7B19">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent_alt }}">script.plex/white-square.png</texture>
             </control>
         </control>
         <control type="group">
@@ -154,7 +154,7 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(60) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <visible>String.IsEqual(Window.Property(search.section),show)</visible>
@@ -162,7 +162,7 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(60) }}</height>
-                <texture colordiffuse="FFCC7B19">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent_alt }}">script.plex/white-square.png</texture>
             </control>
         </control>
         <control type="group">
@@ -173,7 +173,7 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(60) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <visible>String.IsEqual(Window.Property(search.section),artist)</visible>
@@ -181,7 +181,7 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(60) }}</height>
-                <texture colordiffuse="FFCC7B19">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent_alt }}">script.plex/white-square.png</texture>
             </control>
         </control>
         <control type="group">
@@ -192,7 +192,7 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(60) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <visible>String.IsEqual(Window.Property(search.section),photo)</visible>
@@ -200,7 +200,7 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(60) }}</height>
-                <texture colordiffuse="FFCC7B19">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent_alt }}">script.plex/white-square.png</texture>
             </control>
         </control>
 
@@ -221,7 +221,7 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
 
                     <texturefocus>-</texturefocus>
                     <texturenofocus>-</texturenofocus>
@@ -244,7 +244,7 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
                     <texturefocus>-</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label> </label>
@@ -266,7 +266,7 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
                     <texturefocus>-</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label> </label>
@@ -288,7 +288,7 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
                     <texturefocus>-</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label> </label>
@@ -311,7 +311,7 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
                     <texturefocus>-</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label> </label>
@@ -434,7 +434,7 @@
             <height>{{ vscale(60) }}</height>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <font>font13</font>
             <label> </label>
         </control>
@@ -457,42 +457,42 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>77</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>154</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>231</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>308</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>385</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
         </control>
         <!-- IMAGES ROW 2 -->
@@ -504,42 +504,42 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>77</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>154</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>231</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>308</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>385</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
         </control>
         <!-- IMAGES ROW 3 -->
@@ -551,42 +551,42 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>77</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>154</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>231</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>308</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>385</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
         </control>
         <!-- IMAGES ROW 4 -->
@@ -598,42 +598,42 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>77</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>154</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>231</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>308</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>385</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
         </control>
         <!-- IMAGES ROW 5 -->
@@ -645,14 +645,14 @@
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>77</posx>
                 <posy>0</posy>
                 <width>74</width>
                 <height>{{ vscale(74) }}</height>
-                <texture colordiffuse="FF1F1F1F">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.surface }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <posx>154</posx>
@@ -754,8 +754,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>A</label>
                 </control>
@@ -778,8 +778,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>B</label>
                 </control>
@@ -802,8 +802,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>C</label>
                 </control>
@@ -826,8 +826,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>D</label>
                 </control>
@@ -850,8 +850,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>E</label>
                 </control>
@@ -875,8 +875,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>F</label>
                 </control>
@@ -904,8 +904,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>G</label>
                 </control>
@@ -928,8 +928,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>H</label>
                 </control>
@@ -952,8 +952,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>I</label>
                 </control>
@@ -976,8 +976,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>J</label>
                 </control>
@@ -1000,8 +1000,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>K</label>
                 </control>
@@ -1025,8 +1025,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>L</label>
                 </control>
@@ -1054,8 +1054,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>M</label>
                 </control>
@@ -1078,8 +1078,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>N</label>
                 </control>
@@ -1102,8 +1102,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>O</label>
                 </control>
@@ -1126,8 +1126,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>P</label>
                 </control>
@@ -1150,8 +1150,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>Q</label>
                 </control>
@@ -1175,8 +1175,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>R</label>
                 </control>
@@ -1204,8 +1204,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>S</label>
                 </control>
@@ -1228,8 +1228,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>T</label>
                 </control>
@@ -1252,8 +1252,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>U</label>
                 </control>
@@ -1276,8 +1276,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>V</label>
                 </control>
@@ -1300,8 +1300,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>W</label>
                 </control>
@@ -1325,8 +1325,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>X</label>
                 </control>
@@ -1354,8 +1354,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>Y</label>
                 </control>
@@ -1378,8 +1378,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>Z</label>
                 </control>
@@ -1402,8 +1402,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>0[B][/B]</label>
                 </control>
@@ -1426,8 +1426,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>1[B][/B]</label>
                 </control>
@@ -1450,8 +1450,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>2[B][/B]</label>
                 </control>
@@ -1475,8 +1475,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>3[B][/B]</label>
                 </control>
@@ -1504,8 +1504,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>4[B][/B]</label>
                 </control>
@@ -1528,8 +1528,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>5[B][/B]</label>
                 </control>
@@ -1552,8 +1552,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>6[B][/B]</label>
                 </control>
@@ -1576,8 +1576,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>7[B][/B]</label>
                 </control>
@@ -1600,8 +1600,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>8[B][/B]</label>
                 </control>
@@ -1625,8 +1625,8 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <focusedcolor>FF000000</focusedcolor>
-                    <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                    <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                    <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                     <texturenofocus>-</texturenofocus>
                     <label>9[B][/B]</label>
                 </control>
@@ -1680,8 +1680,8 @@
                 <font>font12</font>
                 <align>center</align>
                 <aligny>center</aligny>
-                <focusedcolor>FF000000</focusedcolor>
-                <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                 <texturenofocus>-</texturenofocus>
                 <label>$ADDON[script.plexmod 32322]</label>
             </control>
@@ -1703,8 +1703,8 @@
                 <font>font12</font>
                 <align>center</align>
                 <aligny>center</aligny>
-                <focusedcolor>FF000000</focusedcolor>
-                <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                 <texturenofocus>-</texturenofocus>
                 <label>$ADDON[script.plexmod 32432]</label>
             </control>
@@ -1727,8 +1727,8 @@
                 <font>font12</font>
                 <align>center</align>
                 <aligny>center</aligny>
-                <focusedcolor>FF000000</focusedcolor>
-                <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
+                <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/white-square-rounded-with-shadow.png</texturefocus>
                 <texturenofocus>-</texturenofocus>
                 <label>$ADDON[script.plexmod 32433]</label>
             </control>
@@ -1749,7 +1749,7 @@
             <font>font12</font>
             <align>right</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$ADDON[script.plexmod 32434][/UPPERCASE]</label>
         </control>
         <control type="group">
@@ -1762,7 +1762,7 @@
                 <posy>0</posy>
                 <width>39</width>
                 <height>{{ vscale(39) }}</height>
-                <texture colordiffuse="FFE5A00D">script.plex/indicators/spinner.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent }}">script.plex/indicators/spinner.png</texture>
             </control>
         </control>
     </control>
@@ -1779,7 +1779,7 @@
             <font>font12</font>
             <align>center</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$ADDON[script.plexmod 32435][/UPPERCASE]</label>
         </control>
     </control>
@@ -1823,7 +1823,7 @@
             <font>font12</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$INFO[Window.Property(hub.{{ hub_id }})][/UPPERCASE]</label>
         </control>
         <control type="list" id="{{ hub_id }}">
@@ -1868,7 +1868,7 @@
         <font>font12</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>[UPPERCASE]$ADDON[script.plexmod 35004][/UPPERCASE]</label>
     </control>
     <control type="list" id="2050">
@@ -1924,7 +1924,7 @@
                 <font>font13</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <label>$INFO[ListItem.Label]</label>
             </control>
         </focusedlayout>

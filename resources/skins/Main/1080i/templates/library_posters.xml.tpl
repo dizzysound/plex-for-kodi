@@ -25,7 +25,7 @@
         <width max="300">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font10</font>
-        <textcolor>A0FFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text_a0 }}</textcolor>
         <focusedcolor>A0FFFFFF</focusedcolor>
         <disabledcolor>A0FFFFFF</disabledcolor>
         <align>center</align>
@@ -41,11 +41,11 @@
         <width max="400">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font10</font>
-        <textcolor>A0FFFFFF</textcolor>
-        <focusedcolor>FF000000</focusedcolor>
+        <textcolor>{{ theme.colors.text_a0 }}</textcolor>
+        <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
         <align>center</align>
         <aligny>center</aligny>
-        <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <textoffsetx>20</textoffsetx>
         <textoffsety>0</textoffsety>
@@ -57,9 +57,9 @@
         <width max="300">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font12</font>
-        <textcolor>FFFFFFFF</textcolor>
-        <focusedcolor>FFFFFFFF</focusedcolor>
-        <disabledcolor>FFFFFFFF</disabledcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
+        <focusedcolor>{{ theme.colors.text }}</focusedcolor>
+        <disabledcolor>{{ theme.colors.text }}</disabledcolor>
         <align>center</align>
         <aligny>center</aligny>
         <texturenofocus>-</texturenofocus>
@@ -73,12 +73,12 @@
         <width max="300">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font12</font>
-        <textcolor>FFFFFFFF</textcolor>
-        <focusedcolor>FF000000</focusedcolor>
-        <disabledcolor>FFFFFFFF</disabledcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
+        <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+        <disabledcolor>{{ theme.colors.text }}</disabledcolor>
         <align>center</align>
         <aligny>center</aligny>
-        <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <textoffsetx>20</textoffsetx>
         <textoffsety>0</textoffsety>
@@ -89,11 +89,11 @@
         <width max="300">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font10</font>
-        <textcolor>A0FFFFFF</textcolor>
-        <focusedcolor>FF000000</focusedcolor>
+        <textcolor>{{ theme.colors.text_a0 }}</textcolor>
+        <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
         <align>center</align>
         <aligny>center</aligny>
-        <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <textoffsetx>20</textoffsetx>
         <textoffsety>0</textoffsety>

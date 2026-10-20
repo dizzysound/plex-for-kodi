@@ -79,7 +79,7 @@
                 <font>font_title</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <label>$INFO[Window.Property(person.name)]</label>
             </control>
 
@@ -92,7 +92,7 @@
                 <font>font12</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>99FFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text_99 }}</textcolor>
                 <label>$INFO[Window.Property(person.type_label)]</label>
             </control>
 
@@ -111,7 +111,7 @@
                     <font>font12</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>AAFFFFFF</textcolor>
+                    <textcolor>{{ theme.colors.text_aa }}</textcolor>
                     <label>Born $INFO[Window.Property(person.birthDate)] ($INFO[Window.Property(person.age)] years)</label>
                 </control>
                 <control type="label">
@@ -123,7 +123,7 @@
                     <font>font12</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>AAFFFFFF</textcolor>
+                    <textcolor>{{ theme.colors.text_aa }}</textcolor>
                     <label>Born $INFO[Window.Property(person.birthDate)]</label>
                 </control>
             </control>
@@ -174,7 +174,7 @@
             <font>font12</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$ADDON[script.plexmod 32476][/UPPERCASE]</label>
         </control>
         <control type="button" id="300">
@@ -185,8 +185,8 @@
             <font>font12</font>
             <align>center</align>
             <aligny>center</aligny>
-            <focusedcolor>FF000000</focusedcolor>
-            <textcolor>FFFFFFFF</textcolor>
+            <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <textoffsetx>15</textoffsetx>
             <texturefocus colordiffuse="FFFFFFFF" border="8">script.plex/white-square-rounded-top-padded.png</texturefocus>
             <texturenofocus colordiffuse="40FFFFFF" border="8">script.plex/white-square-rounded-top-padded.png</texturenofocus>
@@ -237,7 +237,7 @@
                             <height>{{ vscale(35) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>FFFFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text }}</textcolor>
                             <label>$INFO[ListItem.Label]</label>
                         </control>
                         <control type="label">
@@ -248,7 +248,7 @@
                             <height>{{ vscale(35) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>99FFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text_99 }}</textcolor>
                             <label>$INFO[ListItem.Label2]</label>
                         </control>
                         {% include "includes/watched_indicator.xml.tpl" with xoff=244 & uw_size=48 & with_count=True & scale="medium" %}
@@ -298,7 +298,7 @@
                                 <height>{{ vscale(35) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                             </control>
                             <control type="label">
@@ -309,7 +309,7 @@
                                 <height>{{ vscale(35) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>99FFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text_99 }}</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
                             </control>
                             {% include "includes/watched_indicator.xml.tpl" with xoff=244 & uw_size=48 & with_count=True & scale="medium" %}
@@ -346,7 +346,7 @@
             <font>font12</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$INFO[Window.Property(discover.hub.{{ i }}.label)][/UPPERCASE]</label>
         </control>
         <control type="list" id="{{ list_id }}">
@@ -392,7 +392,7 @@
                             <height>{{ vscale(35) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>FFFFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text }}</textcolor>
                             <label>$INFO[ListItem.Label]</label>
                         </control>
                         <control type="label">
@@ -403,7 +403,7 @@
                             <height>{{ vscale(35) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>99FFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text_99 }}</textcolor>
                             <label>$INFO[ListItem.Label2]</label>
                         </control>
                     </control>
@@ -452,7 +452,7 @@
                                 <height>{{ vscale(35) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                             </control>
                             <control type="label">
@@ -463,7 +463,7 @@
                                 <height>{{ vscale(35) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>99FFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text_99 }}</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
                             </control>
                         </control>
@@ -499,7 +499,7 @@
             <font>font13</font>
             <align>center</align>
             <aligny>center</aligny>
-            <textcolor>99FFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text_99 }}</textcolor>
             <label>$ADDON[script.plexmod 32478]</label>
         </control>
     </control>

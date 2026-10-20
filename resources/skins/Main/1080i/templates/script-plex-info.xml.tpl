@@ -111,7 +111,7 @@
             <font>font13</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>$INFO[Window.Property(title.main)]</label>
         </control>
         <control type="label">
@@ -143,9 +143,9 @@
             <width>6</width>
             <height>{{ vscale(718) }}</height>
             <visible>true</visible>
-            <texturesliderbackground colordiffuse="40000000" border="5">script.plex/white-square.png</texturesliderbackground>
+            <texturesliderbackground colordiffuse="{{ theme.colors.shade }}" border="5">script.plex/white-square.png</texturesliderbackground>
             <texturesliderbar colordiffuse="77FFFFFF" border="5">script.plex/white-square.png</texturesliderbar>
-            <texturesliderbarfocus colordiffuse="FFE5A00D" border="5">script.plex/white-square.png</texturesliderbarfocus>
+            <texturesliderbarfocus colordiffuse="{{ theme.colors.focus }}" border="5">script.plex/white-square.png</texturesliderbarfocus>
             <textureslidernib>-</textureslidernib>
             <textureslidernibfocus>-</textureslidernibfocus>
             <pulseonselect>false</pulseonselect>

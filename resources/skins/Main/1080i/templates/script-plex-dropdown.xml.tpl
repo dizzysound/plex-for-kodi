@@ -85,7 +85,7 @@
                 <font>font12</font>
                 <align>center</align>
                 <aligny>center</aligny>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <scroll>true</scroll>
                 <scrollspeed>60</scrollspeed>
                 <label>$INFO[ListItem.Label]</label>
@@ -100,7 +100,7 @@
                     <font>font12</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>FFFFFFFF</textcolor>
+                    <textcolor>{{ theme.colors.text }}</textcolor>
                     <scroll>true</scroll>
                     <scrollspeed>60</scrollspeed>
                     <label>$INFO[ListItem.Label]</label>
@@ -130,7 +130,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-top-rounded.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-top-rounded.png</texture>
             </control>
             <control type="image">
                 <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only))</visible>
@@ -138,7 +138,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="FFE5A00D">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(last))</visible>
@@ -146,7 +146,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture flipy="true" colordiffuse="FFE5A00D" border="10">script.plex/white-square-top-rounded.png</texture>
+                <texture flipy="true" colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-top-rounded.png</texture>
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(only))</visible>
@@ -154,7 +154,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-rounded.png</texture>
             </control>
             <control type="label">
                 <visible>String.IsEmpty(ListItem.Property(with.indicator))</visible>
@@ -165,7 +165,7 @@
                 <font>font12</font>
                 <align>center</align>
                 <aligny>center</aligny>
-                <textcolor>FF000000</textcolor>
+                <textcolor>{{ theme.colors.text_inv }}</textcolor>
                 <scroll>true</scroll>
                 <scrollspeed>60</scrollspeed>
                 <label>$INFO[ListItem.Label]</label>
@@ -180,7 +180,7 @@
                     <font>font12</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>FF000000</textcolor>
+                    <textcolor>{{ theme.colors.text_inv }}</textcolor>
                     <scroll>true</scroll>
                     <scrollspeed>60</scrollspeed>
                     <label>$INFO[ListItem.Label]</label>
@@ -211,11 +211,11 @@
         <width>6</width>
         <height>{{ vscale(924) }}</height>
         <visible>true</visible>
-        <texturesliderbackground colordiffuse="40000000">script.plex/white-square.png</texturesliderbackground>
+        <texturesliderbackground colordiffuse="{{ theme.colors.shade }}">script.plex/white-square.png</texturesliderbackground>
         <texturesliderbar colordiffuse="FFAAAAAA">script.plex/white-square.png</texturesliderbar>
-        <texturesliderbarfocus colordiffuse="FFE5A00D">script.plex/white-square.png</texturesliderbarfocus>
+        <texturesliderbarfocus colordiffuse="{{ theme.colors.focus }}">script.plex/white-square.png</texturesliderbarfocus>
         <textureslidernib colordiffuse="FFAAAAAA">script.plex/white-square.png</textureslidernib>
-        <textureslidernibfocus colordiffuse="FFE5A00D">script.plex/white-square.png</textureslidernibfocus>
+        <textureslidernibfocus colordiffuse="{{ theme.colors.focus }}">script.plex/white-square.png</textureslidernibfocus>
         <pulseonselect>true</pulseonselect>
         <orientation>vertical</orientation>
         <showonepage>false</showonepage>

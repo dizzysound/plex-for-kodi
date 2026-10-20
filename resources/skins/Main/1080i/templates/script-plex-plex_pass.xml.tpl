@@ -16,8 +16,8 @@
     <height>{{ vscale(100) }}</height>
     <onup>200</onup>
     <font>font13</font>
-    <textcolor>FFFFFFFF</textcolor>
-    <focusedcolor>FFFFFFFF</focusedcolor>
+    <textcolor>{{ theme.colors.text }}</textcolor>
+    <focusedcolor>{{ theme.colors.text }}</focusedcolor>
     <align>center</align>
     <aligny>center</aligny>
     <texturefocus>-</texturefocus>

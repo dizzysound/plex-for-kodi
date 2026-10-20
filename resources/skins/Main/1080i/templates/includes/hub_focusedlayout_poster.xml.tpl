@@ -26,7 +26,7 @@
                         <posy>0</posy>
                         <width>244</width>
                         <height>{{ vscale(361) }}</height>
-                        <texture colordiffuse="FF404040">script.plex/white-square.png</texture>
+                        <texture colordiffuse="{{ theme.colors.surface_hi }}">script.plex/white-square.png</texture>
                     </control>
                     <control type="image">
                         <visible>String.IsEmpty(ListItem.Property(is.updating))</visible>
@@ -34,7 +34,7 @@
                         <posy>{{ vscale(130.5) }}</posy>
                         <width>61</width>
                         <height>{{ vscale(100) }}</height>
-                        <texture colordiffuse="40000000">script.plex/indicators/chevron-white.png</texture>
+                        <texture colordiffuse="{{ theme.colors.shade }}">script.plex/indicators/chevron-white.png</texture>
                     </control>
                     <control type="image">
                         <visible>!String.IsEmpty(ListItem.Property(is.updating))</visible>
@@ -70,7 +70,7 @@
                         <width>244</width>
                         <height>{{ vscale(10) }}</height>
                         <texture>script.plex/white-square.png</texture>
-                        <colordiffuse>C0000000</colordiffuse>
+                        <colordiffuse>{{ theme.colors.scrim }}</colordiffuse>
                     </control>
                     <control type="image">
                         <posx>0</posx>
@@ -78,7 +78,7 @@
                         <width>244</width>
                         <height>{{ vscale(8) }}</height>
                         <texture>$INFO[ListItem.Property(progress)]</texture>
-                        <colordiffuse>FFCC7B19</colordiffuse>
+                        <colordiffuse>{{ theme.colors.accent_alt }}</colordiffuse>
                     </control>
                 </control>
                 <control type="label">
@@ -89,7 +89,7 @@
                     <height>{{ vscale(35) }}</height>
                     <font>font10</font>
                     <align>center</align>
-                    <textcolor>FFFFFFFF</textcolor>
+                    <textcolor>{{ theme.colors.text }}</textcolor>
                     <label>$INFO[ListItem.Label]</label>
                 </control>
                 <control type="label">
@@ -101,7 +101,7 @@
                     <height>{{ vscale(35) }}</height>
                     <font>font10</font>
                     <align>center</align>
-                    <textcolor>FFFFFFFF</textcolor>
+                    <textcolor>{{ theme.colors.text }}</textcolor>
                     <label>$INFO[ListItem.Label2]</label>
                 </control>
                 {% include "includes/watched_indicator.xml.tpl" with xoff=244 & uw_size=48 & with_count=True & scale="medium" %}

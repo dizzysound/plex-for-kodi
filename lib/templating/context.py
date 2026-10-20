@@ -65,6 +65,26 @@ TEMPLATE_CONTEXTS = {
                     "focusSuffix": "-focus",
                 }
             },
+            # Color tokens used by the templates. The stock look is the base theme;
+            # other themes override single values.
+            "colors": {
+                "accent": "FFE5A00D",
+                "accent_alt": "FFCC7B19",
+                "focus": "FFE5A00D",
+                "text": "FFFFFFFF",
+                "text_inv": "FF000000",
+                "text_on_focus": "FF000000",
+                "text_d8": "D8FFFFFF",
+                "text_b8": "B8FFFFFF",
+                "text_aa": "AAFFFFFF",
+                "text_a0": "A0FFFFFF",
+                "text_99": "99FFFFFF",
+                "surface": "FF1F1F1F",
+                "surface_hi": "FF404040",
+                "surface_33": "FF333333",
+                "scrim": "C0000000",
+                "shade": "40000000"
+            },
             "buttons": {
                 "useFocusColor": True,
                 "useNoFocusColor": True,

@@ -25,7 +25,7 @@
 			<height>{{ vscale(50) }}</height>
 			<font>font45</font>
 			<align>left</align>
-			<textcolor>FFFFFFFF</textcolor>
+			<textcolor>{{ theme.colors.text }}</textcolor>
 			<shadowcolor>FF000000</shadowcolor>
 			<label>$INFO[Window.Property(clock)]</label>
 		</control>
@@ -35,7 +35,7 @@
 			<height>{{ vscale(20) }}</height>
 			<font>font13</font>
 			<align>left</align>
-			<textcolor>FFFFFFFF</textcolor>
+			<textcolor>{{ theme.colors.text }}</textcolor>
 			<shadowcolor>FF000000</shadowcolor>
 			<label>$INFO[Window.Property(title)]</label>
 		</control>
@@ -45,7 +45,7 @@
 			<height>{{ vscale(50) }}</height>
 			<font>font45</font>
 			<align>right</align>
-			<textcolor>FFFFFFFF</textcolor>
+			<textcolor>{{ theme.colors.text }}</textcolor>
 			<shadowcolor>FF000000</shadowcolor>
 			<label>$INFO[Window.Property(clock)]</label>
 		</control>
@@ -55,7 +55,7 @@
 			<height>{{ vscale(20) }}</height>
 			<font>font13</font>
 			<align>right</align>
-			<textcolor>FFFFFFFF</textcolor>
+			<textcolor>{{ theme.colors.text }}</textcolor>
 			<shadowcolor>FF000000</shadowcolor>
 			<label>$INFO[Window.Property(title)]</label>
 		</control>

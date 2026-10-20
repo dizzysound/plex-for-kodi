@@ -40,7 +40,7 @@
         <posy>{{ vscale(31) }}</posy>
         <width>19</width>
         <height>{{ vscale(19) }}</height>
-        <texture colordiffuse="FFE5A00D">script.plex/indicators/circle-19.png</texture>
+        <texture colordiffuse="{{ theme.colors.accent }}">script.plex/indicators/circle-19.png</texture>
     </control>
 
     <control type="label">
@@ -51,7 +51,7 @@
         <font>font12</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFE5A00D</textcolor>
+        <textcolor>{{ theme.colors.accent }}</textcolor>
         <label>$INFO[Window.Property(header)]</label>
     </control>
 
@@ -62,7 +62,7 @@
         <height>{{ vscale(125) }}</height>
         <font>font10</font>
         <align>left</align>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <scrolltime>200</scrolltime>
         <autoscroll delay="3000" time="3000" repeat="3000"></autoscroll>
         <label>$INFO[Window.Property(info)]</label>
@@ -89,11 +89,11 @@
             <width min="120">auto</width>
             <height>{{ vscale(143, 1.1) }}</height>
             <font>font10</font>
-            <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/buttons/blank-focus.png</texturefocus>
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/buttons/blank-focus.png</texturefocus>
             <texturenofocus colordiffuse="99FFFFFF" border="50">script.plex/buttons/blank.png</texturenofocus>
             <textoffsetx>70</textoffsetx>
-            <textcolor>FF000000</textcolor>
-            <focusedcolor>FF000000</focusedcolor>
+            <textcolor>{{ theme.colors.text_inv }}</textcolor>
+            <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
             <label>$INFO[Window.Property(button.0)]</label>
         </control>
         <control type="button" id="1002">
@@ -106,11 +106,11 @@
             <width min="120">auto</width>
             <height>{{ vscale(143, 1.1) }}</height>
             <font>font10</font>
-            <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/buttons/blank-focus.png</texturefocus>
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/buttons/blank-focus.png</texturefocus>
             <texturenofocus colordiffuse="99FFFFFF" border="50">script.plex/buttons/blank.png</texturenofocus>
             <textoffsetx>70</textoffsetx>
-            <textcolor>FF000000</textcolor>
-            <focusedcolor>FF000000</focusedcolor>
+            <textcolor>{{ theme.colors.text_inv }}</textcolor>
+            <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
             <label>$INFO[Window.Property(button.1)]</label>
         </control>
         <control type="button" id="1003">
@@ -123,11 +123,11 @@
             <width min="120">auto</width>
             <height>{{ vscale(143, 1.1) }}</height>
             <font>font10</font>
-            <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/buttons/blank-focus.png</texturefocus>
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="50">script.plex/buttons/blank-focus.png</texturefocus>
             <texturenofocus colordiffuse="99FFFFFF" border="50">script.plex/buttons/blank.png</texturenofocus>
             <textoffsetx>70</textoffsetx>
-            <textcolor>FF000000</textcolor>
-            <focusedcolor>FF000000</focusedcolor>
+            <textcolor>{{ theme.colors.text_inv }}</textcolor>
+            <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
             <label>$INFO[Window.Property(button.2)]</label>
         </control>
     </control>

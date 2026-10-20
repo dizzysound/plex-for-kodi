@@ -28,7 +28,7 @@
                 <height>{{ vscale(35) }}</height>
                 <font>font10</font>
                 <align>center</align>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <label>$INFO[ListItem.Label]</label>
             </control>
             <control type="label">
@@ -38,7 +38,7 @@
                 <height>{{ vscale(35) }}</height>
                 <font>font10</font>
                 <align>center</align>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <label>$INFO[ListItem.Label2]</label>
             </control>
         </control>
@@ -88,7 +88,7 @@
                     <height>{{ vscale(35) }}</height>
                     <font>font10</font>
                     <align>center</align>
-                    <textcolor>FFFFFFFF</textcolor>
+                    <textcolor>{{ theme.colors.text }}</textcolor>
                     <label>$INFO[ListItem.Label]</label>
                 </control>
                 <control type="label">
@@ -98,7 +98,7 @@
                     <height>{{ vscale(35) }}</height>
                     <font>font10</font>
                     <align>center</align>
-                    <textcolor>FFFFFFFF</textcolor>
+                    <textcolor>{{ theme.colors.text }}</textcolor>
                     <label>$INFO[ListItem.Label2]</label>
                 </control>
             </control>

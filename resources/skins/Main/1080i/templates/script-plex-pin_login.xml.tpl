@@ -40,7 +40,7 @@
     <font>WeatherTemp</font>
     <align>left</align>
     <aligny>center</aligny>
-    <textcolor>FFFFFFFF</textcolor>
+    <textcolor>{{ theme.colors.text }}</textcolor>
     <label>$INFO[Window.Property(pin)]</label>
 </control>
 

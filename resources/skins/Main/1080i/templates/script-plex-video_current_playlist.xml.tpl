@@ -41,7 +41,7 @@
                         <font>font10</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>D8FFFFFF</textcolor>
+                        <textcolor>{{ theme.colors.text_d8 }}</textcolor>
                         <label>[B]$INFO[ListItem.Property(track.number)][/B]</label>
                     </control>
                     <control type="image">
@@ -51,7 +51,7 @@
                         <width>35</width>
                         <height>{{ vscale(35) }}</height>
                         <texture>script.plex/indicators/playing-circle.png</texture>
-                        <colordiffuse>FFE5A00D</colordiffuse>
+                        <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                     </control>
                     <control type="group">
                         <visible>String.IsEmpty(ListItem.Property(video))</visible>
@@ -74,7 +74,7 @@
                                 <font>font10</font>
                                 <align>left</align>
                                 <aligny>center</aligny>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>[B]$INFO[ListItem.Label][/B]</label>
                                 <scroll>true</scroll>
                             </control>
@@ -86,7 +86,7 @@
                                 <font>font10</font>
                                 <align>left</align>
                                 <aligny>center</aligny>
-                                <textcolor>B8FFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text_b8 }}</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
                                 <scroll>true</scroll>
                             </control>
@@ -112,7 +112,7 @@
                                 <width>132</width>
                                 <height>{{ vscale(6) }}</height>
                                 <texture>script.plex/white-square.png</texture>
-                                <colordiffuse>C0000000</colordiffuse>
+                                <colordiffuse>{{ theme.colors.scrim }}</colordiffuse>
                             </control>
                             <control type="image">
                                 <posx>0</posx>
@@ -120,7 +120,7 @@
                                 <width>132</width>
                                 <height>{{ vscale(4) }}</height>
                                 <texture>$INFO[ListItem.Property(progress)]</texture>
-                                <colordiffuse>FFCC7B19</colordiffuse>
+                                <colordiffuse>{{ theme.colors.accent_alt }}</colordiffuse>
                             </control>
                         </control>
                         {% include "includes/watched_indicator.xml.tpl" with xoff=132+63 & yoff=11 & uw_posy=11 & uw_size=24 & scale="tiny" %}
@@ -135,7 +135,7 @@
                                 <font>font10</font>
                                 <align>left</align>
                                 <aligny>center</aligny>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>[B]$INFO[ListItem.Label][/B]</label>
                                 <scroll>true</scroll>
                             </control>
@@ -147,7 +147,7 @@
                                 <font>font10</font>
                                 <align>left</align>
                                 <aligny>center</aligny>
-                                <textcolor>B8FFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text_b8 }}</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
                                 <scroll>true</scroll>
                             </control>
@@ -161,7 +161,7 @@
                         <font>font10</font>
                         <align>right</align>
                         <aligny>center</aligny>
-                        <textcolor>D8FFFFFF</textcolor>
+                        <textcolor>{{ theme.colors.text_d8 }}</textcolor>
                         <label>[B]$INFO[ListItem.Property(track.duration)][/B]</label>
                     </control>
                     <control type="image">
@@ -171,7 +171,7 @@
                         <width>930</width>
                         <height>{{ vscale(2) }}</height>
                         <texture>script.plex/white-square.png</texture>
-                        <colordiffuse>40000000</colordiffuse>
+                        <colordiffuse>{{ theme.colors.shade }}</colordiffuse>
                     </control>
                 </control>
             </itemlayout>
@@ -192,7 +192,7 @@
                             <font>font10</font>
                             <align>center</align>
                             <aligny>center</aligny>
-                            <textcolor>D8FFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text_d8 }}</textcolor>
                             <label>[B]$INFO[ListItem.Property(track.number)][/B]</label>
                         </control>
                         <control type="image">
@@ -202,7 +202,7 @@
                             <width>35</width>
                             <height>{{ vscale(35) }}</height>
                             <texture>script.plex/indicators/playing-circle.png</texture>
-                            <colordiffuse>FFE5A00D</colordiffuse>
+                            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                         </control>
                         <control type="group">
                             <visible>String.IsEmpty(ListItem.Property(video))</visible>
@@ -225,7 +225,7 @@
                                     <font>font10</font>
                                     <align>left</align>
                                     <aligny>center</aligny>
-                                    <textcolor>FFFFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text }}</textcolor>
                                     <label>[B]$INFO[ListItem.Label][/B]</label>
                                     <scroll>true</scroll>
                                 </control>
@@ -237,7 +237,7 @@
                                     <font>font10</font>
                                     <align>left</align>
                                     <aligny>center</aligny>
-                                    <textcolor>B8FFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text_b8 }}</textcolor>
                                     <label>$INFO[ListItem.Label2]</label>
                                     <scroll>true</scroll>
                                 </control>
@@ -265,7 +265,7 @@
                                     <font>font10</font>
                                     <align>left</align>
                                     <aligny>center</aligny>
-                                    <textcolor>FFFFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text }}</textcolor>
                                     <label>[B]$INFO[ListItem.Label][/B]</label>
                                     <scroll>true</scroll>
                                 </control>
@@ -277,7 +277,7 @@
                                     <font>font10</font>
                                     <align>left</align>
                                     <aligny>center</aligny>
-                                    <textcolor>B8FFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text_b8 }}</textcolor>
                                     <label>$INFO[ListItem.Label2]</label>
                                     <scroll>true</scroll>
                                 </control>
@@ -291,7 +291,7 @@
                             <font>font10</font>
                             <align>right</align>
                             <aligny>center</aligny>
-                            <textcolor>D8FFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text_d8 }}</textcolor>
                             <label>[B]$INFO[ListItem.Property(track.duration)][/B]</label>
                         </control>
                         <control type="image">
@@ -301,7 +301,7 @@
                             <width>930</width>
                             <height>{{ vscale(2) }}</height>
                             <texture>script.plex/white-square.png</texture>
-                            <colordiffuse>40000000</colordiffuse>
+                            <colordiffuse>{{ theme.colors.shade }}</colordiffuse>
                         </control>
                     </control>
 
@@ -322,7 +322,7 @@
                             <width>1044</width>
                             <height>{{ vscale(100) }}</height>
                             <texture border="12">script.plex/white-square-rounded.png</texture>
-                            <colordiffuse>FFE5A00D</colordiffuse>
+                            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                         </control>
                         <!-- comment the previous and uncomment the following for re-enabling options button -->
                         <!--<control type="image">
@@ -331,7 +331,7 @@
                             <width>999</width>
                             <height>{{ vscale(100) }}</height>
                             <texture border="12">script.plex/white-square-left-rounded.png</texture>
-                            <colordiffuse>FFE5A00D</colordiffuse>
+                            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                         </control>
                         <control type="image">
                             <posx>999</posx>
@@ -422,7 +422,7 @@
                                     <width>178</width>
                                     <height>{{ vscale(6) }}</height>
                                     <texture>script.plex/white-square.png</texture>
-                                    <colordiffuse>C0000000</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.scrim }}</colordiffuse>
                                 </control>
                                 <control type="image">
                                     <posx>0</posx>
@@ -430,7 +430,7 @@
                                     <width>178</width>
                                     <height>{{ vscale(4) }}</height>
                                     <texture>$INFO[ListItem.Property(progress)]</texture>
-                                    <colordiffuse>FFCC7B19</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.accent_alt }}</colordiffuse>
                                 </control>
                             </control>
                             {% include "includes/watched_indicator.xml.tpl" with xoff=178+103 %}
@@ -487,9 +487,9 @@
             <width>10</width>
             <height>{{ vscale(734) }}</height>
             <visible>true</visible>
-            <texturesliderbackground colordiffuse="40000000" border="5">script.plex/white-square-rounded.png</texturesliderbackground>
+            <texturesliderbackground colordiffuse="{{ theme.colors.shade }}" border="5">script.plex/white-square-rounded.png</texturesliderbackground>
             <texturesliderbar colordiffuse="77FFFFFF" border="5">script.plex/white-square-rounded.png</texturesliderbar>
-            <texturesliderbarfocus colordiffuse="FFE5A00D" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
+            <texturesliderbarfocus colordiffuse="{{ theme.colors.focus }}" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
             <textureslidernib>-</textureslidernib>
             <textureslidernibfocus>-</textureslidernibfocus>
             <pulseonselect>false</pulseonselect>

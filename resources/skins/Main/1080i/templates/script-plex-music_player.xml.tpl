@@ -30,7 +30,7 @@
         <font>font13</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>$INFO[MusicPlayer.Artist]</label>
     </control>
     <control type="label">
@@ -41,7 +41,7 @@
         <font>font13</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>$INFO[MusicPlayer.Album]</label>
     </control>
     <control type="label">
@@ -52,7 +52,7 @@
         <font>font13</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>[B]$INFO[MusicPlayer.Title][/B]</label>
     </control>
     <control type="label">
@@ -63,7 +63,7 @@
         <font>font13</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>$INFO[Player.Time]$INFO[MusicPlayer.Duration, / ]</label>
     </control>
 </control>
@@ -128,7 +128,7 @@
         <font>font13</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>$INFO[Window.Property(time.current)]</label>
     </control>
     <control type="label">
@@ -139,7 +139,7 @@
         <font>font13</font>
         <align>right</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>$INFO[Window.Property(time.duration)]</label>
     </control>
     <control type="label">
@@ -150,7 +150,7 @@
         <font>font13</font>
         <align>right</align>
         <aligny>center</aligny>
-        <textcolor>A0FFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text_a0 }}</textcolor>
         <label>$INFO[Window.Property(time.end)]</label>
     </control>
 </control> -->
@@ -197,7 +197,7 @@
         <width>1</width>
         <height>{{ vscale(8) }}</height>
         <texture>script.plex/white-square.png</texture>
-        <colordiffuse>FFE5A00D</colordiffuse>
+        <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
     </control>
     <control type="progress">
         <visible>!Control.HasFocus(500)</visible>
@@ -208,7 +208,7 @@
         <height>{{ vscale(6) }}</height>
         <texturebg>script.plex/transparent-6px.png</texturebg>
         <lefttexture>-</lefttexture>
-        <midtexture colordiffuse="FFCC7B19">script.plex/white-square-6px.png</midtexture>
+        <midtexture colordiffuse="{{ theme.colors.accent_alt }}">script.plex/white-square-6px.png</midtexture>
         <righttexture>-</righttexture>
         <overlaytexture>-</overlaytexture>
         <info>Player.Progress</info>
@@ -236,7 +236,7 @@
     <height>{{ vscale(6) }}</height>
     <visible>true</visible>
     <texturesliderbar>-</texturesliderbar>
-    <textureslidernib colordiffuse="FFE5A00D">script.plex/white-square-6px.png</textureslidernib>
+    <textureslidernib colordiffuse="{{ theme.colors.accent }}">script.plex/white-square-6px.png</textureslidernib>
     <textureslidernibfocus>-</textureslidernibfocus>
     <action>seek</action>
 </control> -->
@@ -249,7 +249,7 @@
     <width>1</width>
     <height>{{ vscale(6) }}</height>
     <texture>script.plex/white-square.png</texture>
-    <colordiffuse>FFCC7B19</colordiffuse>
+    <colordiffuse>{{ theme.colors.accent_alt }}</colordiffuse>
 </control> -->
 
 <control type="group" id="202">
@@ -276,7 +276,7 @@
             <font>font10</font>
             <align>center</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>$INFO[Window.Property(time.selection)]</label>
         </control>
     </control>

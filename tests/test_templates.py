@@ -312,6 +312,14 @@ class TemplateColorTokenTest(KodiTestCase):
                 self.assertIn(value, text)
         self.assertIsNone(self.AMBER_RE.search(text))
 
+    def test_badge_token_is_the_count_badge_fallback(self):
+        # modern indicators set unwatched_count_bg themselves, so only a style without it reaches the token
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        context["themes"]["base"]["colors"]["badgeBg"] = "66666666"
+        context["indicators"]["START"] = {"INHERIT": "base", "style": "base", "hide_aw_bg": False}
+        text = "".join(render_theme(make_engine(self.mktemp(), context=context), "modern-colored").values())
+        self.assertIn("66666666", text)
+
 
 class TemplateWriteTest(KodiTestCase):
     def test_write_confirms_the_file_landed_at_full_size(self):

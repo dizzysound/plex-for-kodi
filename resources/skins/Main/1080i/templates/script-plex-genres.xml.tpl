@@ -208,7 +208,7 @@
                             <width>405</width>
                             <height>{{ vscale(232) }}</height>
                             <texture diffuse="script.plex/masks/ring-mask-ar16x9-399.png">script.plex/white-square.png</texture>
-                            <colordiffuse>FFE9A20D</colordiffuse>
+                            <colordiffuse>FFFFFFFF</colordiffuse>
                         </control>
                     </control>
                 </control>

@@ -34,14 +34,14 @@ TEMPLATE_CONTEXTS = {
     },
     "themes": {
         "base": {
-            # colors, ARGB hex; the skin's amber plus the white progress bar and translucent badge.
+            # colors, ARGB hex; the white focus fill and progress bar, the amber accent and the translucent badge.
             # One name per role so a theme can recolor a role without touching the others.
             # accentDark is the darker amber (inactive-state tints, slider mid-fill,
             # avatar/rounded-pill backgrounds) that has no role of its own yet.
             "colors": {
                 "accent": "FFE5A00D",
                 "accentDark": "FFCC7B19",
-                "focusFill": "FFE5A00D",
+                "focusFill": "FFFFFFFF",
                 "focusText": "FFE5A00D",
                 "badgeBg": "99000000",
                 "progressFill": "FFFFFFFF",
@@ -59,7 +59,7 @@ TEMPLATE_CONTEXTS = {
                 "useFocusColor": True,
                 "useNoFocusColor": True,
                 "zoomPlayButton": False,
-                "focusColor": None,
+                "focusColor": "FFFFFFFF",
                 "noFocusColor": None
             },
 

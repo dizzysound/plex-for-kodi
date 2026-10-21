@@ -68,7 +68,7 @@
                 <width>246</width>
                 <height>{{ vscale(366) }}</height>
                 <texture diffuse="script.plex/masks/ring-mask-poster.png">script.plex/white-square.png</texture>
-                <colordiffuse>FFE9A20D</colordiffuse>
+                <colordiffuse>FFFFFFFF</colordiffuse>
             </control>
         </control>
         {% include "includes/hub_see_more_pill.xml.tpl" with px=3 & py=158 & focused=True %}

@@ -382,8 +382,8 @@
                              bottom = 100.
                              The title is written twice, gated on whether this row is the track currently
                              playing - Kodi can't switch a single label's textcolor on a condition. The
-                             playing row is tinted with the accent color (the theme's own accent, what the button focus
-                             textures use) rather than carrying a now-playing glyph in a left gutter: with
+                             playing row is tinted with the accent color (the theme's own accent, amber, kept for now-playing)
+                             rather than carrying a now-playing glyph in a left gutter: with
                              the track number gone there's no column for one to live in, and reserving one
                              would indent every title for a marker that shows on at most one row.
                              Only for music playing from this row's own queue (popular.playing.here,
@@ -825,7 +825,7 @@
                             <width>246</width>
                             <height>{{ vscale(246) }}</height>
                             <texture diffuse="script.plex/masks/ring-mask-square.png">script.plex/white-square.png</texture>
-                            <colordiffuse>FFE9A20D</colordiffuse>
+                            <colordiffuse>FFFFFFFF</colordiffuse>
                         </control>
                     </control>
                 </control>

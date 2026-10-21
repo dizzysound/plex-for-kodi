@@ -907,7 +907,7 @@
                                 <width>518</width>
                                 <height>{{ vscale(294) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                             <!-- Season card's own focus ring - see itemlayout's own copy of the shadow/art
                                  controls' comment for why this stays a separate control despite matching
@@ -919,7 +919,7 @@
                                 <width>518</width>
                                 <height>{{ vscale(294) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                         </control>
                     </control>
@@ -1447,7 +1447,7 @@
                                 <width>518</width>
                                 <height>{{ vscale(294) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                         </control>
                     </control>
@@ -1682,7 +1682,7 @@
                                 <width>246</width>
                                 <height>{{ vscale(366) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-poster.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                             <control type="group">
                                 <visible>!String.IsEmpty(ListItem.Property(is.boundary))</visible>

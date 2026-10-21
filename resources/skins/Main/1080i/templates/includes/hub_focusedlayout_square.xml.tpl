@@ -2,7 +2,7 @@
      hub_itemlayout_square.xml.tpl (see its own header comment), plus the music screens' focus
      treatment (script-plex-squares.xml.tpl's focusedlayout): 104% zoom about the art's own
      centre and a 246 ring-mask-square.png ring (240 art + the 6px ring-to-image margin the whole
-     card recipe uses) tinted FFE9A20D - not the old 110% zoom / home/selected.png 9-slice border.
+     card recipe uses) tinted FFFFFFFF - not the old 110% zoom / home/selected.png 9-slice border.
      The ring is still gated on Control.HasFocus (this layout renders for the selected item of
      every row, focused or not - only the focused row should show a ring). The shadow is not
      gated, matching the music screens, so a row's selected tile keeps its plate when the row
@@ -126,7 +126,7 @@
                 <width>246</width>
                 <height>{{ vscale(246) }}</height>
                 <texture diffuse="script.plex/masks/ring-mask-square.png">script.plex/white-square.png</texture>
-                <colordiffuse>FFE9A20D</colordiffuse>
+                <colordiffuse>FFFFFFFF</colordiffuse>
             </control>
         </control>
         {% include "includes/hub_see_more_pill.xml.tpl" with px=3 & py=98 & focused=True %}

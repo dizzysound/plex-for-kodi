@@ -451,7 +451,7 @@
                                 <width>1005</width>
                                 <height>{{ vscale(76) }}</height>
                                 <texture border="12">script.plex/white-square-rounded.png</texture>
-                                <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                                <colordiffuse>{{ theme.colors.focusFill }}</colordiffuse>
                             </control>
 
                             <control type="group">

@@ -9,7 +9,7 @@
 {# Art and headings use the Recommended hub recipe (includes/hub_itemlayout_ar16x9.xml.tpl,
     hub_itemlayout_poster.xml.tpl and their focused layouts): art rounded by a diffuse mask, a
     directional drop-shadow plate with the art inset (3,3), the inset pill progress bar, a 104%
-    focus zoom and a masked gold ring, and row headings in font30_title. Every tile uses that
+    focus zoom and a masked white ring, and row headings in font30_title. Every tile uses that
     recipe's own art sizes (512x288, 240x360), since the masks scale with the control. Captions stay
     under the art, as there is no hero overlay here to carry the focused item's title. #}
 {% block content %}

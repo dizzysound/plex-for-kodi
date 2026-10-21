@@ -39,7 +39,7 @@
         <width>340</width>
         <height>{{ vscale(143, 1.1) }}</height>
         <font>font10</font>
-        <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/buttons/blank-focus.png</texturefocus>
+        <texturefocus colordiffuse="FFFFFFFF" border="50">script.plex/buttons/blank-focus.png</texturefocus>
         <texturenofocus colordiffuse="99FFFFFF" border="50">script.plex/buttons/blank.png</texturenofocus>
         <align>center</align>
         <aligny>center</aligny>

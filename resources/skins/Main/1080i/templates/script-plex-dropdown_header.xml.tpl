@@ -285,7 +285,7 @@
                 <height>{{ vscale(66) }}</height>
                 <texture colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texture>
             </control>
-            <!-- Moving state (muted gray, more opaque to prevent orange flash during move) -->
+            <!-- Moving state (muted gray, more opaque to prevent a white flash during move) -->
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(first)) + !String.IsEmpty(ListItem.Property(moving))</visible>
                 <posx>0</posx>

@@ -451,7 +451,7 @@
                                 <width>1005</width>
                                 <height>{{ vscale(76) }}</height>
                                 <texture border="12">script.plex/white-square-rounded.png</texture>
-                                <colordiffuse>FFE5A00D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
 
                             <control type="group">

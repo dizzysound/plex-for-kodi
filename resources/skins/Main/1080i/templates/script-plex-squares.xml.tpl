@@ -457,8 +457,8 @@
                                  FFFFFFFF, rather than a pre-rendered border texture stretched to
                                  size. The mask's corner radius scales with the box instead of
                                  staying fixed at whatever the texture was authored at, and it
-                                 carries no dark outer edge of its own. Same gold either way -
-                                 selected.png's own ring pixels are E9A20D. -->
+                                 carries no dark outer edge of its own. Same white either way -
+                                 selected.png's own ring pixels are white. -->
                             <control type="image">
                                 <visible>String.IsEmpty(ListItem.Property(is.folder))</visible>
                                 <posx>2</posx>

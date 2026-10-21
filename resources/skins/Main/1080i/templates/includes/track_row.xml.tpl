@@ -57,7 +57,7 @@
 </control>
 
 <!-- The title is written twice, gated on whether this row is the track currently playing: Kodi
-     can't switch a single label's textcolor on a condition. FFE5A00D is the theme accent, the same
+     can't switch a single label's textcolor on a condition. FFE5A00D is the theme accent (amber, kept for now-playing), the same
      now-playing treatment Popular Tracks uses. -->
 <control type="label">
     <visible>String.IsEmpty(Window(10000).Property(script.plex.track.ID)) | !String.IsEqual(ListItem.Property(track.ID),Window(10000).Property(script.plex.track.ID))</visible>

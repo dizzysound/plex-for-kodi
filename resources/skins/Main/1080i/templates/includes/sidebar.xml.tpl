@@ -540,21 +540,11 @@
         <width>280</width>
         <height>{{ vscale(50) }}</height>
         <control type="image">
-            <visible>!Control.HasFocus(201)</visible>
             <posx>15</posx>
             <posy>{{ vscale(10) }}</posy>
             <width>30</width>
             <height>{{ vscale(30) }}</height>
             <texture>$INFO[Window.Property(server.icon)]</texture>
-        </control>
-        <control type="image">
-            <visible>Control.HasFocus(201)</visible>
-            <posx>15</posx>
-            <posy>{{ vscale(10) }}</posy>
-            <width>30</width>
-            <height>{{ vscale(30) }}</height>
-            <texture>$INFO[Window.Property(server.icon)]</texture>
-            <colordiffuse>FF000000</colordiffuse>
         </control>
         <!-- secure -->
         <control type="image">

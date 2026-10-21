@@ -1993,7 +1993,7 @@
             <width>398</width>
             <height>{{ vscale(226) }}</height>
             <texture diffuse="script.plex/masks/ring-mask-search-card.png">script.plex/white-square.png</texture>
-            <colordiffuse>FFE9A20D</colordiffuse>
+            <colordiffuse>FFFFFFFF</colordiffuse>
         </control>
     </focusedlayout>
 </control>

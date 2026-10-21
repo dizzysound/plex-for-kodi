@@ -454,11 +454,11 @@
                                  Artist screen's treatment (includes/artist_album_row.xml.tpl and
                                  script-plex-artist.xml.tpl's Similar Artists row), where a flat
                                  white square is diffused through an RGBA ring mask and tinted
-                                 FFE9A20D, rather than a pre-rendered border texture stretched to
+                                 FFFFFFFF, rather than a pre-rendered border texture stretched to
                                  size. The mask's corner radius scales with the box instead of
                                  staying fixed at whatever the texture was authored at, and it
-                                 carries no dark outer edge of its own. Same gold either way -
-                                 selected.png's own ring pixels are E9A20D. -->
+                                 carries no dark outer edge of its own. Same white either way -
+                                 selected.png's own ring pixels are white. -->
                             <control type="image">
                                 <visible>String.IsEmpty(ListItem.Property(is.folder))</visible>
                                 <posx>2</posx>
@@ -466,7 +466,7 @@
                                 <width>246</width>
                                 <height>{{ vscale(246) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-square.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                             <!-- Photo subfolder tiles (the only ones that ever set is.folder -
                                  see the note up top) keep the 9-slice border texture. Their ring is a 246x286

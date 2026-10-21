@@ -89,7 +89,7 @@
             <width min="120">auto</width>
             <height>{{ vscale(143, 1.1) }}</height>
             <font>font10</font>
-            <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/buttons/blank-focus.png</texturefocus>
+            <texturefocus colordiffuse="FFFFFFFF" border="50">script.plex/buttons/blank-focus.png</texturefocus>
             <texturenofocus colordiffuse="99FFFFFF" border="50">script.plex/buttons/blank.png</texturenofocus>
             <textoffsetx>70</textoffsetx>
             <textcolor>FF000000</textcolor>
@@ -106,7 +106,7 @@
             <width min="120">auto</width>
             <height>{{ vscale(143, 1.1) }}</height>
             <font>font10</font>
-            <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/buttons/blank-focus.png</texturefocus>
+            <texturefocus colordiffuse="FFFFFFFF" border="50">script.plex/buttons/blank-focus.png</texturefocus>
             <texturenofocus colordiffuse="99FFFFFF" border="50">script.plex/buttons/blank.png</texturenofocus>
             <textoffsetx>70</textoffsetx>
             <textcolor>FF000000</textcolor>
@@ -123,7 +123,7 @@
             <width min="120">auto</width>
             <height>{{ vscale(143, 1.1) }}</height>
             <font>font10</font>
-            <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/buttons/blank-focus.png</texturefocus>
+            <texturefocus colordiffuse="FFFFFFFF" border="50">script.plex/buttons/blank-focus.png</texturefocus>
             <texturenofocus colordiffuse="99FFFFFF" border="50">script.plex/buttons/blank.png</texturenofocus>
             <textoffsetx>70</textoffsetx>
             <textcolor>FF000000</textcolor>

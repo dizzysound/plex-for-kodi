@@ -659,7 +659,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus flipx="true" colordiffuse="FFE5A00D">{{ theme.assets.buttons.base }}skip-forward{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus flipx="true" colordiffuse="FFFFFFFF">{{ theme.assets.buttons.base }}skip-forward{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus flipx="true"{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}skip-forward.png</texturenofocus>
             <label> </label>
         </control>
@@ -1158,7 +1158,7 @@
         <align>center</align>
         <right>0</right>
         <top>0</top>
-        <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/buttons/blank-focus.png</texturefocus>
+        <texturefocus colordiffuse="FFFFFFFF" border="50">script.plex/buttons/blank-focus.png</texturefocus>
         <texturenofocus colordiffuse="99FFFFFF" border="50">script.plex/buttons/blank.png</texturenofocus>
         <textoffsetx>70</textoffsetx>
         <textcolor>FF000000</textcolor>

@@ -40,7 +40,7 @@
     <onright>2100</onright>
     <font>font12</font>
     <texturefocus colordiffuse="{{ theme.colors.focusFill }}">script.plex/buttons/player/modern/settings.png</texturefocus>
-    <texturenofocus colordiffuse="FFFFFFFF">script.plex/buttons/player/modern/settings.png</texturenofocus>
+    <texturenofocus colordiffuse="99FFFFFF">script.plex/buttons/player/modern/settings.png</texturenofocus>
     <label> </label>
 </control>
 

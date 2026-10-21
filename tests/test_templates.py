@@ -374,6 +374,14 @@ class WhiteFocusScreensTest(KodiTestCase):
     def test_search_has_no_accent(self):
         self.assertNotIn("theme.colors.accent", self._read("script-plex-search.xml.tpl"))
 
+    def test_search_servers_button_focus_differs_from_rest(self):
+        text = self._read("script-plex-search.xml.tpl")
+        m = re.search(r'<texturefocus colordiffuse="([^"]+)">script\.plex/buttons/player/modern/settings\.png</texturefocus>\s*'
+                      r'<texturenofocus colordiffuse="([^"]+)">script\.plex/buttons/player/modern/settings\.png', text)
+        self.assertIsNotNone(m)
+        self.assertEqual(m.group(2), "99FFFFFF")
+        self.assertNotEqual(m.group(1), m.group(2))
+
     def test_tab_rows_have_no_underline_and_a_white_focus_pill(self):
         for name in self.TAB_ROWS:
             with self.subTest(template=name):

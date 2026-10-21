@@ -215,7 +215,7 @@
             <font>font13</font>
             <align>center</align>
             <aligny>center</aligny>
-            <textcolor>FFCC7B19</textcolor>
+            <textcolor>{{ theme.colors.accentDark }}</textcolor>
             <label>[UPPERCASE]$ADDON[script.plexmod 32436][/UPPERCASE]</label>
         </control>-->
     </control>
@@ -257,7 +257,7 @@
             <width>1</width>
             <height>{{ vscale(6) }}</height>
             <texture>script.plex/white-square.png</texture>
-            <colordiffuse>FFE5A00D</colordiffuse>
+            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
         </control>
     </control>
 </control>
@@ -302,7 +302,7 @@
                 <width>793</width>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>$INFO[Player.Process(videodecoder),[COLOR FFE5A00D]$LOCALIZE[31139]:[/COLOR] ]$VAR[VideoHWDecoder, (,)]</label>
+                <label>$INFO[Player.Process(videodecoder),[COLOR {{ theme.colors.accent }}]$LOCALIZE[31139]:[/COLOR] ]$VAR[VideoHWDecoder, (,)]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo</visible>
@@ -311,7 +311,7 @@
                 <width>793</width>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>$INFO[Player.Process(pixformat),[COLOR FFE5A00D]$LOCALIZE[31140]:[/COLOR] ]</label>
+                <label>$INFO[Player.Process(pixformat),[COLOR {{ theme.colors.accent }}]$LOCALIZE[31140]:[/COLOR] ]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo</visible>
@@ -320,7 +320,7 @@
                 <width>793</width>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>$INFO[Player.Process(deintmethod),[COLOR FFE5A00D]$LOCALIZE[16038]:[/COLOR] ]</label>
+                <label>$INFO[Player.Process(deintmethod),[COLOR {{ theme.colors.accent }}]$LOCALIZE[16038]:[/COLOR] ]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo</visible>
@@ -329,7 +329,7 @@
                 <width>793</width>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>$INFO[Player.Process(videowidth),[COLOR FFE5A00D]$LOCALIZE[38031]:[/COLOR] ,x]$INFO[Player.Process(videoheight),, px]$INFO[Player.Process(videodar),$COMMA , AR]$INFO[Player.Process(videofps),$COMMA , FPS]</label>
+                <label>$INFO[Player.Process(videowidth),[COLOR {{ theme.colors.accent }}]$LOCALIZE[38031]:[/COLOR] ,x]$INFO[Player.Process(videoheight),, px]$INFO[Player.Process(videodar),$COMMA , AR]$INFO[Player.Process(videofps),$COMMA , FPS]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo</visible>
@@ -339,7 +339,7 @@
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
                 <autoscroll delay="1000" time="1000" repeat="2000"></autoscroll>
-                <label>[COLOR FFE5A00D]$LOCALIZE[460]:[/COLOR] $INFO[Player.Process(audiochannels),,$COMMA ]$INFO[Player.Process(audiodecoder)]$INFO[Player.Process(audiobitspersample),$COMMA , bits]$INFO[Player.Process(audiosamplerate),$COMMA , Hz]</label>
+                <label>[COLOR {{ theme.colors.accent }}]$LOCALIZE[460]:[/COLOR] $INFO[Player.Process(audiochannels),,$COMMA ]$INFO[Player.Process(audiodecoder)]$INFO[Player.Process(audiobitspersample),$COMMA , bits]$INFO[Player.Process(audiosamplerate),$COMMA , Hz]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
             </control>
@@ -347,7 +347,7 @@
                 <width>793</width>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>$INFO[System.Memory(used.percent),[COLOR FFE5A00D]$LOCALIZE[31030]:[/COLOR] ,]</label>
+                <label>$INFO[System.Memory(used.percent),[COLOR {{ theme.colors.accent }}]$LOCALIZE[31030]:[/COLOR] ,]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
             </control>
@@ -370,7 +370,7 @@
                 <width>963</width>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>[COLOR FFE5A00D]Mode:[/COLOR] $INFO[Window.Property(ppi.Mode)]</label>
+                <label>[COLOR {{ theme.colors.accent }}]Mode:[/COLOR] $INFO[Window.Property(ppi.Mode)]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo + !String.IsEmpty(Window.Property(ppi.Mode))</visible>
@@ -379,7 +379,7 @@
                 <width>963</width>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>[COLOR FFE5A00D]Container:[/COLOR] $INFO[Window.Property(ppi.Container)]</label>
+                <label>[COLOR {{ theme.colors.accent }}]Container:[/COLOR] $INFO[Window.Property(ppi.Container)]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo + !String.IsEmpty(Window.Property(ppi.Container))</visible>
@@ -389,7 +389,7 @@
                 <autoscroll delay="1000" time="1000" repeat="2000"></autoscroll>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>[COLOR FFE5A00D]Video:[/COLOR] $INFO[Window.Property(ppi.Video)]</label>
+                <label>[COLOR {{ theme.colors.accent }}]Video:[/COLOR] $INFO[Window.Property(ppi.Video)]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo + !String.IsEmpty(Window.Property(ppi.Video))</visible>
@@ -399,7 +399,7 @@
                 <autoscroll delay="1000" time="1000" repeat="2000"></autoscroll>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>$INFO[Window.Property(ppi.Audio),[COLOR FFE5A00D]Audio:[/COLOR] ]$INFO[Window.Property(ppi.Subtitles),   [COLOR FFE5A00D]Subtitle:[/COLOR] ]</label>
+                <label>$INFO[Window.Property(ppi.Audio),[COLOR {{ theme.colors.accent }}]Audio:[/COLOR] ]$INFO[Window.Property(ppi.Subtitles),   [COLOR {{ theme.colors.accent }}]Subtitle:[/COLOR] ]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo + [!String.IsEmpty(Window.Property(ppi.Audio)) | !String.IsEmpty(Window.Property(ppi.Subtitles))]</visible>
@@ -409,7 +409,7 @@
                 <autoscroll delay="1000" time="1000" repeat="2000"></autoscroll>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>[COLOR FFE5A00D]Server:[/COLOR] $INFO[Window.Property(ppi.User)]</label>
+                <label>[COLOR {{ theme.colors.accent }}]Server:[/COLOR] $INFO[Window.Property(ppi.User)]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo + !String.IsEmpty(Window.Property(ppi.User))</visible>
@@ -418,7 +418,7 @@
                 <width>963</width>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>[COLOR FFE5A00D]Buffer:[/COLOR] $INFO[Player.CacheLevel]%$INFO[Window.Property(ppi.BufferMB), (of ~, MB]$INFO[Window.Property(ppi.ReadFactor),$COMMA Readfactor: ,x)]$INFO[Window.Property(ppi.AReadFactor),$COMMA Readfactor: ,)]</label>
+                <label>[COLOR {{ theme.colors.accent }}]Buffer:[/COLOR] $INFO[Player.CacheLevel]%$INFO[Window.Property(ppi.BufferMB), (of ~, MB]$INFO[Window.Property(ppi.ReadFactor),$COMMA Readfactor: ,x)]$INFO[Window.Property(ppi.AReadFactor),$COMMA Readfactor: ,)]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo + String.IsEmpty(Window.Property(ppi.Buffered))</visible>
@@ -427,7 +427,7 @@
                 <width>963</width>
                 <height>{{ vscale(50) }}</height>
                 <aligny>bottom</aligny>
-                <label>[COLOR FFE5A00D]Buffer:[/COLOR] $INFO[Window.Property(ppi.Buffered)]% (% of Video cached)$INFO[Window.Property(ppi.BufferMB), (of ~, MB]$INFO[Window.Property(ppi.ReadFactor),$COMMA Readfactor:,x)]$INFO[Window.Property(ppi.AReadFactor),$COMMA Readfactor: ,)]</label>
+                <label>[COLOR {{ theme.colors.accent }}]Buffer:[/COLOR] $INFO[Window.Property(ppi.Buffered)]% (% of Video cached)$INFO[Window.Property(ppi.BufferMB), (of ~, MB]$INFO[Window.Property(ppi.ReadFactor),$COMMA Readfactor:,x)]$INFO[Window.Property(ppi.AReadFactor),$COMMA Readfactor: ,)]</label>
                 <font>font14</font>
                 <shadowcolor>black</shadowcolor>
                 <visible>Player.HasVideo + !String.IsEmpty(Window.Property(ppi.Buffered))</visible>
@@ -440,7 +440,7 @@
         <width>1786</width>
         <height>{{ vscale(50) }}</height>
         <aligny>bottom</aligny>
-        <label>$INFO[System.CpuUsage,[COLOR FFE5A00D]$LOCALIZE[13271][/COLOR] ]</label>
+        <label>$INFO[System.CpuUsage,[COLOR {{ theme.colors.accent }}]$LOCALIZE[13271][/COLOR] ]</label>
         <font>font14</font>
         <shadowcolor>black</shadowcolor>
     </control>
@@ -539,7 +539,7 @@
                     <posy>0</posy>
                     <width>70</width>
                     <height>{{ vscale(70) }}</height>
-                    <texture colordiffuse="FFCC7B19">{{ theme.assets.buttons.base }}repeat.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accentDark }}">{{ theme.assets.buttons.base }}repeat.png</texture>
                 </control>
                 <control type="image">
                     <visible>Playlist.IsRepeatOne | !String.IsEmpty(Window.Property(pq.repeat.one))</visible>
@@ -547,7 +547,7 @@
                     <posy>0</posy>
                     <width>70</width>
                     <height>{{ vscale(70) }}</height>
-                    <texture colordiffuse="FFCC7B19">{{ theme.assets.buttons.base }}repeat-one.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accentDark }}">{{ theme.assets.buttons.base }}repeat-one.png</texture>
                 </control>
             </control>
             <control type="group">
@@ -559,7 +559,7 @@
                     <posy>0</posy>
                     <width>70</width>
                     <height>{{ vscale(70) }}</height>
-                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}repeat{{ theme.assets.buttons.focusSuffix }}.png</texture>
+                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}repeat{{ theme.assets.buttons.focusSuffix }}.png</texture>
                 </control>
                 <control type="image">
                     <visible>Playlist.IsRepeat | !String.IsEmpty(Window.Property(pq.repeat))</visible>
@@ -567,7 +567,7 @@
                     <posy>0</posy>
                     <width>70</width>
                     <height>{{ vscale(70) }}</height>
-                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}repeat{{ theme.assets.buttons.focusSuffix }}.png</texture>
+                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}repeat{{ theme.assets.buttons.focusSuffix }}.png</texture>
                 </control>
                 <control type="image">
                     <visible>Playlist.IsRepeatOne | !String.IsEmpty(Window.Property(pq.repeat.one))</visible>
@@ -575,7 +575,7 @@
                     <posy>0</posy>
                     <width>70</width>
                     <height>{{ vscale(70) }}</height>
-                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}repeat-one{{ theme.assets.buttons.focusSuffix }}.png</texture>
+                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}repeat-one{{ theme.assets.buttons.focusSuffix }}.png</texture>
                 </control>
             </control>
         </control>
@@ -589,11 +589,11 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle.png</texturenofocus>
             <usealttexture>!String.IsEmpty(Window.Property(pq.shuffled))</usealttexture>
-            <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
-            <alttexturenofocus colordiffuse="FFCC7B19">{{ theme.assets.buttons.base }}shuffle.png</alttexturenofocus>
+            <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
+            <alttexturenofocus colordiffuse="{{ theme.colors.accentDark }}">{{ theme.assets.buttons.base }}shuffle.png</alttexturenofocus>
             <label> </label>
         </control>
         <control type="button" id="422">
@@ -618,7 +618,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}settings{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}settings{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}settings.png</texturenofocus>
             <label> </label>
         </control>
@@ -633,7 +633,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus flipx="true"{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}next{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus flipx="true"{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}next{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus flipx="true"{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}next.png</texturenofocus>
             <label> </label>
         </control>
@@ -659,7 +659,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus flipx="true" colordiffuse="FFE5A00D">{{ theme.assets.buttons.base }}skip-forward{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus flipx="true" colordiffuse="{{ theme.colors.focusFill }}">{{ theme.assets.buttons.base }}skip-forward{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus flipx="true"{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}skip-forward.png</texturenofocus>
             <label> </label>
         </control>
@@ -716,7 +716,7 @@
                     <posy>0</posy>
                     <width>70</width>
                     <height>{{ vscale(70) }}</height>
-                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}pause{{ theme.assets.buttons.focusSuffix }}.png</texture>
+                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}pause{{ theme.assets.buttons.focusSuffix }}.png</texture>
                 </control>
                 <control type="image">
                     <visible>Player.Paused | Player.Forwarding | Player.Rewinding</visible>
@@ -724,7 +724,7 @@
                     <posy>0</posy>
                     <width>70</width>
                     <height>{{ vscale(70) }}</height>
-                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}play{{ theme.assets.buttons.focusSuffix }}.png</texture>
+                    <texture{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}play{{ theme.assets.buttons.focusSuffix }}.png</texture>
                 </control>
             </control>
         </control>
@@ -737,7 +737,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}stop{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}stop{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}stop.png</texturenofocus>
             <label> </label>
         </control>
@@ -750,7 +750,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}skip-forward{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}skip-forward{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}skip-forward.png</texturenofocus>
             <label> </label>
         </control>
@@ -763,7 +763,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}next{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}next{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}next.png</texturenofocus>
             <label> </label>
         </control>
@@ -790,7 +790,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}pqueue{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}pqueue{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}pqueue.png</texturenofocus>
             <label> </label>
         </control>
@@ -817,7 +817,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}subtitle{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}subtitle{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
             <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}subtitle.png</texturenofocus>
             <label> </label>
         </control>
@@ -834,7 +834,7 @@
             <height>{{ vscale(70) }}</height>
             <font>font12</font>
             <ondown>501</ondown>
-            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>script.plex/buttons/player/modern/vs10.png</texturefocus>
+            <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>script.plex/buttons/player/modern/vs10.png</texturefocus>
             <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>script.plex/buttons/player/modern/vs10.png</texturenofocus>
             <label> </label>
         </control>
@@ -951,7 +951,7 @@
                     <width>16</width>
                     <height>{{ vscale(16) }}</height>
                     <texture>script.plex/indicators/seek-selection-marker.png</texture>
-                    <colordiffuse>FFE5A00D</colordiffuse>
+                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                 </control>
             </focusedlayout>
 
@@ -1158,7 +1158,7 @@
         <align>center</align>
         <right>0</right>
         <top>0</top>
-        <texturefocus colordiffuse="FFE5A00D" border="50">script.plex/buttons/blank-focus.png</texturefocus>
+        <texturefocus colordiffuse="{{ theme.colors.focusFill }}" border="50">script.plex/buttons/blank-focus.png</texturefocus>
         <texturenofocus colordiffuse="99FFFFFF" border="50">script.plex/buttons/blank.png</texturenofocus>
         <textoffsetx>70</textoffsetx>
         <textcolor>FF000000</textcolor>

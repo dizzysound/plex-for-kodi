@@ -214,8 +214,8 @@
                 <font>font20</font>
                 <align>center</align>
                 <aligny>top</aligny>
-                <focusedcolor>FFE5A00D</focusedcolor>
-                <textcolor>FFE5A00D</textcolor>
+                <focusedcolor>{{ theme.colors.focusText }}</focusedcolor>
+                <textcolor>{{ theme.colors.accent }}</textcolor>
                 <textoffsetx>10</textoffsetx>
                 <texturefocus colordiffuse="40000000" border="8">script.plex/white-square-rounded.png</texturefocus>
                 <texturenofocus colordiffuse="40000000" border="8">script.plex/white-square-rounded.png</texturenofocus>
@@ -659,7 +659,7 @@
                                     <width>496</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask-496.png">$INFO[ListItem.Property(progress)]</texture>
-                                    <colordiffuse>FFE5A00D</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                                 </control>
                             </control>
                             <control type="group">
@@ -879,7 +879,7 @@
                                         <width>496</width>
                                         <height>{{ vscale(5) }}</height>
                                         <texture diffuse="script.plex/masks/progress-bar-mask-496.png">$INFO[ListItem.Property(progress)]</texture>
-                                        <colordiffuse>FFE5A00D</colordiffuse>
+                                        <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                                     </control>
                                 </control>
                                 <control type="group">
@@ -1615,7 +1615,7 @@
                                     <width>224</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">$INFO[ListItem.Property(progress)]</texture>
-                                    <colordiffuse>FFE5A00D</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                                 </control>
                             </control>
                             {% include "includes/watched_indicator.xml.tpl" with xoff=240 & uw_size=48 & wbg_w=34.4 & wbg_h=34.4 & with_count=True & scale="medium" %}
@@ -1725,7 +1725,7 @@
                                         <width>224</width>
                                         <height>{{ vscale(5) }}</height>
                                         <texture diffuse="script.plex/masks/progress-bar-mask-224.png">$INFO[ListItem.Property(progress)]</texture>
-                                        <colordiffuse>FFE5A00D</colordiffuse>
+                                        <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                                     </control>
                                 </control>
                                 {% include "includes/watched_indicator.xml.tpl" with xoff=240 & uw_size=48 & wbg_w=34.4 & wbg_h=34.4 & with_count=True & scale="medium" %}
@@ -1866,7 +1866,7 @@
             <width>120</width>
             <height>2</height>
             <texture>script.plex/white-square.png</texture>
-            <colordiffuse>FFE5A00D</colordiffuse>
+            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
         </control>
     </itemlayout>
 
@@ -1925,7 +1925,7 @@
             <width>120</width>
             <height>2</height>
             <texture>script.plex/white-square.png</texture>
-            <colordiffuse>FFE5A00D</colordiffuse>
+            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
         </control>
     </focusedlayout>
 </control>

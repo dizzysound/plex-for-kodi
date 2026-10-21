@@ -253,7 +253,7 @@
         <midtexture diffuse="script.plex/masks/seekbar-mask-1152.png">script.plex/white-square-6px.png</midtexture>
         <righttexture>-</righttexture>
         <overlaytexture>-</overlaytexture>
-        <colordiffuse>FFE5A00D</colordiffuse>
+        <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
         <info>Player.Progress</info>
     </control>
     <control type="progress">
@@ -286,7 +286,7 @@
         <midtexture diffuse="script.plex/masks/seekbar-mask-1152.png">script.plex/white-square-6px.png</midtexture>
         <righttexture>-</righttexture>
         <overlaytexture>-</overlaytexture>
-        <colordiffuse>FFE5A00D</colordiffuse>
+        <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
     </control>
 </control>
 
@@ -425,7 +425,7 @@
         <visible>true</visible>
         <texturesliderbackground colordiffuse="40000000" border="5">script.plex/white-square-rounded.png</texturesliderbackground>
         <texturesliderbar colordiffuse="77FFFFFF" border="5">script.plex/white-square-rounded.png</texturesliderbar>
-        <texturesliderbarfocus colordiffuse="FFE5A00D" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
+        <texturesliderbarfocus colordiffuse="{{ theme.colors.focusFill }}" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
         <textureslidernib>-</textureslidernib>
         <textureslidernibfocus>-</textureslidernibfocus>
         <pulseonselect>false</pulseonselect>

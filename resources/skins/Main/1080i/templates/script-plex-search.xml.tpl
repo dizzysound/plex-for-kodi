@@ -39,7 +39,7 @@
     <ondown>1006</ondown>
     <onright>2100</onright>
     <font>font12</font>
-    <texturefocus colordiffuse="FFE5A00D">script.plex/buttons/player/modern/settings.png</texturefocus>
+    <texturefocus colordiffuse="{{ theme.colors.focusFill }}">script.plex/buttons/player/modern/settings.png</texturefocus>
     <texturenofocus colordiffuse="FFFFFFFF">script.plex/buttons/player/modern/settings.png</texturenofocus>
     <label> </label>
 </control>
@@ -1102,7 +1102,7 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <textcolor>FFE5A00D</textcolor>
+                    <textcolor>{{ theme.colors.accent }}</textcolor>
                     <label>$ADDON[script.plexmod 32345]</label>
                 </control>
             </control>
@@ -1141,7 +1141,7 @@
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="FFE5A00D">script.plex/home/type/movie.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/movie.png</texture>
                 </control>
             </control>
         </control>
@@ -1179,7 +1179,7 @@
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="FFE5A00D">script.plex/home/type/show.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/show.png</texture>
                 </control>
             </control>
         </control>
@@ -1217,7 +1217,7 @@
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="FFE5A00D">script.plex/home/type/artist.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/artist.png</texture>
                 </control>
             </control>
         </control>
@@ -1255,7 +1255,7 @@
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="FFE5A00D">script.plex/home/type/photo.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/photo.png</texture>
                 </control>
             </control>
         </control>
@@ -1293,7 +1293,7 @@
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="FFE5A00D">script.plex/home/type/person.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/person.png</texture>
                 </control>
             </control>
         </control>
@@ -1425,7 +1425,7 @@
         <posy>{{ vscale(10.5) }}</posy>
         <width>39</width>
         <height>{{ vscale(39) }}</height>
-        <texture colordiffuse="FFE5A00D">script.plex/indicators/spinner.png</texture>
+        <texture colordiffuse="{{ theme.colors.accent }}">script.plex/indicators/spinner.png</texture>
     </control>
     <control type="label">
         <scroll>false</scroll>

@@ -86,7 +86,7 @@
                     <width>224</width>
                     <height>{{ vscale(5) }}</height>
                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">$INFO[ListItem.Property(progress)]</texture>
-                    <colordiffuse>FFE5A00D</colordiffuse>
+                    <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                 </control>
             </control>
             <!-- hub.nolabels.<id> (LibraryWindow.getHubRenderFlags()'s no_labels, library.py):

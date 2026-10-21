@@ -32,7 +32,7 @@
                 <width>{{ wbg_w }}</width>
                 <height>{{ wbg_h|vscale }}</height>
                 <texture diffuse="{{ wbg|default('script.plex/masks/badge-mask-tr.png') }}">script.plex/white-square.png</texture>
-                <colordiffuse>{{ indicators.unwatched_count_bg|default("FFCC7B19") }}</colordiffuse>
+                <colordiffuse>{{ indicators.unwatched_count_bg|default(theme.colors.badgeBg) }}</colordiffuse>
             </control>
             <control type="image">
                 <visible>!String.IsEmpty({{ itemref|default("ListItem") }}.Property(unwatched.count.large))</visible>
@@ -41,7 +41,7 @@
                 <width>{{ wbg_w + 16 }}</width>
                 <height>{{ wbg_h|vscale }}</height>
                 <texture diffuse="{{ wbg|default('script.plex/masks/badge-mask-tr.png') }}">script.plex/white-square.png</texture>
-                <colordiffuse>{{ indicators.unwatched_count_bg|default("FFCC7B19") }}</colordiffuse>
+                <colordiffuse>{{ indicators.unwatched_count_bg|default(theme.colors.badgeBg) }}</colordiffuse>
             </control>
             {# The count is drawn at font32_title's 32px and zoomed down, so this label has to hold the
                unzoomed text: a label narrower than it cuts it to "1..." before the zoom. 3 digits are

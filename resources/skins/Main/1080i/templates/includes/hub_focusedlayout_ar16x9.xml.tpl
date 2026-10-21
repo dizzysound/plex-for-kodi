@@ -82,7 +82,7 @@
                         <width>496</width>
                         <height>{{ vscale(5) }}</height>
                         <texture diffuse="script.plex/masks/progress-bar-mask-496.png">$INFO[ListItem.Property(progress)]</texture>
-                        <colordiffuse>FFE5A00D</colordiffuse>
+                        <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                     </control>
                 </control>
                 <!-- Episode-number badge + watched indicator - see hub_itemlayout_ar16x9.xml.tpl's

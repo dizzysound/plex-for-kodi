@@ -365,7 +365,7 @@
                                     <align>left</align>
                                     <aligny>center</aligny>
                                     <textcolor>FFFFFFFF</textcolor>
-                                    <label>[B]$INFO[ListItem.Label][COLOR FFE5A00D]/[/COLOR][/B]</label>
+                                    <label>[B]$INFO[ListItem.Label][COLOR {{ theme.colors.accent }}]/[/COLOR][/B]</label>
                                 </control>
                             </control>
                         </control>
@@ -418,7 +418,7 @@
                                             <align>left</align>
                                             <aligny>center</aligny>
                                             <textcolor>FFFFFFFF</textcolor>
-                                            <label>[B]$INFO[ListItem.Label][COLOR FFE5A00D]/[/COLOR][/B]</label>
+                                            <label>[B]$INFO[ListItem.Label][COLOR {{ theme.colors.accent }}]/[/COLOR][/B]</label>
                                         </control>
                                     </control>
                                 </control>
@@ -451,7 +451,7 @@
                                 <width>1005</width>
                                 <height>{{ vscale(76) }}</height>
                                 <texture border="12">script.plex/white-square-rounded.png</texture>
-                                <colordiffuse>FFE5A00D</colordiffuse>
+                                <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                             </control>
 
                             <control type="group">

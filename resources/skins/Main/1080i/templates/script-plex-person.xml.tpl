@@ -417,7 +417,7 @@
                                     <width>224</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">$INFO[ListItem.Property(progress)]</texture>
-                                    <colordiffuse>FFE5A00D</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                                 </control>
                             </control>
                             {% include "includes/watched_indicator.xml.tpl" with xoff=240 & uw_size=48 & wbg_w=34.4 & wbg_h=34.4 & with_count=True & scale="medium" %}
@@ -485,7 +485,7 @@
             <posy>{{ vscale(246.5) }}</posy>
             <width>39</width>
             <height>{{ vscale(39) }}</height>
-            <texture colordiffuse="FFE5A00D">script.plex/indicators/spinner.png</texture>
+            <texture colordiffuse="{{ theme.colors.accent }}">script.plex/indicators/spinner.png</texture>
         </control>
         <!-- Nothing found: under the heading, at the posters' left edge, on the art's middle -->
         <control type="label">

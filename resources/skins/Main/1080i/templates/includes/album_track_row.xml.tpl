@@ -115,7 +115,7 @@
         <font>font10</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFE5A00D</textcolor>
+        <textcolor>{{ theme.colors.accent }}</textcolor>
         <label>$INFO[ListItem.Label]</label>
     </control>
 

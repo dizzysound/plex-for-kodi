@@ -99,7 +99,7 @@
             <width>{{ art_w - 12 }}</width>
             <height>{{ vscale(6) }}</height>
             <texture diffuse="script.plex/masks/progress-bar-mask.png">$INFO[ListItem.Property(progress)]</texture>
-            <colordiffuse>FFE5A00D</colordiffuse>
+            <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
         </control>
     </control>
     {% include "includes/watched_indicator.xml.tpl" with xoff=art_x+art_w & yoff=10 & uw_size=24 & wbg_w=24 & wbg_h=24 %}
@@ -130,7 +130,7 @@
         <font>font10</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFE5A00D</textcolor>
+        <textcolor>{{ theme.colors.accent }}</textcolor>
         <label>$INFO[ListItem.Label]</label>
     </control>
     <control type="label">

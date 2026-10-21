@@ -141,7 +141,7 @@
                     <height>{{ vscale(1) }}</height>
                     <texturebg colordiffuse="9AFFFFFF">script.plex/white-square-1px.png</texturebg>
                     <lefttexture>-</lefttexture>
-                    <midtexture colordiffuse="FFCC7B19">script.plex/white-square-1px.png</midtexture>
+                    <midtexture colordiffuse="{{ theme.colors.accentDark }}">script.plex/white-square-1px.png</midtexture>
                     <righttexture>-</righttexture>
                     <overlaytexture>-</overlaytexture>
                     <info>Player.Progress</info>

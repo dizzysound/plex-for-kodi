@@ -47,7 +47,7 @@
                      fixed-width strip with only its own left portion opaque, so masking it at full
                      box size still gives a clean rounded left cap and a plain straight-cut right
                      edge wherever the fill happens to end, with no separate inset needed to hide
-                     square corners. Fill colour FFE5A00D matches official's measured fill exactly -
+                     square corners. Fill colour (the accent token) matches official's measured fill exactly -
                      it's also this skin's own existing accent gold (see e.g. the meta row's
                      remainingTime pill). -->
                 <visible>!String.IsEmpty(ListItem.Property(progress))</visible>
@@ -67,7 +67,7 @@
                     <width>224</width>
                     <height>{{ vscale(5) }}</height>
                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">$INFO[ListItem.Property(progress)]</texture>
-                    <colordiffuse>FFE5A00D</colordiffuse>
+                    <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                 </control>
             </control>
             {% include "includes/watched_indicator.xml.tpl" with xoff=240 & uw_size=48 & wbg_w=34.4 & wbg_h=34.4 & with_count=True & scale="medium" %}

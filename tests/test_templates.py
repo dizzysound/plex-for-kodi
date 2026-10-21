@@ -282,6 +282,37 @@ class TemplateContextTest(KodiTestCase):
             self.assertNotIn("CUSTOM MARKER", fp.read())
 
 
+class TemplateColorTokenTest(KodiTestCase):
+    """The skin's amber is defined once, as theme.colors.* tokens, not as literals in the templates."""
+
+    AMBER_RE = re.compile(r"FFE5A00D|FFCC7B19", re.I)
+
+    def test_templates_carry_no_amber_literals(self):
+        for dirpath, _dirs, files in os.walk(TEMPLATE_DIR):
+            for fn in sorted(files):
+                path = os.path.join(dirpath, fn)
+                with self.subTest(template=os.path.relpath(path, TEMPLATE_DIR)):
+                    with open(path, "r", encoding="utf-8") as fp:
+                        self.assertIsNone(self.AMBER_RE.search(fp.read()),
+                                          "use a theme.colors.* token instead of an amber literal")
+
+    def test_default_tokens_render_the_amber(self):
+        rendered = render_theme(make_engine(self.mktemp()), "modern-colored")
+        self.assertIn("FFE5A00D", "".join(rendered.values()))
+        self.assertIn("FFCC7B19", "".join(rendered.values()))
+
+    def test_overriding_a_token_reaches_the_output(self):
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        context["themes"]["base"]["colors"].update({"accent": "11111111", "accentDark": "22222222",
+                                                    "focusFill": "33333333", "focusText": "55555555",
+                                                    "badgeBg": "66666666", "progressFill": "44444444"})
+        text = "".join(render_theme(make_engine(self.mktemp(), context=context), "modern-colored").values())
+        for value in ("11111111", "22222222", "33333333", "44444444", "55555555"):
+            with self.subTest(value=value):
+                self.assertIn(value, text)
+        self.assertIsNone(self.AMBER_RE.search(text))
+
+
 class TemplateWriteTest(KodiTestCase):
     def test_write_confirms_the_file_landed_at_full_size(self):
         """

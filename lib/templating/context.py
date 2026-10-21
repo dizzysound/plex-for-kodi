@@ -34,6 +34,18 @@ TEMPLATE_CONTEXTS = {
     },
     "themes": {
         "base": {
+            # colors, ARGB hex; the skin's amber. One name per role so a theme can recolor a role
+            # without touching the others. accentDark is the darker amber (inactive-state
+            # tints, slider mid-fill, avatar/rounded-pill backgrounds) that has no role of its own yet.
+            "colors": {
+                "accent": "FFE5A00D",
+                "accentDark": "FFCC7B19",
+                "focusFill": "FFE5A00D",
+                "focusText": "FFE5A00D",
+                "badgeBg": "FFCC7B19",
+                "progressFill": "FFE5A00D",
+            },
+
             # general config
             "assets": {
                 "buttons": {

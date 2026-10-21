@@ -113,7 +113,7 @@
                                 <width>134</width>
                                 <height>{{ vscale(5) }}</height>
                                 <texture diffuse="script.plex/masks/progress-bar-mask.png">$INFO[ListItem.Property(progress)]</texture>
-                                <colordiffuse>FFE5A00D</colordiffuse>
+                                <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                             </control>
                         </control>
                         {% include "includes/watched_indicator.xml.tpl" with xoff=144 & uw_size=38.4 & wbg_w=27.5 & wbg_h=27.5 & count_zoom=32 & with_count=True & scale="small" %}
@@ -226,7 +226,7 @@
                                     <width>134</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask.png">$INFO[ListItem.Property(progress)]</texture>
-                                    <colordiffuse>FFE5A00D</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                                 </control>
                             </control>
                             {% include "includes/watched_indicator.xml.tpl" with xoff=144 & uw_size=38.4 & wbg_w=27.5 & wbg_h=27.5 & count_zoom=32 & with_count=True & scale="small" %}

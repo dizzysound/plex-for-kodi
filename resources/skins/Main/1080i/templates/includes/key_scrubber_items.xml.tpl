@@ -27,7 +27,7 @@
                 <font>font10</font>
                 <align>center</align>
                 <aligny>center</aligny>
-                <textcolor>FFE5A00D</textcolor>
+                <textcolor>{{ theme.colors.accent }}</textcolor>
                 <label>$INFO[ListItem.Label]</label>
             </control>
         </control>
@@ -63,7 +63,7 @@
                 <font>font10</font>
                 <align>center</align>
                 <aligny>center</aligny>
-                <textcolor>FFE5A00D</textcolor>
+                <textcolor>{{ theme.colors.accent }}</textcolor>
                 <label>$INFO[ListItem.Label]</label>
             </control>
         </control>
@@ -78,7 +78,7 @@
                 <posy>0</posy>
                 <width>34</width>
                 <height>{{ vscale(34) }}</height>
-                <colordiffuse>FFE5A00D</colordiffuse>
+                <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                 <texture border="12">script.plex/white-outline-rounded.png</texture>
             </control>
         </control>

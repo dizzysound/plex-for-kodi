@@ -66,8 +66,8 @@
             <font>font20</font>
             <align>center</align>
             <aligny>top</aligny>
-            <focusedcolor>FFE5A00D</focusedcolor>
-            <textcolor>FFE5A00D</textcolor>
+            <focusedcolor>{{ theme.colors.focusText }}</focusedcolor>
+            <textcolor>{{ theme.colors.accent }}</textcolor>
             <textoffsetx>10</textoffsetx>
             <texturefocus colordiffuse="40000000" border="8">script.plex/white-square-rounded.png</texturefocus>
             <texturenofocus colordiffuse="40000000" border="8">script.plex/white-square-rounded.png</texturenofocus>

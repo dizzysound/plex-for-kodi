@@ -382,7 +382,7 @@
                              bottom = 100.
                              The title is written twice, gated on whether this row is the track currently
                              playing - Kodi can't switch a single label's textcolor on a condition. The
-                             playing row is tinted FFE5A00D (the theme's own accent, what the button focus
+                             playing row is tinted with the accent color (the theme's own accent, what the button focus
                              textures use) rather than carrying a now-playing glyph in a left gutter: with
                              the track number gone there's no column for one to live in, and reserving one
                              would indent every title for a marker that shows on at most one row.
@@ -412,7 +412,7 @@
                             <font>font10</font>
                             <align>left</align>
                             <aligny>center</aligny>
-                            <textcolor>FFE5A00D</textcolor>
+                            <textcolor>{{ theme.colors.accent }}</textcolor>
                             <label>$INFO[ListItem.Label]</label>
                         </control>
                         <control type="label">
@@ -519,7 +519,7 @@
                             <font>font10</font>
                             <align>left</align>
                             <aligny>center</aligny>
-                            <textcolor>FFE5A00D</textcolor>
+                            <textcolor>{{ theme.colors.accent }}</textcolor>
                             <label>$INFO[ListItem.Label]</label>
                         </control>
                         <control type="label">

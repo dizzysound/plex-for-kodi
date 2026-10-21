@@ -73,7 +73,7 @@
                     <width>224</width>
                     <height>{{ vscale(5) }}</height>
                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">$INFO[ListItem.Property(progress)]</texture>
-                    <colordiffuse>FFE5A00D</colordiffuse>
+                    <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                 </control>
             </control>
             {% include "includes/grid_tile_captions.xml.tpl" with focused=focused & top1=250 & top2=280 & top3=305 %}

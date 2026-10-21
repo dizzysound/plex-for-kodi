@@ -275,7 +275,7 @@
                 <posy>0</posy>
                 <width>600</width>
                 <height>{{ vscale(66) }}</height>
-                <texture flipy="true" colordiffuse="FFE5A00D" border="10">script.plex/white-square-top-rounded.png</texture>
+                <texture flipy="true" colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-top-rounded.png</texture>
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(only)) + String.IsEmpty(ListItem.Property(moving))</visible>
@@ -283,7 +283,7 @@
                 <posy>0</posy>
                 <width>600</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-rounded.png</texture>
             </control>
             <!-- Moving state (muted gray, more opaque to prevent orange flash during move) -->
             <control type="image">
@@ -482,7 +482,7 @@
         <visible>true</visible>
         <texturesliderbackground colordiffuse="40000000" border="5">script.plex/white-square-rounded.png</texturesliderbackground>
         <texturesliderbar colordiffuse="77FFFFFF" border="5">script.plex/white-square-rounded.png</texturesliderbar>
-        <texturesliderbarfocus colordiffuse="FFE5A00D" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
+        <texturesliderbarfocus colordiffuse="{{ theme.colors.focusFill }}" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
         <textureslidernib>-</textureslidernib>
         <textureslidernibfocus>-</textureslidernibfocus>
         <pulseonselect>false</pulseonselect>

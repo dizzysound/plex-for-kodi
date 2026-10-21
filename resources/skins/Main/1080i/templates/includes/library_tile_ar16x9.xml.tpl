@@ -53,7 +53,7 @@
                     <width>496</width>
                     <height>{{ vscale(5) }}</height>
                     <texture diffuse="script.plex/masks/progress-bar-mask-496.png">$INFO[ListItem.Property(progress)]</texture>
-                    <colordiffuse>FFE5A00D</colordiffuse>
+                    <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
                 </control>
             </control>
             {% include "includes/watched_indicator.xml.tpl" with xoff=512 & uw_size=35 & wbg_w=40 %}

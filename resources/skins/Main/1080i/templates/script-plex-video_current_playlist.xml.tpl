@@ -51,7 +51,7 @@
                         <width>35</width>
                         <height>{{ vscale(35) }}</height>
                         <texture>script.plex/indicators/playing-circle.png</texture>
-                        <colordiffuse>FFE5A00D</colordiffuse>
+                        <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                     </control>
                     <control type="group">
                         <visible>String.IsEmpty(ListItem.Property(video))</visible>
@@ -120,7 +120,7 @@
                                 <width>132</width>
                                 <height>{{ vscale(4) }}</height>
                                 <texture>$INFO[ListItem.Property(progress)]</texture>
-                                <colordiffuse>FFCC7B19</colordiffuse>
+                                <colordiffuse>{{ theme.colors.accentDark }}</colordiffuse>
                             </control>
                         </control>
                         {% include "includes/watched_indicator.xml.tpl" with xoff=132+63 & yoff=11 & uw_posy=11 & uw_size=24 & scale="tiny" %}
@@ -202,7 +202,7 @@
                             <width>35</width>
                             <height>{{ vscale(35) }}</height>
                             <texture>script.plex/indicators/playing-circle.png</texture>
-                            <colordiffuse>FFE5A00D</colordiffuse>
+                            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                         </control>
                         <control type="group">
                             <visible>String.IsEmpty(ListItem.Property(video))</visible>
@@ -322,7 +322,7 @@
                             <width>1044</width>
                             <height>{{ vscale(100) }}</height>
                             <texture border="12">script.plex/white-square-rounded.png</texture>
-                            <colordiffuse>FFE5A00D</colordiffuse>
+                            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                         </control>
                         <!-- comment the previous and uncomment the following for re-enabling options button -->
                         <!--<control type="image">
@@ -331,7 +331,7 @@
                             <width>999</width>
                             <height>{{ vscale(100) }}</height>
                             <texture border="12">script.plex/white-square-left-rounded.png</texture>
-                            <colordiffuse>FFE5A00D</colordiffuse>
+                            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                         </control>
                         <control type="image">
                             <posx>999</posx>
@@ -430,7 +430,7 @@
                                     <width>178</width>
                                     <height>{{ vscale(4) }}</height>
                                     <texture>$INFO[ListItem.Property(progress)]</texture>
-                                    <colordiffuse>FFCC7B19</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.accentDark }}</colordiffuse>
                                 </control>
                             </control>
                             {% include "includes/watched_indicator.xml.tpl" with xoff=178+103 %}
@@ -489,7 +489,7 @@
             <visible>true</visible>
             <texturesliderbackground colordiffuse="40000000" border="5">script.plex/white-square-rounded.png</texturesliderbackground>
             <texturesliderbar colordiffuse="77FFFFFF" border="5">script.plex/white-square-rounded.png</texturesliderbar>
-            <texturesliderbarfocus colordiffuse="FFE5A00D" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
+            <texturesliderbarfocus colordiffuse="{{ theme.colors.focusFill }}" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
             <textureslidernib>-</textureslidernib>
             <textureslidernibfocus>-</textureslidernibfocus>
             <pulseonselect>false</pulseonselect>

@@ -103,11 +103,11 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}repeat{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}repeat{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}repeat.png</texturenofocus>
                 <usealttexture>!String.IsEmpty(Window.Property(pq.repeat))</usealttexture>
-                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}repeat{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
-                <alttexturenofocus colordiffuse="FFCC7B19">{{ theme.assets.buttons.base }}repeat.png</alttexturenofocus>
+                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}repeat{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
+                <alttexturenofocus colordiffuse="{{ theme.colors.accentDark }}">{{ theme.assets.buttons.base }}repeat.png</alttexturenofocus>
                 <label> </label>
             </control>
             <control type="button" id="421">
@@ -131,11 +131,11 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle.png</texturenofocus>
                 <usealttexture>!String.IsEmpty(Window.Property(pq.shuffled))</usealttexture>
-                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
-                <alttexturenofocus colordiffuse="FFCC7B19">{{ theme.assets.buttons.base }}shuffle.png</alttexturenofocus>
+                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
+                <alttexturenofocus colordiffuse="{{ theme.colors.accentDark }}">{{ theme.assets.buttons.base }}shuffle.png</alttexturenofocus>
                 <label> </label>
             </control>
             <control type="button" id="422">
@@ -158,7 +158,7 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}rotate{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}rotate{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}rotate.png</texturenofocus>
                 <label> </label>
             </control>
@@ -172,7 +172,7 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus flipx="true"{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}next{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus flipx="true"{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}next{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus flipx="true"{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}next.png</texturenofocus>
                 <label> </label>
             </control>
@@ -199,10 +199,10 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}play{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}play{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}play.png</texturenofocus>
                 <usealttexture>!String.IsEmpty(Window.Property(playing))</usealttexture>
-                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}pause{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
+                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}pause{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
                 <alttexturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}pause.png</alttexturenofocus>
                 <label> </label>
             </control>
@@ -213,7 +213,7 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}stop{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}stop{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}stop.png</texturenofocus>
                 <label> </label>
             </control>
@@ -225,7 +225,7 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}next{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}next{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}next.png</texturenofocus>
                 <label> </label>
             </control>
@@ -249,11 +249,11 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}square2x2{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}square2x2{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}square2x2.png</texturenofocus>
                 <usealttexture>!String.IsEmpty(Window.Property(show.pqueue))</usealttexture>
-                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}square2x2{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
-                <alttexturenofocus colordiffuse="FFCC7B19">{{ theme.assets.buttons.base }}square2x2{{ theme.assets.buttons.focusSuffix }}.png</alttexturenofocus>
+                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}square2x2{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
+                <alttexturenofocus colordiffuse="{{ theme.colors.accentDark }}">{{ theme.assets.buttons.base }}square2x2{{ theme.assets.buttons.focusSuffix }}.png</alttexturenofocus>
                 <onclick>SetProperty(show.pqueue,1)</onclick>
                 <altclick>SetProperty(show.pqueue,)</altclick>
                 <label> </label>
@@ -265,11 +265,11 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}info{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}info{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}info.png</texturenofocus>
                 <usealttexture>!String.IsEmpty(Window.Property(show.info))</usealttexture>
-                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}info{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
-                <alttexturenofocus colordiffuse="FFCC7B19">{{ theme.assets.buttons.base }}info{{ theme.assets.buttons.focusSuffix }}.png</alttexturenofocus>
+                <alttexturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}info{{ theme.assets.buttons.focusSuffix }}.png</alttexturefocus>
+                <alttexturenofocus colordiffuse="{{ theme.colors.accentDark }}">{{ theme.assets.buttons.base }}info{{ theme.assets.buttons.focusSuffix }}.png</alttexturenofocus>
                 <onclick>SetProperty(show.info,1)</onclick>
                 <altclick>SetProperty(show.info,)</altclick>
                 <label> </label>
@@ -282,7 +282,7 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}tags{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}tags{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}tags.png</texturenofocus>
                 <label> </label>
             </control>
@@ -294,7 +294,7 @@
                 <width>125</width>
                 <height>{{ vscale(101) }}</height>
                 <font>font12</font>
-                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}more{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
+                <texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}more{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>
                 <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}more.png</texturenofocus>
                 <label> </label>
             </control>

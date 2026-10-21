@@ -79,7 +79,7 @@
             <width>100</width>
             <height>2</height>
             <texture>script.plex/white-square.png</texture>
-            <colordiffuse>FFE5A00D</colordiffuse>
+            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
         </control>
     </itemlayout>
     <focusedlayout width="200" height="{{ vscale(125) }}">
@@ -127,7 +127,7 @@
             <width>100</width>
             <height>2</height>
             <texture>script.plex/white-square.png</texture>
-            <colordiffuse>FFE5A00D</colordiffuse>
+            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
         </control>
     </focusedlayout>
 </control>

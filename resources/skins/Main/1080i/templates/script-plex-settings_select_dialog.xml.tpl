@@ -97,7 +97,7 @@
                 <posy>0</posy>
                 <width>600</width>
                 <height>{{ vscale(100) }}</height>
-                <texture colordiffuse="FFE5A00D">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent }}">script.plex/white-square.png</texture>
             </control>
             <control type="label">
                 <visible>String.IsEmpty(ListItem.Label2)</visible>

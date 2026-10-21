@@ -127,7 +127,7 @@
                         <posy>{{ vscale(40) }}</posy>
                         <width>510</width>
                         <height>{{ vscale(75) }}</height>
-                        <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texture>
+                        <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-rounded.png</texture>
                     </control>
                     <control type="image">
                         <visible>!Control.HasFocus(75)</visible>
@@ -135,7 +135,7 @@
                         <posy>{{ vscale(40) }}</posy>
                         <width>510</width>
                         <height>{{ vscale(75) }}</height>
-                        <texture colordiffuse="FFCC7B19" border="10">script.plex/white-square-rounded.png</texture>
+                        <texture colordiffuse="{{ theme.colors.accentDark }}" border="10">script.plex/white-square-rounded.png</texture>
                     </control>
                     <control type="image">
                         <visible>!Control.HasFocus(75)</visible>
@@ -271,7 +271,7 @@
                         <posy>{{ vscale(40) }}</posy>
                         <width>696</width>
                         <height>{{ vscale(75) }}</height>
-                        <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texture>
+                        <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-rounded.png</texture>
                     </control>
                     <control type="image">
                         <visible>Control.HasFocus(125)</visible>
@@ -279,7 +279,7 @@
                         <posy>{{ vscale(40) }}</posy>
                         <width>696</width>
                         <height>{{ vscale(75) }}</height>
-                        <texture colordiffuse="FFCC7B19" border="10">script.plex/white-square-rounded.png</texture>
+                        <texture colordiffuse="{{ theme.colors.accentDark }}" border="10">script.plex/white-square-rounded.png</texture>
                     </control>
                     <control type="image">
                         <visible>Control.HasFocus(125)</visible>
@@ -404,7 +404,7 @@
             <visible>true</visible>
             <texturesliderbackground colordiffuse="66000000" border="4">script.plex/white-square-rounded-4r.png</texturesliderbackground>
             <texturesliderbar colordiffuse="66FFFFFF" border="4">script.plex/white-square-rounded-4r.png</texturesliderbar>
-            <texturesliderbarfocus colordiffuse="FFE5A00D" border="4">script.plex/white-square-rounded-4r.png</texturesliderbarfocus>
+            <texturesliderbarfocus colordiffuse="{{ theme.colors.focusFill }}" border="4">script.plex/white-square-rounded-4r.png</texturesliderbarfocus>
             <textureslidernib>-</textureslidernib>
             <textureslidernibfocus>-</textureslidernibfocus>
             <pulseonselect>false</pulseonselect>
@@ -476,7 +476,7 @@
                     <posy>{{ vscale(40) }}</posy>
                     <width>690</width>
                     <height>{{ vscale(75) }}</height>
-                    <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-rounded.png</texture>
                 </control>
                 <control type="group">
                     <posx>88</posx>
@@ -517,7 +517,7 @@
             <visible>true</visible>
             <texturesliderbackground colordiffuse="66000000" border="4">script.plex/white-square-rounded-4r.png</texturesliderbackground>
             <texturesliderbar colordiffuse="66FFFFFF" border="4">script.plex/white-square-rounded-4r.png</texturesliderbar>
-            <texturesliderbarfocus colordiffuse="FFE5A00D" border="4">script.plex/white-square-rounded-4r.png</texturesliderbarfocus>
+            <texturesliderbarfocus colordiffuse="{{ theme.colors.focusFill }}" border="4">script.plex/white-square-rounded-4r.png</texturesliderbarfocus>
             <textureslidernib>-</textureslidernib>
             <textureslidernibfocus>-</textureslidernibfocus>
             <pulseonselect>false</pulseonselect>

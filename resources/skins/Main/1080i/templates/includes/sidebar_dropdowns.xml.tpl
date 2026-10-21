@@ -165,7 +165,7 @@
                     <posy>0</posy>
                     <width>500</width>
                     <height>{{ vscale(100) }}</height>
-                    <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-top-rounded.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-top-rounded.png</texture>
                 </control>
                 <control type="image">
                     <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only))</visible>
@@ -173,7 +173,7 @@
                     <posy>0</posy>
                     <width>500</width>
                     <height>{{ vscale(100) }}</height>
-                    <texture colordiffuse="FFE5A00D">script.plex/white-square.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/white-square.png</texture>
                 </control>
                 <control type="image">
                     <visible>!String.IsEmpty(ListItem.Property(last))</visible>
@@ -181,7 +181,7 @@
                     <posy>0</posy>
                     <width>500</width>
                     <height>{{ vscale(100) }}</height>
-                    <texture flipy="true" colordiffuse="FFE5A00D" border="10">script.plex/white-square-top-rounded.png</texture>
+                    <texture flipy="true" colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-top-rounded.png</texture>
                 </control>
                 <control type="image">
                     <visible>!String.IsEmpty(ListItem.Property(only))</visible>
@@ -189,7 +189,7 @@
                     <posy>0</posy>
                     <width>500</width>
                     <height>{{ vscale(100) }}</height>
-                    <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-top-rounded.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-top-rounded.png</texture>
                 </control>
                 <control type="group">
                     <visible>!String.IsEmpty(ListItem.Label2)</visible>
@@ -385,7 +385,7 @@
                     <posy>0</posy>
                     <width>300</width>
                     <height>{{ vscale(66) }}</height>
-                    <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-top-rounded.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-top-rounded.png</texture>
                 </control>
                 <control type="image">
                     <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only))</visible>
@@ -393,7 +393,7 @@
                     <posy>0</posy>
                     <width>300</width>
                     <height>{{ vscale(66) }}</height>
-                    <texture colordiffuse="FFE5A00D">script.plex/white-square.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/white-square.png</texture>
                 </control>
                 <control type="image">
                     <visible>!String.IsEmpty(ListItem.Property(last))</visible>
@@ -401,7 +401,7 @@
                     <posy>0</posy>
                     <width>300</width>
                     <height>{{ vscale(66) }}</height>
-                    <texture flipy="true" colordiffuse="FFE5A00D" border="10">script.plex/white-square-top-rounded.png</texture>
+                    <texture flipy="true" colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-top-rounded.png</texture>
                 </control>
                 <control type="image">
                     <visible>!String.IsEmpty(ListItem.Property(only))</visible>
@@ -409,7 +409,7 @@
                     <posy>0</posy>
                     <width>300</width>
                     <height>{{ vscale(66) }}</height>
-                    <texture colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texture>
+                    <texture colordiffuse="{{ theme.colors.accent }}" border="10">script.plex/white-square-rounded.png</texture>
                 </control>
                 <control type="label">
                     <posx>0</posx>

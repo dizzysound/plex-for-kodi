@@ -97,7 +97,7 @@
                 <posy>0</posy>
                 <width>1000</width>
                 <height>{{ vscale(100) }}</height>
-                <texture colordiffuse="FFE5A00D">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent }}">script.plex/white-square.png</texture>
             </control>
             <control type="label">
                 <posx>20</posx>
@@ -138,7 +138,7 @@
     <visible>!Window.IsVisible(sliderdialog) + Control.IsVisible(100) + !Window.IsVisible(osdvideosettings) + !Window.IsVisible(osdaudiosettings) + !Window.IsVisible(osdsubtitlesettings) + !Window.IsVisible(subtitlesearch) + !Window.IsVisible(osdcmssettings)</visible>
     <texturesliderbackground colordiffuse="30000000" border="5">script.plex/white-square.png</texturesliderbackground>
     <texturesliderbar colordiffuse="33FFFFFF" border="5">script.plex/white-square.png</texturesliderbar>
-    <texturesliderbarfocus colordiffuse="FFE5A00D" border="5">script.plex/white-square.png</texturesliderbarfocus>
+    <texturesliderbarfocus colordiffuse="{{ theme.colors.focusFill }}" border="5">script.plex/white-square.png</texturesliderbarfocus>
     <textureslidernib>-</textureslidernib>
     <textureslidernibfocus>-</textureslidernibfocus>
     <pulseonselect>false</pulseonselect>

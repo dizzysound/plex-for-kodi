@@ -69,7 +69,7 @@
     <visible>true</visible>
     <texturesliderbackground colordiffuse="30000000" border="5">script.plex/white-square.png</texturesliderbackground>
     <texturesliderbar colordiffuse="33FFFFFF" border="5">script.plex/white-square.png</texturesliderbar>
-    <texturesliderbarfocus colordiffuse="FFE5A00D" border="5">script.plex/white-square.png</texturesliderbarfocus>
+    <texturesliderbarfocus colordiffuse="{{ theme.colors.focusFill }}" border="5">script.plex/white-square.png</texturesliderbarfocus>
     <textureslidernib>-</textureslidernib>
     <textureslidernibfocus>-</textureslidernibfocus>
     <pulseonselect>false</pulseonselect>

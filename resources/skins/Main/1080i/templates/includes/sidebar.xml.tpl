@@ -141,7 +141,7 @@
                     <width>3</width>
                     <height>{{ vscale(40) }}</height>
                     <texture>script.plex/white-square.png</texture>
-                    <colordiffuse>FFE5A00D</colordiffuse>
+                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                 </control>
                 <!-- Section icon - dimmer while sidebar is collapsed, or while its server isn't answering -->
                 <control type="image">
@@ -171,7 +171,7 @@
                     <width>28</width>
                     <height>{{ vscale(28) }}</height>
                     <texture>$INFO[ListItem.Icon]</texture>
-                    <colordiffuse>FFE5A00D</colordiffuse>
+                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                 </control>
                 <!-- Path-mapping indicator dot -->
                 <control type="image">
@@ -298,7 +298,7 @@
                     <width>3</width>
                     <height>{{ vscale(40) }}</height>
                     <texture>script.plex/white-square.png</texture>
-                    <colordiffuse>FFE5A00D</colordiffuse>
+                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                 </control>
                 <!-- Section icon - orange when focused or active -->
                 <control type="image">
@@ -308,7 +308,7 @@
                     <width>28</width>
                     <height>{{ vscale(28) }}</height>
                     <texture>$INFO[ListItem.Icon]</texture>
-                    <colordiffuse>FFE5A00D</colordiffuse>
+                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                 </control>
                 <!-- Section icon - normal when not focused and not active, dimmer while sidebar is collapsed -->
                 <control type="image">

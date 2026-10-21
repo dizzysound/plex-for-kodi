@@ -144,7 +144,7 @@
                 <height>{{ vscale(1) }}</height>
                 <texturebg colordiffuse="9AFFFFFF">script.plex/white-square-1px.png</texturebg>
                 <lefttexture>-</lefttexture>
-                <midtexture colordiffuse="FFCC7B19">script.plex/white-square-1px.png</midtexture>
+                <midtexture colordiffuse="{{ theme.colors.accentDark }}">script.plex/white-square-1px.png</midtexture>
                 <righttexture>-</righttexture>
                 <overlaytexture>-</overlaytexture>
                 <info>Player.Progress</info>
@@ -195,7 +195,7 @@
             <focusedcolor>FF000000</focusedcolor>
             <align>center</align>
             <aligny>center</aligny>
-            <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+            <texturefocus colordiffuse="{{ theme.colors.focusFill }}" border="10">script.plex/white-square-rounded.png</texturefocus>
             <texturenofocus>-</texturenofocus>
             <textoffsetx>20</textoffsetx>
             <textoffsety>0</textoffsety>
@@ -227,7 +227,7 @@
             <disabledcolor>FFFFFFFF</disabledcolor>
             <align>center</align>
             <aligny>center</aligny>
-            <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+            <texturefocus colordiffuse="{{ theme.colors.focusFill }}" border="10">script.plex/white-square-rounded.png</texturefocus>
             <texturenofocus>-</texturenofocus>
             <textoffsetx>20</textoffsetx>
             <textoffsety>0</textoffsety>
@@ -276,7 +276,7 @@
             <focusedcolor>FF000000</focusedcolor>
             <align>center</align>
             <aligny>center</aligny>
-            <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+            <texturefocus colordiffuse="{{ theme.colors.focusFill }}" border="10">script.plex/white-square-rounded.png</texturefocus>
             <texturenofocus>-</texturenofocus>
             <textoffsetx>20</textoffsetx>
             <textoffsety>0</textoffsety>

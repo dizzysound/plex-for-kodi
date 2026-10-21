@@ -229,7 +229,7 @@
 
 <!-- SEEKBAR: 80% of the screen width (1536), centred (x 192..1728), in the poster/episode
      tiles' pill recipe (includes/hub_itemlayout_poster.xml.tpl): 8px tall, track and fill
-     FFE5A00D in one identical box, both rounded by a diffuse mask - so it works over any
+     the accent color in one identical box, both rounded by a diffuse mask - so it works over any
      background. The track is 40FFFFFF rather than that recipe's E60A0F1A: that near-black
      reads over poster art but all but vanished against this screen's black, and translucent
      white stays a visible, neutral track whatever ends up behind it. The mask is masks/seekbar-mask-1536.png rather than that recipe's progress-bar-mask
@@ -289,7 +289,7 @@
         <midtexture diffuse="script.plex/masks/seekbar-mask-1536.png">script.plex/white-square-6px.png</midtexture>
         <righttexture>-</righttexture>
         <overlaytexture>-</overlaytexture>
-        <colordiffuse>FFE5A00D</colordiffuse>
+        <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
         <info>Player.Progress</info>
     </control>
     <control type="progress">
@@ -324,7 +324,7 @@
         <midtexture diffuse="script.plex/masks/seekbar-mask-1536.png">script.plex/white-square-6px.png</midtexture>
         <righttexture>-</righttexture>
         <overlaytexture>-</overlaytexture>
-        <colordiffuse>FFE5A00D</colordiffuse>
+        <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
     </control>
 </control>
 

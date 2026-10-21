@@ -28,7 +28,7 @@
        neighbours. So with an overlay the button draws no focus texture of its own; the overlay's
        single redraw is the focused icon. Undefined is falsy: callers without an overlay are
        unchanged. #}
-    {% if overlay %}<texturefocus>-</texturefocus>{% else %}<texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default("FFE5A00D") }}"{% endif %}>{{ theme.assets.buttons.base }}{{ name }}{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>{% endif %}
+    {% if overlay %}<texturefocus>-</texturefocus>{% else %}<texturefocus{% if theme.buttons.useFocusColor %} colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}"{% endif %}>{{ theme.assets.buttons.base }}{{ name }}{{ theme.assets.buttons.focusSuffix }}.png</texturefocus>{% endif %}
     <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}{{ name }}.png</texturenofocus>
     <label> </label>
     {% if xml %}{% spaceless %} {# complex elements #}

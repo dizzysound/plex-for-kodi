@@ -285,7 +285,7 @@ class TemplateContextTest(KodiTestCase):
 class TemplateColorTokenTest(KodiTestCase):
     """The skin's amber is defined once, as theme.colors.* tokens, not as literals in the templates."""
 
-    AMBER_RE = re.compile(r"FFE5A00D|FFCC7B19", re.I)
+    AMBER_RE = re.compile(r"[0-9A-F]{2}E5A00D|[0-9A-F]{2}CC7B19", re.I)
 
     def test_templates_carry_no_amber_literals(self):
         for dirpath, _dirs, files in os.walk(TEMPLATE_DIR):
@@ -344,6 +344,23 @@ class TemplateColorTokenTest(KodiTestCase):
             with self.subTest(value=value):
                 self.assertIn(value, text)
         self.assertIsNone(self.AMBER_RE.search(text))
+
+    def test_default_button_focus_is_a_white_pill_with_dark_text(self):
+        colors = TEMPLATE_CONTEXTS["themes"]["base"]["colors"]
+        self.assertEqual(colors["focusFill"], "FFFFFFFF")
+        self.assertEqual(colors["focusText"], "FF000000")
+
+    def test_pill_overlay_draws_fill_icon_and_label_from_the_focus_tokens(self):
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        context["themes"]["base"]["colors"].update({"focusFill": "11AAAAAA", "focusText": "22BBBBBB"})
+        engine = make_engine(self.mktemp(), context=context)
+        rendered = render_theme(engine, "modern-colored")
+        for window in ("pre_play", "seasons", "episodes", "artist", "posters"):
+            with self.subTest(window=window):
+                text = rendered[window]
+                self.assertRegex(text, r'<texture colordiffuse="11AAAAAA" border="10">script\.plex/white-square-rounded\.png')
+                self.assertRegex(text, r'<texture colordiffuse="22BBBBBB">script\.plex/buttons/player/modern/play\.png')
+                self.assertRegex(text, r'<textcolor>22BBBBBB</textcolor>')
 
     def test_badge_token_is_the_count_badge_fallback(self):
         # modern indicators set unwatched_count_bg themselves, so only a style without it reaches the token

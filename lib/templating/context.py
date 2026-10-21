@@ -34,15 +34,18 @@ TEMPLATE_CONTEXTS = {
     },
     "themes": {
         "base": {
-            # colors, ARGB hex; the white focus fill and progress bar, the amber accent and the translucent badge.
-            # One name per role so a theme can recolor a role without touching the others.
-            # accentDark is the darker amber (inactive-state tints, slider mid-fill,
-            # avatar/rounded-pill backgrounds) that has no role of its own yet.
+            # colors, ARGB hex. One name per role so a theme can recolor a role without touching
+            # the others. focusFill is the focused control's fill (the white button pill, and the
+            # glyph of a button that has no pill); focusText is the text/icon drawn on that pill.
+            # accent is the skin's amber, now a small highlight; accentDark is the darker amber
+            # (inactive-state tints, slider mid-fill, avatar/rounded-pill backgrounds) that has no
+            # role of its own yet. badgeBg is the translucent badge; progressFill/progressTrack
+            # are the white progress bar and its track.
             "colors": {
                 "accent": "FFE5A00D",
                 "accentDark": "FFCC7B19",
                 "focusFill": "FFFFFFFF",
-                "focusText": "FFE5A00D",
+                "focusText": "FF000000",
                 "badgeBg": "99000000",
                 "progressFill": "FFFFFFFF",
                 "progressTrack": "66000000",

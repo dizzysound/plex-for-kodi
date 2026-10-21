@@ -214,7 +214,7 @@
                 <font>font20</font>
                 <align>center</align>
                 <aligny>top</aligny>
-                <focusedcolor>{{ theme.colors.focusText }}</focusedcolor>
+                <focusedcolor>{{ theme.colors.accent }}</focusedcolor>
                 <textcolor>{{ theme.colors.accent }}</textcolor>
                 <textoffsetx>10</textoffsetx>
                 <texturefocus colordiffuse="40000000" border="8">script.plex/white-square-rounded.png</texturefocus>

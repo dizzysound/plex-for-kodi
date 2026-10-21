@@ -141,7 +141,7 @@
                     <width>3</width>
                     <height>{{ vscale(40) }}</height>
                     <texture>script.plex/white-square.png</texture>
-                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
                 <!-- Section icon - dimmer while sidebar is collapsed, or while its server isn't answering -->
                 <control type="image">
@@ -163,7 +163,7 @@
                     <texture>$INFO[ListItem.Icon]</texture>
                     <colordiffuse>99FFFFFF</colordiffuse>
                 </control>
-                <!-- Active icon overlay (orange tint) -->
+                <!-- Active icon overlay (white tint) -->
                 <control type="image">
                     <visible>!String.IsEmpty(ListItem.Property(is.active))</visible>
                     <posx>26</posx>
@@ -171,7 +171,7 @@
                     <width>28</width>
                     <height>{{ vscale(28) }}</height>
                     <texture>$INFO[ListItem.Icon]</texture>
-                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
                 <!-- Path-mapping indicator dot -->
                 <control type="image">
@@ -288,7 +288,7 @@
                     <width>284</width>
                     <height>{{ vscale(60) }}</height>
                     <texture border="10">script.plex/white-square-rounded.png</texture>
-                    <colordiffuse>33FFFFFF</colordiffuse>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
                 <!-- Active indicator bar (left edge) -->
                 <control type="image">
@@ -298,17 +298,26 @@
                     <width>3</width>
                     <height>{{ vscale(40) }}</height>
                     <texture>script.plex/white-square.png</texture>
-                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
-                <!-- Section icon - orange when focused or active -->
+                <!-- Section icon - dark on the focused row's white pill, white when only active -->
                 <control type="image">
-                    <visible>Control.HasFocus(9001) | !String.IsEmpty(ListItem.Property(is.active))</visible>
+                    <visible>Control.HasFocus(9001)</visible>
                     <posx>26</posx>
                     <posy>{{ vscale(30) }}</posy>
                     <width>28</width>
                     <height>{{ vscale(28) }}</height>
                     <texture>$INFO[ListItem.Icon]</texture>
-                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                    <colordiffuse>FF000000</colordiffuse>
+                </control>
+                <control type="image">
+                    <visible>!Control.HasFocus(9001) + !String.IsEmpty(ListItem.Property(is.active))</visible>
+                    <posx>26</posx>
+                    <posy>{{ vscale(30) }}</posy>
+                    <width>28</width>
+                    <height>{{ vscale(28) }}</height>
+                    <texture>$INFO[ListItem.Icon]</texture>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
                 <!-- Section icon - normal when not focused and not active, dimmer while sidebar is collapsed -->
                 <control type="image">
@@ -338,7 +347,7 @@
                     <width>8</width>
                     <height>{{ vscale(8) }}</height>
                     <texture>script.plex/white-square-rounded-4r.png</texture>
-                    <colordiffuse>AAFFFFFF</colordiffuse>
+                    <colordiffuse>FF808080</colordiffuse>
                 </control>
                 <control type="image">
                     <visible>!String.IsEmpty(ListItem.Property(is.mapped.broken))</visible>
@@ -362,8 +371,8 @@
                     <font>font10</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
+                    <textcolor>FF000000</textcolor>
+                    <focusedcolor>FF000000</focusedcolor>
                     <label>$INFO[ListItem.Label]</label>
                 </control>
                 <control type="label">
@@ -375,8 +384,8 @@
                     <font>font10</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
+                    <textcolor>FF000000</textcolor>
+                    <focusedcolor>FF000000</focusedcolor>
                     <label>$INFO[ListItem.Label]</label>
                 </control>
                 <control type="label">
@@ -388,7 +397,7 @@
                     <font>font8</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>99FFFFFF</textcolor>
+                    <textcolor>99000000</textcolor>
                     <label>$INFO[ListItem.Property(server.name)]</label>
                 </control>
                 <!-- The same in the unfocused row's colours while focus is elsewhere in the sidebar (the

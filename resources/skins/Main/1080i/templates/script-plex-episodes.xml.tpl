@@ -1848,7 +1848,17 @@
     <!-- 200, not 170 - matches the same widened cell on script-plex-seasons.xml.tpl's own copy of
          this row (see its own comment for the full reasoning). -->
     <itemlayout width="200" height="{{ vscale(125) }}">
+        <control type="image">
+            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>170</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
+            <visible>String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>170</width>
@@ -1859,14 +1869,17 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
+        <control type="label">
             <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>25</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>120</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>170</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font10</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </itemlayout>
 
@@ -1889,7 +1902,7 @@
             <posy>{{ vscale(37) }}</posy>
             <width>170</width>
             <height>{{ vscale(50) }}</height>
-            <colordiffuse>33FFFFFF</colordiffuse>
+            <colordiffuse>FFFFFFFF</colordiffuse>
             <texture border="10">script.plex/white-square-rounded.png</texture>
         </control>
         <control type="label">
@@ -1903,11 +1916,20 @@
             <aligny>center</aligny>
             <scroll>true</scroll>
             <scrollspeed>25</scrollspeed>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>FF000000</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
+        <control type="image">
+            <visible>!Control.HasFocus(205) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>170</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
-            <visible>!Control.HasFocus(205)</visible>
+            <visible>!Control.HasFocus(205) + String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>170</width>
@@ -1918,14 +1940,17 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
-            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>25</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>120</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+        <control type="label">
+            <visible>!Control.HasFocus(205) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>170</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font10</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </focusedlayout>
 </control>

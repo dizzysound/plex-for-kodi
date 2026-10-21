@@ -239,7 +239,7 @@
             <width>1</width>
             <height>{{ vscale(6) }}</height>
             <texture>script.plex/white-square.png</texture>
-            <colordiffuse>EE4E4842</colordiffuse>
+            <colordiffuse>55FFFFFF</colordiffuse>
         </control>
         <control type="image" id="201">
             <visible>String.IsEmpty(Window.Property(no.osd.hide_info)) | !String.IsEmpty(Window.Property(show.OSD))</visible>
@@ -248,7 +248,7 @@
             <width>1</width>
             <height>{{ vscale(6) }}</height>
             <texture>script.plex/white-square.png</texture>
-            <colordiffuse>FFAC5B00</colordiffuse>
+            <colordiffuse>B3FFFFFF</colordiffuse>
         </control>
         <control type="image" id="200">
             <visible>[Control.HasFocus(100) | !String.IsEmpty(Window.Property(button.seek))] + [String.IsEmpty(Window.Property(no.osd.hide_info)) | !String.IsEmpty(Window.Property(show.OSD))]</visible>
@@ -257,7 +257,7 @@
             <width>1</width>
             <height>{{ vscale(6) }}</height>
             <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+            <colordiffuse>FFFFFFFF</colordiffuse>
         </control>
     </control>
 </control>
@@ -951,7 +951,7 @@
                     <width>16</width>
                     <height>{{ vscale(16) }}</height>
                     <texture>script.plex/indicators/seek-selection-marker.png</texture>
-                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
             </focusedlayout>
 

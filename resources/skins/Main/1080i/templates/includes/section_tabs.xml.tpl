@@ -61,7 +61,17 @@
     <ondown>{{ tab_ondown }}</ondown>
     <orientation>horizontal</orientation>
     <itemlayout width="200" height="{{ vscale(125) }}">
+        <control type="image">
+            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>5</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>190</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
+            <visible>String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>200</width>
@@ -72,14 +82,17 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
+        <control type="label">
             <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>50</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>100</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>200</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font12</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </itemlayout>
     <focusedlayout width="200" height="{{ vscale(125) }}">
@@ -93,7 +106,7 @@
             <posy>{{ vscale(37) }}</posy>
             <width>190</width>
             <height>{{ vscale(50) }}</height>
-            <colordiffuse>33FFFFFF</colordiffuse>
+            <colordiffuse>FFFFFFFF</colordiffuse>
             <texture border="10">script.plex/white-square-rounded.png</texture>
         </control>
         <control type="label">
@@ -105,11 +118,20 @@
             <font>font12</font>
             <align>center</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>FF000000</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
+        <control type="image">
+            <visible>!Control.HasFocus(320) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>5</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>190</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
-            <visible>!Control.HasFocus(320)</visible>
+            <visible>!Control.HasFocus(320) + String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>200</width>
@@ -120,14 +142,17 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
-            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>50</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>100</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+        <control type="label">
+            <visible>!Control.HasFocus(320) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>200</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font12</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </focusedlayout>
 </control>

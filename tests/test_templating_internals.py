@@ -130,7 +130,7 @@ class PrepareTemplateDataTest(KodiTestCase):
         resolved = prepare_template_data("modern", ctx)
         # modern_2024 -> modern -> base
         self.assertEqual("watched_2024.png", resolved["indicators"]["assets"]["watched"])
-        self.assertEqual("CC000000", resolved["indicators"]["unwatched_count_bg"])
+        self.assertEqual("99000000", resolved["indicators"]["unwatched_count_bg"])
         self.assertFalse(resolved["indicators"]["use_unwatched"])
         self.assertTrue(resolved["indicators"]["show"])
 

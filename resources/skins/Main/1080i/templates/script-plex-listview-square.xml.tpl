@@ -338,7 +338,7 @@
                         <posx>120</posx>
                         <posy>{{ vscale(24) }}</posy>
                         <control type="group">
-                            {% include "includes/watched_indicator.xml.tpl" with inset=0 & xoff=915 & yoff=8 & uw_size=35 & uw_posy=-3 & with_count=True & force_nowbg=True & scale="large" & wbg="script.plex/white-square-rounded.png" %}
+                            {% include "includes/watched_indicator.xml.tpl" with xoff=923 & yoff=0 & uw_size=35 & uw_posy=-3 & with_count=True & force_nowbg=True & scale="large" & wbg="script.plex/white-square-rounded.png" %}
 
                             <control type="group">
                                 <posx>0</posx>
@@ -389,7 +389,7 @@
                             <posx>120</posx>
                             <posy>{{ vscale(24) }}</posy>
                             <control type="group">
-                                {% include "includes/watched_indicator.xml.tpl" with inset=0 & xoff=915 & yoff=8 & uw_size=35 & uw_posy=-3 & with_count=True & force_nowbg=True & scale="large" & wbg="script.plex/white-square-rounded.png" %}
+                                {% include "includes/watched_indicator.xml.tpl" with xoff=923 & yoff=0 & uw_size=35 & uw_posy=-3 & with_count=True & force_nowbg=True & scale="large" & wbg="script.plex/white-square-rounded.png" %}
                                 <control type="group">
                                     <posx>0</posx>
                                     <posy>0</posy>
@@ -455,7 +455,7 @@
                             </control>
 
                             <control type="group">
-                                {% include "includes/watched_indicator.xml.tpl" with inset=0 & xoff=973 & yoff=12 & uw_size=35 & with_count=True & force_nowbg=True & scale="large" & wbg="script.plex/white-square-rounded.png" %}
+                                {% include "includes/watched_indicator.xml.tpl" with xoff=981 & yoff=4 & uw_size=35 & with_count=True & force_nowbg=True & scale="large" & wbg="script.plex/white-square-rounded.png" %}
                                 <control type="group">
                                     <posx>60</posx>
                                     <posy>0</posy>

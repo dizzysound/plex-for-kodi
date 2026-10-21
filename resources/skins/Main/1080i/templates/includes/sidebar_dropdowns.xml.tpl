@@ -300,7 +300,7 @@
             <height>{{ vscale(860) }}</height>
             <texturesliderbackground>-</texturesliderbackground>
             <texturesliderbar colordiffuse="20FFFFFF" border="4">script.plex/white-square.png</texturesliderbar>
-            <texturesliderbarfocus colordiffuse="20E5A00D" border="4">script.plex/white-square.png</texturesliderbarfocus>
+            <texturesliderbarfocus colordiffuse="{{ theme.colors.accent|alpha('20') }}" border="4">script.plex/white-square.png</texturesliderbarfocus>
             <textureslidernib>-</textureslidernib>
             <textureslidernibfocus>-</textureslidernibfocus>
             <pulseonselect>false</pulseonselect>

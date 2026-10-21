@@ -64,7 +64,7 @@
             <posy>0</posy>
             <width>{{ attr.width }}</width>
             <height>{{ attr.height|vscale }}</height>
-            <texture colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}">{{ theme.assets.buttons.base }}repeat.png</texture>
+            <texture colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.accent) }}">{{ theme.assets.buttons.base }}repeat.png</texture>
         </control>
         <control type="image">
             <visible>Playlist.IsRepeatOne</visible>
@@ -72,7 +72,7 @@
             <posy>0</posy>
             <width>{{ attr.width }}</width>
             <height>{{ attr.height|vscale }}</height>
-            <texture colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}">{{ theme.assets.buttons.base }}repeat-one.png</texture>
+            <texture colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.accent) }}">{{ theme.assets.buttons.base }}repeat-one.png</texture>
         </control>
     </control>
 </control>
@@ -109,7 +109,7 @@
     <texturenofocus{% if theme.buttons.useNoFocusColor %} colordiffuse="{{ theme.buttons.noFocusColor|default('99FFFFFF') }}"{% endif %}>{{ theme.assets.buttons.base }}shuffle.png</texturenofocus>
     <usealttexture>Playlist.IsRandom</usealttexture>
     <alttexturefocus>-</alttexturefocus>
-    <alttexturenofocus colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}">{{ theme.assets.buttons.base }}shuffle.png</alttexturenofocus>
+    <alttexturenofocus colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.accent) }}">{{ theme.assets.buttons.base }}shuffle.png</alttexturenofocus>
     <onclick>PlayerControl(RandomOn)</onclick>
     <altclick>PlayerControl(RandomOff)</altclick>
     <label> </label>
@@ -165,7 +165,7 @@
             <posy>0</posy>
             <width>{{ attr.width }}</width>
             <height>{{ attr.height|vscale }}</height>
-            <texture colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}">{{ theme.assets.buttons.base }}shuffle.png</texture>
+            <texture colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.accent) }}">{{ theme.assets.buttons.base }}shuffle.png</texture>
         </control>
     </control>
 </control>

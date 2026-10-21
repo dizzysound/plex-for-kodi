@@ -75,10 +75,9 @@
         <posy>{{ vscale(10) }}</posy>
         <width>{{ pill_width }}</width>
         <height>{{ vscale(51) }}</height>
-        <!-- 33FFFFFF: matches the library filter/sort dropdowns' own focus background
-             (library_posters.xml.tpl) and the sidebar's own focused-item highlight - see the
-             original Play overlay's own comment (this file's history) for why, not the accent color. -->
-        <texture colordiffuse="33FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+        <!-- focusFill, a solid white pill (was 33FFFFFF, matching the sidebar's focused item); the
+             icon and label drawn on it use focusText (dark). -->
+        <texture colordiffuse="{{ theme.colors.focusFill }}" border="10">script.plex/white-square-rounded.png</texture>
     </control>
     <control type="image">
         <!-- Full 70-wide box, not shrunk to just the glyph - Kodi stretches to fit, it doesn't crop.
@@ -89,7 +88,7 @@
         <posy>0</posy>
         <width>70</width>
         <height>{{ attr.height|vscale }}</height>
-        <texture colordiffuse="{{ theme.buttons.focusColor|default(theme.colors.focusFill) }}">{{ theme.assets.buttons.base }}{{ name }}{{ theme.assets.buttons.focusSuffix }}.png</texture>
+        <texture colordiffuse="{{ theme.colors.focusText }}">{{ theme.assets.buttons.base }}{{ name }}{{ theme.assets.buttons.focusSuffix }}.png</texture>
     </control>
     <control type="label"{% if label_id %} id="{{ label_id }}"{% endif %}>
         <!-- -8, not the icon glyph's own right edge: a 10px gap, on request (was 5px). Measured per
@@ -105,7 +104,7 @@
         <font>font10</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.focusText }}</textcolor>
         <!-- &#8226;, not a literal bullet character: written directly here (not passed through the
              label param) since it's plain unescaped template text, not a variable substitution -
              the pp_meta_row.xml.tpl separator already establishes this is the safe way to get a

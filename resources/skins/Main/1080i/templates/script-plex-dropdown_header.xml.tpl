@@ -259,7 +259,7 @@
                 <posy>0</posy>
                 <width>600</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="F3E5A00D" border="10">script.plex/white-square-top-rounded.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent|alpha('F3') }}" border="10">script.plex/white-square-top-rounded.png</texture>
             </control>
             <control type="image">
                 <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only)) + String.IsEmpty(ListItem.Property(moving))</visible>
@@ -267,7 +267,7 @@
                 <posy>0</posy>
                 <width>600</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="F3E5A00D">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent|alpha('F3') }}">script.plex/white-square.png</texture>
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(moving))</visible>

@@ -113,6 +113,13 @@ def cast_int(a):
     return int(a)
 
 
+@ibis.filters.register('alpha')
+@register_builtin
+def alpha(color, a):
+    """A theme color with its alpha byte replaced: {{ theme.colors.accent|alpha("F3") }}."""
+    return "{}{}".format(a, color[2:])
+
+
 @ibis.filters.register('resolve', with_context=True)
 @register_builtin('resolve')
 def resolve_variable(arg, context=None):

@@ -1782,7 +1782,17 @@
     <!-- 200, not 170 - matches the same widened cell on script-plex-seasons.xml.tpl's own copy of
          this row (see its own comment for the full reasoning). -->
     <itemlayout width="200" height="{{ vscale(125) }}">
+        <control type="image">
+            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>170</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
+            <visible>String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>170</width>
@@ -1793,14 +1803,17 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
+        <control type="label">
             <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>25</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>120</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>170</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font10</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </itemlayout>
 
@@ -1810,20 +1823,19 @@
        (which defaults to the current season) renders in the "focused" white year-round, making the tab bar
        look focused even when focus actually sits on the play button, and keeps showing white on whatever tab
        was last highlighted after focus moves away. Splitting into two labels keyed off actual control focus
-       makes it fall back to the same grey as itemlayout the rest of the time; the current-season underline
+       makes it fall back to the same grey as itemlayout the rest of the time; the current-season faint pill
        below is unaffected since it never depended on focus. #}
     <focusedlayout width="200" height="{{ vscale(125) }}">
         <!-- Focus background, gated the same as the white-text label below (real window focus, not
-             just cursor position) - same 33FFFFFF rounded pill used elsewhere for a focus highlight
-             (e.g. the summary click-target, button-row label overlays). Drawn first so the label/
-             underline render on top of it. -->
+             just cursor position) - solid white rounded pill, the same focus look as the sidebar rows;
+             the label is dark on it. Drawn first so the label renders on top of it. -->
         <control type="image">
             <visible>Control.HasFocus(205)</visible>
             <posx>0</posx>
             <posy>{{ vscale(37) }}</posy>
             <width>170</width>
             <height>{{ vscale(50) }}</height>
-            <colordiffuse>33FFFFFF</colordiffuse>
+            <colordiffuse>FFFFFFFF</colordiffuse>
             <texture border="10">script.plex/white-square-rounded.png</texture>
         </control>
         <control type="label">
@@ -1837,11 +1849,20 @@
             <aligny>center</aligny>
             <scroll>true</scroll>
             <scrollspeed>25</scrollspeed>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>FF000000</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
+        <control type="image">
+            <visible>!Control.HasFocus(205) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>170</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
-            <visible>!Control.HasFocus(205)</visible>
+            <visible>!Control.HasFocus(205) + String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>170</width>
@@ -1852,14 +1873,17 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
-            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>25</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>120</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+        <control type="label">
+            <visible>!Control.HasFocus(205) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>170</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font10</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </focusedlayout>
 </control>

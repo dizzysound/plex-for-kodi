@@ -1214,11 +1214,11 @@
 
 {% block header_middle_add %}
 <!-- SEASON TABS -->
-<!-- "Show" (pinned, id-less/no dataSource, always the 'current'-underlined tab - see fillSeasonTabs(),
+<!-- "Show" (pinned, id-less/no dataSource, always the 'current' (faint pill) tab - see fillSeasonTabs(),
      subitems.py) followed by every real season, mirroring Episodes' own season-tab row
      (script-plex-episodes.xml.tpl) one level up: from here each tab actually opens that season's
      Episodes window (seasonTabClicked(), subitems.py), where the same row reappears with that season's
-     own tab underlined instead. A fixedlist with the focus in the first slot - see its own comment.
+     own tab marked instead. A fixedlist with the focus in the first slot - see its own comment.
      Not the old center-pinned carousel that file once used: "Show" has to sit at the visible left edge while the row fits, which a
      center-focus carousel can't guarantee. posx=115 matches the row/label/art baseline shared with the rest of this screen (season row,
      roles, extras, related - all absolute x=115) and Recommended's own hub rows.
@@ -1264,10 +1264,20 @@
     <orientation>horizontal</orientation>
     <!-- ITEM LAYOUT ########################################## -->
     <!-- 200, not 170: cell widened again on request (7 tabs visible instead of ~8.4). Label 170 (200-30,
-         same 30px total side margin as before) and underline 120 (25px margin each side of the label,
+         same 30px total side margin as before) and focus pill (25px margin each side of the label,
          unchanged) - both scaled to match, same as the earlier 170/160 tightenings. -->
     <itemlayout width="200" height="{{ vscale(125) }}">
+        <control type="image">
+            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>170</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
+            <visible>String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>170</width>
@@ -1278,14 +1288,17 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
+        <control type="label">
             <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>25</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>120</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>170</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font10</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </itemlayout>
 
@@ -1295,16 +1308,15 @@
          real window focus sits elsewhere (e.g. the play button). -->
     <focusedlayout width="200" height="{{ vscale(125) }}">
         <!-- Focus background, gated the same as the white-text label below (real window focus, not
-             just cursor position) - same 33FFFFFF rounded pill used elsewhere for a focus highlight
-             (e.g. the summary click-target, button-row label overlays). Drawn first so the label/
-             underline render on top of it. -->
+             just cursor position) - solid white rounded pill, the same focus look as the sidebar rows;
+             the label is dark on it. Drawn first so the label renders on top of it. -->
         <control type="image">
             <visible>Control.HasFocus(205)</visible>
             <posx>0</posx>
             <posy>{{ vscale(37) }}</posy>
             <width>170</width>
             <height>{{ vscale(50) }}</height>
-            <colordiffuse>33FFFFFF</colordiffuse>
+            <colordiffuse>FFFFFFFF</colordiffuse>
             <texture border="10">script.plex/white-square-rounded.png</texture>
         </control>
         <control type="label">
@@ -1318,11 +1330,20 @@
             <aligny>center</aligny>
             <scroll>true</scroll>
             <scrollspeed>25</scrollspeed>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>FF000000</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
+        <control type="image">
+            <visible>!Control.HasFocus(205) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>170</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
-            <visible>!Control.HasFocus(205)</visible>
+            <visible>!Control.HasFocus(205) + String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>170</width>
@@ -1333,14 +1354,17 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
-            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>25</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>120</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+        <control type="label">
+            <visible>!Control.HasFocus(205) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>170</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font10</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </focusedlayout>
 </control>

@@ -1,6 +1,6 @@
 {# Section tabs (quiet-orbiting-heron.md, plan item 0): switches LibraryWindow's contentMode
    ('library'/'recommended') in place, via switchTab() (library.py). Styled after
-   script-plex-episodes.xml.tpl's season tabs (label/underline treatment, same font/colors,
+   script-plex-episodes.xml.tpl's season tabs (label/pill treatment, same font/colors,
    same Control.HasFocus()-gated label split so the bar doesn't look permanently "focused") but
    deliberately a plain type="list", not that file's type="fixedlist" center-pinned carousel -
    only ever a handful of tabs (up to 4 today: Recommended/Library, plus Collections and/or
@@ -17,7 +17,7 @@
 
    Item cells are 200 wide (not season tabs' 170 label / 200 cell split, since fixedlist reserves
    extra room for its own scroll-under-focus peek that this plain list doesn't need) - 150 clipped
-   "Recommended" under Kodi's default label truncation. Underline stays centered under the wider
+   "Recommended" under Kodi's default label truncation. The focus pill stays centered on the wider
    label (posx 50 = (200-100)/2, was 25 for a 150 cell).
 
    onleft routes to the sidebar (9000), matching every other header control's convention.
@@ -61,7 +61,17 @@
     <ondown>{{ tab_ondown }}</ondown>
     <orientation>horizontal</orientation>
     <itemlayout width="200" height="{{ vscale(125) }}">
+        <control type="image">
+            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>5</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>190</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
+            <visible>String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>200</width>
@@ -72,28 +82,30 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
+        <control type="label">
             <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>50</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>100</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>200</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font12</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </itemlayout>
     <focusedlayout width="200" height="{{ vscale(125) }}">
         <!-- Focus background, gated the same as the white-text label below (real window focus, not
-             just cursor position) - same 33FFFFFF rounded pill used elsewhere for a focus highlight
-             (e.g. Seasons'/Episodes' own season tabs, the summary click-target, button-row label
-             overlays). Drawn first so the label/underline render on top of it. -->
+             just cursor position) - solid white rounded pill, the same focus look as the sidebar rows;
+             the label is dark on it. Drawn first so the label renders on top of it. -->
         <control type="image">
             <visible>Control.HasFocus(320)</visible>
             <posx>5</posx>
             <posy>{{ vscale(37) }}</posy>
             <width>190</width>
             <height>{{ vscale(50) }}</height>
-            <colordiffuse>33FFFFFF</colordiffuse>
+            <colordiffuse>FFFFFFFF</colordiffuse>
             <texture border="10">script.plex/white-square-rounded.png</texture>
         </control>
         <control type="label">
@@ -105,11 +117,20 @@
             <font>font12</font>
             <align>center</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>FF000000</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
+        <control type="image">
+            <visible>!Control.HasFocus(320) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>5</posx>
+            <posy>{{ vscale(37) }}</posy>
+            <width>190</width>
+            <height>{{ vscale(50) }}</height>
+            <colordiffuse>26FFFFFF</colordiffuse>
+            <texture border="10">script.plex/white-square-rounded.png</texture>
+        </control>
         <control type="label">
-            <visible>!Control.HasFocus(320)</visible>
+            <visible>!Control.HasFocus(320) + String.IsEmpty(ListItem.Property(current))</visible>
             <posx>0</posx>
             <posy>0</posy>
             <width>200</width>
@@ -120,14 +141,17 @@
             <textcolor>80FFFFFF</textcolor>
             <label>$INFO[ListItem.Label]</label>
         </control>
-        <control type="image">
-            <visible>!String.IsEmpty(ListItem.Property(current))</visible>
-            <posx>50</posx>
-            <posy>{{ vscale(89) }}</posy>
-            <width>100</width>
-            <height>2</height>
-            <texture>script.plex/white-square.png</texture>
-            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+        <control type="label">
+            <visible>!Control.HasFocus(320) + !String.IsEmpty(ListItem.Property(current))</visible>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>200</width>
+            <height>{{ vscale(125) }}</height>
+            <font>font12</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[ListItem.Label]</label>
         </control>
     </focusedlayout>
 </control>

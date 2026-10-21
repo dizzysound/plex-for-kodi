@@ -133,8 +133,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>A</label>
                 </control>
@@ -155,8 +155,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>B</label>
                 </control>
@@ -177,8 +177,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>C</label>
                 </control>
@@ -199,8 +199,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>D</label>
                 </control>
@@ -221,8 +221,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>E</label>
                 </control>
@@ -243,8 +243,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>F</label>
                 </control>
@@ -270,8 +270,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>G</label>
                 </control>
@@ -292,8 +292,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>H</label>
                 </control>
@@ -314,8 +314,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>I</label>
                 </control>
@@ -336,8 +336,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>J</label>
                 </control>
@@ -358,8 +358,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>K</label>
                 </control>
@@ -380,8 +380,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>L</label>
                 </control>
@@ -407,8 +407,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>M</label>
                 </control>
@@ -429,8 +429,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>N</label>
                 </control>
@@ -451,8 +451,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>O</label>
                 </control>
@@ -473,8 +473,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>P</label>
                 </control>
@@ -495,8 +495,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>Q</label>
                 </control>
@@ -517,8 +517,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>R</label>
                 </control>
@@ -544,8 +544,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>S</label>
                 </control>
@@ -566,8 +566,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>T</label>
                 </control>
@@ -588,8 +588,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>U</label>
                 </control>
@@ -610,8 +610,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>V</label>
                 </control>
@@ -632,8 +632,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>W</label>
                 </control>
@@ -654,8 +654,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>X</label>
                 </control>
@@ -681,8 +681,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>Y</label>
                 </control>
@@ -703,8 +703,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>Z</label>
                 </control>
@@ -725,8 +725,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>0[B][/B]</label>
                 </control>
@@ -747,8 +747,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>1[B][/B]</label>
                 </control>
@@ -769,8 +769,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>2[B][/B]</label>
                 </control>
@@ -791,8 +791,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>3[B][/B]</label>
                 </control>
@@ -818,8 +818,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>4[B][/B]</label>
                 </control>
@@ -840,8 +840,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>5[B][/B]</label>
                 </control>
@@ -862,8 +862,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>6[B][/B]</label>
                 </control>
@@ -884,8 +884,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>7[B][/B]</label>
                 </control>
@@ -906,8 +906,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>8[B][/B]</label>
                 </control>
@@ -928,8 +928,8 @@
                     <align>center</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
-                    <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                    <focusedcolor>FF000000</focusedcolor>
+                    <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                     <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                     <label>9[B][/B]</label>
                 </control>
@@ -961,19 +961,28 @@
                 <align>center</align>
                 <aligny>center</aligny>
                 <textcolor>FFFFFFFF</textcolor>
-                <focusedcolor>FFFFFFFF</focusedcolor>
-                <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                <focusedcolor>FF000000</focusedcolor>
+                <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                 <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                 <label> </label>
             </control>
             <!-- its icon: the button's own label is blank. 74x64 art at 40 high, not the 24 the others
                  are, centred: its 3px source stroke at the others' 1.9px on screen -->
             <control type="image">
+                <visible>!Control.HasFocus(951)</visible>
                 <posx>43.875</posx>
                 <posy>{{ vscale(10) }}</posy>
                 <width>46.25</width>
                 <height>{{ vscale(40) }}</height>
                 <texture colordiffuse="FFFFFFFF">script.plex/buttons/keyboard/delete.png</texture>
+            </control>
+            <control type="image">
+                <visible>Control.HasFocus(951)</visible>
+                <posx>43.875</posx>
+                <posy>{{ vscale(10) }}</posy>
+                <width>46.25</width>
+                <height>{{ vscale(40) }}</height>
+                <texture colordiffuse="FF000000">script.plex/buttons/keyboard/delete.png</texture>
             </control>
         </control>
         <control type="group">
@@ -992,18 +1001,27 @@
                 <align>center</align>
                 <aligny>center</aligny>
                 <textcolor>FFFFFFFF</textcolor>
-                <focusedcolor>FFFFFFFF</focusedcolor>
-                <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                <focusedcolor>FF000000</focusedcolor>
+                <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                 <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                 <label> </label>
             </control>
             <!-- its icon: the button's own label is blank -->
             <control type="image">
+                <visible>!Control.HasFocus(952)</visible>
                 <posx>55</posx>
                 <posy>{{ vscale(18) }}</posy>
                 <width>24</width>
                 <height>{{ vscale(24) }}</height>
                 <texture colordiffuse="FFFFFFFF">script.plex/buttons/keyboard/space.png</texture>
+            </control>
+            <control type="image">
+                <visible>Control.HasFocus(952)</visible>
+                <posx>55</posx>
+                <posy>{{ vscale(18) }}</posy>
+                <width>24</width>
+                <height>{{ vscale(24) }}</height>
+                <texture colordiffuse="FF000000">script.plex/buttons/keyboard/space.png</texture>
             </control>
         </control>
         <control type="group">
@@ -1022,18 +1040,27 @@
                 <align>center</align>
                 <aligny>center</aligny>
                 <textcolor>FFFFFFFF</textcolor>
-                <focusedcolor>FFFFFFFF</focusedcolor>
-                <texturefocus colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+                <focusedcolor>FF000000</focusedcolor>
+                <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
                 <texturenofocus colordiffuse="22FFFFFF" border="10">script.plex/white-square-rounded.png</texturenofocus>
                 <label> </label>
             </control>
             <!-- its icon: the button's own label is blank -->
             <control type="image">
+                <visible>!Control.HasFocus(953)</visible>
                 <posx>55</posx>
                 <posy>{{ vscale(18) }}</posy>
                 <width>24</width>
                 <height>{{ vscale(24) }}</height>
                 <texture colordiffuse="FFFFFFFF">script.plex/buttons/keyboard/clear.png</texture>
+            </control>
+            <control type="image">
+                <visible>Control.HasFocus(953)</visible>
+                <posx>55</posx>
+                <posy>{{ vscale(18) }}</posy>
+                <width>24</width>
+                <height>{{ vscale(24) }}</height>
+                <texture colordiffuse="FF000000">script.plex/buttons/keyboard/clear.png</texture>
             </control>
         </control>
     </control>
@@ -1051,8 +1078,8 @@
     <!-- SECTIONS: the type buttons (SearchWindow.SECTION_BUTTONS), six across - All, then
          an icon each for Movies, Shows, Music, Photos and People. Each a rounded tile in the
          Libraries picker's tracking grey at rest (script-plex-card_list.xml.tpl), as the keys
-         are, and focused two steps brighter than its focus grey (55 against 33 - the user,
-         2026-10-07); the selected type's label or icon in the sidebar's active orange. -->
+         are, and focused as a solid white pill with a dark glyph; the selected type, when not
+         focused, is a brighter pill than the rest. -->
     <control type="group">
         <posx>0</posx>
         <posy>{{ vscale(13) }}</posy>
@@ -1072,15 +1099,36 @@
             </control>
             <control type="group">
                 <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),all) + !Control.HasFocus(911)</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>74</width>
+                    <height>{{ vscale(60) }}</height>
+                    <texture colordiffuse="44FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                </control>
+                <control type="image">
                     <visible>Control.HasFocus(911)</visible>
                     <posx>0</posx>
                     <posy>0</posy>
                     <width>74</width>
                     <height>{{ vscale(60) }}</height>
-                    <texture colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                    <texture colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texture>
                 </control>
                 <control type="label">
-                    <visible>!String.IsEqual(Window.Property(search.section),all)</visible>
+                    <visible>!String.IsEqual(Window.Property(search.section),all) + !Control.HasFocus(911)</visible>
+                    <scroll>false</scroll>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>74</width>
+                    <height>{{ vscale(60) }}</height>
+                    <font>font12</font>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <textcolor>AAFFFFFF</textcolor>
+                    <label>$ADDON[script.plexmod 32345]</label>
+                </control>
+                <control type="label">
+                    <visible>String.IsEqual(Window.Property(search.section),all) + !Control.HasFocus(911)</visible>
                     <scroll>false</scroll>
                     <posx>0</posx>
                     <posy>0</posy>
@@ -1093,7 +1141,7 @@
                     <label>$ADDON[script.plexmod 32345]</label>
                 </control>
                 <control type="label">
-                    <visible>String.IsEqual(Window.Property(search.section),all)</visible>
+                    <visible>Control.HasFocus(911)</visible>
                     <scroll>false</scroll>
                     <posx>0</posx>
                     <posy>0</posy>
@@ -1102,7 +1150,7 @@
                     <font>font12</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <textcolor>{{ theme.colors.accent }}</textcolor>
+                    <textcolor>FF000000</textcolor>
                     <label>$ADDON[script.plexmod 32345]</label>
                 </control>
             </control>
@@ -1120,15 +1168,31 @@
             </control>
             <control type="group">
                 <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),movie) + !Control.HasFocus(912)</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>74</width>
+                    <height>{{ vscale(60) }}</height>
+                    <texture colordiffuse="44FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                </control>
+                <control type="image">
                     <visible>Control.HasFocus(912)</visible>
                     <posx>0</posx>
                     <posy>0</posy>
                     <width>74</width>
                     <height>{{ vscale(60) }}</height>
-                    <texture colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                    <texture colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texture>
                 </control>
                 <control type="image">
-                    <visible>!String.IsEqual(Window.Property(search.section),movie)</visible>
+                    <visible>!String.IsEqual(Window.Property(search.section),movie) + !Control.HasFocus(912)</visible>
+                    <posx>25</posx>
+                    <posy>{{ vscale(18) }}</posy>
+                    <width>24</width>
+                    <height>{{ vscale(24) }}</height>
+                    <texture colordiffuse="AAFFFFFF">script.plex/home/type/movie.png</texture>
+                </control>
+                <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),movie) + !Control.HasFocus(912)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
@@ -1136,12 +1200,12 @@
                     <texture colordiffuse="FFFFFFFF">script.plex/home/type/movie.png</texture>
                 </control>
                 <control type="image">
-                    <visible>String.IsEqual(Window.Property(search.section),movie)</visible>
+                    <visible>Control.HasFocus(912)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/movie.png</texture>
+                    <texture colordiffuse="FF000000">script.plex/home/type/movie.png</texture>
                 </control>
             </control>
         </control>
@@ -1158,15 +1222,31 @@
             </control>
             <control type="group">
                 <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),show) + !Control.HasFocus(913)</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>74</width>
+                    <height>{{ vscale(60) }}</height>
+                    <texture colordiffuse="44FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                </control>
+                <control type="image">
                     <visible>Control.HasFocus(913)</visible>
                     <posx>0</posx>
                     <posy>0</posy>
                     <width>74</width>
                     <height>{{ vscale(60) }}</height>
-                    <texture colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                    <texture colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texture>
                 </control>
                 <control type="image">
-                    <visible>!String.IsEqual(Window.Property(search.section),show)</visible>
+                    <visible>!String.IsEqual(Window.Property(search.section),show) + !Control.HasFocus(913)</visible>
+                    <posx>25</posx>
+                    <posy>{{ vscale(18) }}</posy>
+                    <width>24</width>
+                    <height>{{ vscale(24) }}</height>
+                    <texture colordiffuse="AAFFFFFF">script.plex/home/type/show.png</texture>
+                </control>
+                <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),show) + !Control.HasFocus(913)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
@@ -1174,12 +1254,12 @@
                     <texture colordiffuse="FFFFFFFF">script.plex/home/type/show.png</texture>
                 </control>
                 <control type="image">
-                    <visible>String.IsEqual(Window.Property(search.section),show)</visible>
+                    <visible>Control.HasFocus(913)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/show.png</texture>
+                    <texture colordiffuse="FF000000">script.plex/home/type/show.png</texture>
                 </control>
             </control>
         </control>
@@ -1196,15 +1276,31 @@
             </control>
             <control type="group">
                 <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),artist) + !Control.HasFocus(914)</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>74</width>
+                    <height>{{ vscale(60) }}</height>
+                    <texture colordiffuse="44FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                </control>
+                <control type="image">
                     <visible>Control.HasFocus(914)</visible>
                     <posx>0</posx>
                     <posy>0</posy>
                     <width>74</width>
                     <height>{{ vscale(60) }}</height>
-                    <texture colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                    <texture colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texture>
                 </control>
                 <control type="image">
-                    <visible>!String.IsEqual(Window.Property(search.section),artist)</visible>
+                    <visible>!String.IsEqual(Window.Property(search.section),artist) + !Control.HasFocus(914)</visible>
+                    <posx>25</posx>
+                    <posy>{{ vscale(18) }}</posy>
+                    <width>24</width>
+                    <height>{{ vscale(24) }}</height>
+                    <texture colordiffuse="AAFFFFFF">script.plex/home/type/artist.png</texture>
+                </control>
+                <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),artist) + !Control.HasFocus(914)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
@@ -1212,12 +1308,12 @@
                     <texture colordiffuse="FFFFFFFF">script.plex/home/type/artist.png</texture>
                 </control>
                 <control type="image">
-                    <visible>String.IsEqual(Window.Property(search.section),artist)</visible>
+                    <visible>Control.HasFocus(914)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/artist.png</texture>
+                    <texture colordiffuse="FF000000">script.plex/home/type/artist.png</texture>
                 </control>
             </control>
         </control>
@@ -1234,15 +1330,31 @@
             </control>
             <control type="group">
                 <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),photo) + !Control.HasFocus(915)</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>74</width>
+                    <height>{{ vscale(60) }}</height>
+                    <texture colordiffuse="44FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                </control>
+                <control type="image">
                     <visible>Control.HasFocus(915)</visible>
                     <posx>0</posx>
                     <posy>0</posy>
                     <width>74</width>
                     <height>{{ vscale(60) }}</height>
-                    <texture colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                    <texture colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texture>
                 </control>
                 <control type="image">
-                    <visible>!String.IsEqual(Window.Property(search.section),photo)</visible>
+                    <visible>!String.IsEqual(Window.Property(search.section),photo) + !Control.HasFocus(915)</visible>
+                    <posx>25</posx>
+                    <posy>{{ vscale(18) }}</posy>
+                    <width>24</width>
+                    <height>{{ vscale(24) }}</height>
+                    <texture colordiffuse="AAFFFFFF">script.plex/home/type/photo.png</texture>
+                </control>
+                <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),photo) + !Control.HasFocus(915)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
@@ -1250,12 +1362,12 @@
                     <texture colordiffuse="FFFFFFFF">script.plex/home/type/photo.png</texture>
                 </control>
                 <control type="image">
-                    <visible>String.IsEqual(Window.Property(search.section),photo)</visible>
+                    <visible>Control.HasFocus(915)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/photo.png</texture>
+                    <texture colordiffuse="FF000000">script.plex/home/type/photo.png</texture>
                 </control>
             </control>
         </control>
@@ -1272,15 +1384,31 @@
             </control>
             <control type="group">
                 <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),people) + !Control.HasFocus(916)</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>74</width>
+                    <height>{{ vscale(60) }}</height>
+                    <texture colordiffuse="44FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                </control>
+                <control type="image">
                     <visible>Control.HasFocus(916)</visible>
                     <posx>0</posx>
                     <posy>0</posy>
                     <width>74</width>
                     <height>{{ vscale(60) }}</height>
-                    <texture colordiffuse="55FFFFFF" border="10">script.plex/white-square-rounded.png</texture>
+                    <texture colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texture>
                 </control>
                 <control type="image">
-                    <visible>!String.IsEqual(Window.Property(search.section),people)</visible>
+                    <visible>!String.IsEqual(Window.Property(search.section),people) + !Control.HasFocus(916)</visible>
+                    <posx>25</posx>
+                    <posy>{{ vscale(18) }}</posy>
+                    <width>24</width>
+                    <height>{{ vscale(24) }}</height>
+                    <texture colordiffuse="AAFFFFFF">script.plex/home/type/person.png</texture>
+                </control>
+                <control type="image">
+                    <visible>String.IsEqual(Window.Property(search.section),people) + !Control.HasFocus(916)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
@@ -1288,12 +1416,12 @@
                     <texture colordiffuse="FFFFFFFF">script.plex/home/type/person.png</texture>
                 </control>
                 <control type="image">
-                    <visible>String.IsEqual(Window.Property(search.section),people)</visible>
+                    <visible>Control.HasFocus(916)</visible>
                     <posx>25</posx>
                     <posy>{{ vscale(18) }}</posy>
                     <width>24</width>
                     <height>{{ vscale(24) }}</height>
-                    <texture colordiffuse="{{ theme.colors.accent }}">script.plex/home/type/person.png</texture>
+                    <texture colordiffuse="FF000000">script.plex/home/type/person.png</texture>
                 </control>
             </control>
         </control>
@@ -1425,7 +1553,7 @@
         <posy>{{ vscale(10.5) }}</posy>
         <width>39</width>
         <height>{{ vscale(39) }}</height>
-        <texture colordiffuse="{{ theme.colors.accent }}">script.plex/indicators/spinner.png</texture>
+        <texture colordiffuse="FFFFFFFF">script.plex/indicators/spinner.png</texture>
     </control>
     <control type="label">
         <scroll>false</scroll>

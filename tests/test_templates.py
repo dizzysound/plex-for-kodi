@@ -354,6 +354,34 @@ class TemplateColorTokenTest(KodiTestCase):
         self.assertIn("66666666", text)
 
 
+class WhiteFocusScreensTest(KodiTestCase):
+    """The sidebar, section tabs, scrollbar and profile screen carry no amber; tab and sidebar focus is a solid white pill."""
+
+    AMBER_TOKEN_RE = re.compile(r"theme\.colors\.(accent|accentDark|focusFill|focusText)\b")
+    NO_AMBER = ("includes/sidebar.xml.tpl", "includes/section_tabs.xml.tpl", "includes/scrollbar_style.xml.tpl",
+                "script-plex-user_select.xml.tpl")
+    TAB_ROWS = ("includes/section_tabs.xml.tpl", "script-plex-seasons.xml.tpl", "script-plex-episodes.xml.tpl")
+
+    def _read(self, name):
+        with open(os.path.join(TEMPLATE_DIR, name), "r", encoding="utf-8") as fp:
+            return fp.read()
+
+    def test_templates_use_no_amber_token(self):
+        for name in self.NO_AMBER:
+            with self.subTest(template=name):
+                self.assertIsNone(self.AMBER_TOKEN_RE.search(self._read(name)))
+
+    def test_search_has_no_accent(self):
+        self.assertNotIn("theme.colors.accent", self._read("script-plex-search.xml.tpl"))
+
+    def test_tab_rows_have_no_underline_and_a_white_focus_pill(self):
+        for name in self.TAB_ROWS:
+            with self.subTest(template=name):
+                text = self._read(name)
+                self.assertNotIn("<height>2</height>", text)
+                self.assertRegex(text, r"<colordiffuse>FFFFFFFF</colordiffuse>\s*<texture border=\"10\">script.plex/white-square-rounded.png")
+
+
 class TemplateWriteTest(KodiTestCase):
     def test_write_confirms_the_file_landed_at_full_size(self):
         """

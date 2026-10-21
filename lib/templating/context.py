@@ -18,8 +18,8 @@ TEMPLATE_CONTEXTS = {
             "INHERIT": "base",
             "use_unwatched": False,
             "hide_aw_bg": False,
-            "watched_bg": "CC000000",
-            "unwatched_count_bg": "CC000000",
+            "watched_bg": "99000000",
+            "unwatched_count_bg": "99000000",
             "textcolor": "FFFFFFFF",
             "assets": {
                 "watched": "watched.png"
@@ -39,14 +39,16 @@ TEMPLATE_CONTEXTS = {
             # glyph of a button that has no pill); focusText is the text/icon drawn on that pill.
             # accent is the skin's amber, now a small highlight; accentDark is the darker amber
             # (inactive-state tints, slider mid-fill, avatar/rounded-pill backgrounds) that has no
-            # role of its own yet.
+            # role of its own yet. badgeBg is the translucent badge; progressFill/progressTrack
+            # are the white progress bar and its track.
             "colors": {
                 "accent": "FFE5A00D",
                 "accentDark": "FFCC7B19",
                 "focusFill": "FFFFFFFF",
                 "focusText": "FF000000",
-                "badgeBg": "FFCC7B19",
-                "progressFill": "FFE5A00D",
+                "badgeBg": "99000000",
+                "progressFill": "FFFFFFFF",
+                "progressTrack": "66000000",
             },
 
             # general config

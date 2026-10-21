@@ -123,7 +123,7 @@
                                 <colordiffuse>{{ theme.colors.accentDark }}</colordiffuse>
                             </control>
                         </control>
-                        {% include "includes/watched_indicator.xml.tpl" with xoff=132+63 & yoff=11 & uw_posy=11 & uw_size=24 & scale="tiny" %}
+                        {% include "includes/watched_indicator.xml.tpl" with xoff=132+63 & yoff=11 & inset=4 & uw_posy=11 & uw_size=24 & scale="tiny" %}
                         <control type="group">
                             <posx>226</posx>
                             <posy>0</posy>
@@ -253,7 +253,7 @@
                                 <texture>$INFO[ListItem.Thumb]</texture>
                                 <aspectratio>scale</aspectratio>
                             </control>
-                            {% include "includes/watched_indicator.xml.tpl" with xoff=132+63 & yoff=11 & uw_posy=11 & uw_size=24 & scale="tiny" %}
+                            {% include "includes/watched_indicator.xml.tpl" with xoff=132+63 & yoff=11 & inset=4 & uw_posy=11 & uw_size=24 & scale="tiny" %}
                             <control type="group">
                                 <posx>226</posx>
                                 <posy>0</posy>
@@ -433,7 +433,7 @@
                                     <colordiffuse>{{ theme.colors.accentDark }}</colordiffuse>
                                 </control>
                             </control>
-                            {% include "includes/watched_indicator.xml.tpl" with xoff=178+103 %}
+                            {% include "includes/watched_indicator.xml.tpl" with xoff=178+103 & inset=4 %}
                             <control type="group">
                                 <posx>313</posx>
                                 <posy>0</posy>

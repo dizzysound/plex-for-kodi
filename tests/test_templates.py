@@ -243,7 +243,7 @@ class TemplateContextTest(KodiTestCase):
         self.assertEqual("watched_2024.png", indicators["assets"]["watched"])
         # from modern (there was a use_scaling assertion here too, but that key was dropped
         # from the indicators context in f4ddffdc and exists nowhere in the addon any more)
-        self.assertEqual("CC000000", indicators["watched_bg"])
+        self.assertEqual("99000000", indicators["watched_bg"])
         # from base
         self.assertTrue(indicators["show"])
 
@@ -296,6 +296,39 @@ class TemplateColorTokenTest(KodiTestCase):
                         self.assertIsNone(self.AMBER_RE.search(fp.read()),
                                           "use a theme.colors.* token instead of an amber literal")
 
+    def test_progress_tracks_use_the_token(self):
+        for fn in ("includes/hub_itemlayout_poster.xml.tpl", "script-plex-seasons.xml.tpl"):
+            with self.subTest(template=fn):
+                with open(os.path.join(TEMPLATE_DIR, fn), "r", encoding="utf-8") as fp:
+                    text = fp.read()
+                self.assertNotIn("E60A0F1A", text)
+                self.assertIn("theme.colors.progressTrack", text)
+
+    def test_no_template_hardcodes_the_old_progress_track(self):
+        # the music player's seek bar keeps its own track on purpose
+        for root, _dirs, files in os.walk(TEMPLATE_DIR):
+            for fn in files:
+                if not fn.endswith(".tpl") or fn == "script-plex-music_player.xml.tpl":
+                    continue
+                with self.subTest(template=fn):
+                    with open(os.path.join(root, fn), "r", encoding="utf-8") as fp:
+                        self.assertNotIn("E60A0F1A", fp.read())
+
+    def test_indicator_inset_is_applied_and_zero_is_not_swallowed(self):
+        # `default` is truthy-based, so a caller cannot ask for inset=0; callers that want
+        # the corner position pass the shifted xoff/yoff instead.
+        for fn in os.listdir(TEMPLATE_DIR):
+            if fn.endswith(".tpl"):
+                with open(os.path.join(TEMPLATE_DIR, fn), "r", encoding="utf-8") as fp:
+                    self.assertNotRegex(fp.read(), r"watched_indicator[^%]*\binset=0\b")
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        context["indicators"]["START"] = {"INHERIT": "modern", "style": "modern", "hide_aw_bg": False,
+                                          "use_scaling": True}
+        text = render_theme(make_engine(self.mktemp(), context=context), "modern-colored")["listview-square"]
+        # include xoff=923 yoff=0 with the default inset of 8 and a 32px badge: x 923-8-32, y 0+8,
+        # the position the count badge had before the inset existed
+        self.assertRegex(text, r"<posx>883</posx>\s*<posy>8</posy>")
+
     def test_default_tokens_render_the_amber(self):
         rendered = render_theme(make_engine(self.mktemp()), "modern-colored")
         self.assertIn("FFE5A00D", "".join(rendered.values()))
@@ -318,6 +351,12 @@ class TemplateColorTokenTest(KodiTestCase):
         text = "".join(render_theme(make_engine(self.mktemp(), context=context), "modern-colored").values())
         self.assertIn('colordiffuse="F3123456"', text)
         self.assertIn('colordiffuse="20123456"', text)
+
+    def test_alpha_filter_rejects_a_color_that_is_not_argb(self):
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        context["themes"]["base"]["colors"]["accent"] = "E5A00D"
+        with self.assertRaises(Exception):
+            render_theme(make_engine(self.mktemp(), context=context), "modern-colored")
 
     def test_default_button_focus_is_a_white_pill_with_dark_text(self):
         colors = TEMPLATE_CONTEXTS["themes"]["base"]["colors"]
@@ -343,6 +382,34 @@ class TemplateColorTokenTest(KodiTestCase):
         context["indicators"]["START"] = {"INHERIT": "base", "style": "base", "hide_aw_bg": False}
         text = "".join(render_theme(make_engine(self.mktemp(), context=context), "modern-colored").values())
         self.assertIn("66666666", text)
+
+
+class WhiteFocusScreensTest(KodiTestCase):
+    """The sidebar, section tabs, scrollbar and profile screen carry no amber; tab and sidebar focus is a solid white pill."""
+
+    AMBER_TOKEN_RE = re.compile(r"theme\.colors\.(accent|accentDark|focusFill|focusText)\b")
+    NO_AMBER = ("includes/sidebar.xml.tpl", "includes/section_tabs.xml.tpl", "includes/scrollbar_style.xml.tpl",
+                "script-plex-user_select.xml.tpl")
+    TAB_ROWS = ("includes/section_tabs.xml.tpl", "script-plex-seasons.xml.tpl", "script-plex-episodes.xml.tpl")
+
+    def _read(self, name):
+        with open(os.path.join(TEMPLATE_DIR, name), "r", encoding="utf-8") as fp:
+            return fp.read()
+
+    def test_templates_use_no_amber_token(self):
+        for name in self.NO_AMBER:
+            with self.subTest(template=name):
+                self.assertIsNone(self.AMBER_TOKEN_RE.search(self._read(name)))
+
+    def test_search_has_no_accent(self):
+        self.assertNotIn("theme.colors.accent", self._read("script-plex-search.xml.tpl"))
+
+    def test_tab_rows_have_no_underline_and_a_white_focus_pill(self):
+        for name in self.TAB_ROWS:
+            with self.subTest(template=name):
+                text = self._read(name)
+                self.assertNotIn("<height>2</height>", text)
+                self.assertRegex(text, r"<colordiffuse>FFFFFFFF</colordiffuse>\s*<texture border=\"10\">script.plex/white-square-rounded.png")
 
 
 class TemplateWriteTest(KodiTestCase):

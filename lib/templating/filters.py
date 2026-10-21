@@ -117,6 +117,8 @@ def cast_int(a):
 @register_builtin
 def alpha(color, a):
     """A theme color with its alpha byte replaced: {{ theme.colors.accent|alpha("F3") }}."""
+    if len(color) != 8:
+        raise ValueError("alpha expects an 8-digit ARGB color, got {!r}".format(color))
     return "{}{}".format(a, color[2:])
 
 

@@ -74,7 +74,7 @@
                         <width>496</width>
                         <height>{{ vscale(5) }}</height>
                         <texture diffuse="script.plex/masks/progress-bar-mask-496.png">script.plex/white-square.png</texture>
-                        <colordiffuse>E60A0F1A</colordiffuse>
+                        <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                     </control>
                     <control type="image">
                         <posx>0</posx>
@@ -89,25 +89,15 @@
                      own copies. -->
                 <control type="group">
                     <visible>!String.IsEmpty(ListItem.Property(episode.number))</visible>
-                    <posx>472</posx>
-                    <posy>0</posy>
+                    <posx>464</posx>
+                    <posy>{{ vscale(8) }}</posy>
                     <control type="image">
-                        <visible>{% if indicators.use_unwatched %}[!String.IsEmpty(ListItem.Property(unwatched)) + String.IsEmpty(ListItem.Property(watched))] | !String.IsEmpty(ListItem.Property(unwatched.count)){% else %}!String.IsEmpty(ListItem.Property(watched)) | !String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
                         <posx>0</posx>
                         <posy>0</posy>
                         <width>40</width>
                         <height>{{ vscale(32) }}</height>
-                        <texture diffuse="script.plex/masks/badge-mask-tr-only.png">script.plex/white-square.png</texture>
-                        <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
-                    </control>
-                    <control type="image">
-                        <visible>{% if indicators.use_unwatched %}[String.IsEmpty(ListItem.Property(unwatched)) | !String.IsEmpty(ListItem.Property(watched))] + String.IsEmpty(ListItem.Property(unwatched.count)){% else %}String.IsEmpty(ListItem.Property(watched)) + String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
-                        <posx>0</posx>
-                        <posy>0</posy>
-                        <width>40</width>
-                        <height>{{ vscale(32) }}</height>
-                        <texture diffuse="script.plex/masks/badge-mask-tr.png">script.plex/white-square.png</texture>
-                        <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
+                        <texture diffuse="script.plex/masks/badge-mask-round.png">script.plex/white-square.png</texture>
+                        <colordiffuse>{{ indicators.watched_bg|default("99000000") }}</colordiffuse>
                     </control>
                     <control type="label">{# rendered big then zoomed down so it never truncates/ellipsizes at the badge's actual width #}
                         <animation effect="zoom" start="33" end="33" time="0" reversible="false" center="auto" condition="true">Conditional</animation>
@@ -124,7 +114,7 @@
                 </control>
                 <control type="group">
                     <visible>!String.IsEmpty(ListItem.Property(episode.number))</visible>
-                    {% include "includes/watched_indicator.xml.tpl" with xoff=472 & uw_size=35 & wbg_w=40 & wbg="script.plex/masks/badge-mask-bl-only.png" %}
+                    {% include "includes/watched_indicator.xml.tpl" with xoff=468 & uw_size=35 & wbg_w=40 %}
                 </control>
                 <control type="group">
                     <visible>String.IsEmpty(ListItem.Property(episode.number))</visible>

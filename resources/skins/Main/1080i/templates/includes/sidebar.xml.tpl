@@ -30,7 +30,7 @@
         <onup>noop</onup>
         <ondown>9001</ondown>
         <onright condition="!String.IsEmpty(Window.Property(server.unavailable))">2600</onright><onright>50</onright>
-        <texturefocus colordiffuse="33FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <label> </label>
         <onunfocus condition="!String.IsEmpty(Window.Property(show.options))">SetFocus(250)</onunfocus>
@@ -54,7 +54,7 @@
         </control>
         <!-- Avatar letter fallback (always visible when no avatar) -->
         <control type="label">
-            <visible>String.IsEmpty(Window.Property(user.avatar))</visible>
+            <visible>String.IsEmpty(Window.Property(user.avatar)) + !Control.HasFocus(202)</visible>
             <posx>18</posx>
             <posy>{{ vscale(10) }}</posy>
             <width>44</width>
@@ -63,6 +63,18 @@
             <align>center</align>
             <aligny>center</aligny>
             <textcolor>FFFFFFFF</textcolor>
+            <label>[B]$INFO[Window.Property(user.avatar.letter)][/B]</label>
+        </control>
+        <control type="label">
+            <visible>String.IsEmpty(Window.Property(user.avatar)) + Control.HasFocus(202)</visible>
+            <posx>18</posx>
+            <posy>{{ vscale(10) }}</posy>
+            <width>44</width>
+            <height>{{ vscale(44) }}</height>
+            <font>font12</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FF000000</textcolor>
             <label>[B]$INFO[Window.Property(user.avatar.letter)][/B]</label>
         </control>
         <control type="image">
@@ -76,7 +88,7 @@
         </control>
         <!-- Username label (expanded only) -->
         <control type="label">
-            <visible>ControlGroup(9000).HasFocus(0)</visible>
+            <visible>ControlGroup(9000).HasFocus(0) + !Control.HasFocus(202)</visible>
             <animation effect="fade" start="0" end="100" time="200">Visible</animation>
             <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
             <posx>75</posx>
@@ -87,6 +99,18 @@
             <align>left</align>
             <aligny>center</aligny>
             <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[Window.Property(user.name)]</label>
+        </control>
+        <control type="label">
+            <visible>Control.HasFocus(202)</visible>
+            <posx>75</posx>
+            <posy>{{ vscale(10) }}</posy>
+            <width>210</width>
+            <height>{{ vscale(44) }}</height>
+            <font>font12</font>
+            <align>left</align>
+            <aligny>center</aligny>
+            <textcolor>FF000000</textcolor>
             <label>$INFO[Window.Property(user.name)]</label>
         </control>
     </control>
@@ -141,7 +165,7 @@
                     <width>3</width>
                     <height>{{ vscale(40) }}</height>
                     <texture>script.plex/white-square.png</texture>
-                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
                 <!-- Section icon - dimmer while sidebar is collapsed, or while its server isn't answering -->
                 <control type="image">
@@ -163,7 +187,7 @@
                     <texture>$INFO[ListItem.Icon]</texture>
                     <colordiffuse>99FFFFFF</colordiffuse>
                 </control>
-                <!-- Active icon overlay (orange tint) -->
+                <!-- Active icon overlay (white tint) -->
                 <control type="image">
                     <visible>!String.IsEmpty(ListItem.Property(is.active))</visible>
                     <posx>26</posx>
@@ -171,7 +195,7 @@
                     <width>28</width>
                     <height>{{ vscale(28) }}</height>
                     <texture>$INFO[ListItem.Icon]</texture>
-                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
                 <!-- Path-mapping indicator dot -->
                 <control type="image">
@@ -288,7 +312,7 @@
                     <width>284</width>
                     <height>{{ vscale(60) }}</height>
                     <texture border="10">script.plex/white-square-rounded.png</texture>
-                    <colordiffuse>33FFFFFF</colordiffuse>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
                 <!-- Active indicator bar (left edge) -->
                 <control type="image">
@@ -298,17 +322,26 @@
                     <width>3</width>
                     <height>{{ vscale(40) }}</height>
                     <texture>script.plex/white-square.png</texture>
-                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
-                <!-- Section icon - orange when focused or active -->
+                <!-- Section icon - dark on the focused row's white pill, white when only active -->
                 <control type="image">
-                    <visible>Control.HasFocus(9001) | !String.IsEmpty(ListItem.Property(is.active))</visible>
+                    <visible>Control.HasFocus(9001)</visible>
                     <posx>26</posx>
                     <posy>{{ vscale(30) }}</posy>
                     <width>28</width>
                     <height>{{ vscale(28) }}</height>
                     <texture>$INFO[ListItem.Icon]</texture>
-                    <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
+                    <colordiffuse>FF000000</colordiffuse>
+                </control>
+                <control type="image">
+                    <visible>!Control.HasFocus(9001) + !String.IsEmpty(ListItem.Property(is.active))</visible>
+                    <posx>26</posx>
+                    <posy>{{ vscale(30) }}</posy>
+                    <width>28</width>
+                    <height>{{ vscale(28) }}</height>
+                    <texture>$INFO[ListItem.Icon]</texture>
+                    <colordiffuse>FFFFFFFF</colordiffuse>
                 </control>
                 <!-- Section icon - normal when not focused and not active, dimmer while sidebar is collapsed -->
                 <control type="image">
@@ -338,7 +371,7 @@
                     <width>8</width>
                     <height>{{ vscale(8) }}</height>
                     <texture>script.plex/white-square-rounded-4r.png</texture>
-                    <colordiffuse>AAFFFFFF</colordiffuse>
+                    <colordiffuse>FF808080</colordiffuse>
                 </control>
                 <control type="image">
                     <visible>!String.IsEmpty(ListItem.Property(is.mapped.broken))</visible>
@@ -362,8 +395,8 @@
                     <font>font10</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
+                    <textcolor>FF000000</textcolor>
+                    <focusedcolor>FF000000</focusedcolor>
                     <label>$INFO[ListItem.Label]</label>
                 </control>
                 <control type="label">
@@ -375,8 +408,8 @@
                     <font>font10</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>FFFFFFFF</textcolor>
-                    <focusedcolor>FFFFFFFF</focusedcolor>
+                    <textcolor>FF000000</textcolor>
+                    <focusedcolor>FF000000</focusedcolor>
                     <label>$INFO[ListItem.Label]</label>
                 </control>
                 <control type="label">
@@ -388,7 +421,7 @@
                     <font>font8</font>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <textcolor>99FFFFFF</textcolor>
+                    <textcolor>99000000</textcolor>
                     <label>$INFO[ListItem.Property(server.name)]</label>
                 </control>
                 <!-- The same in the unfocused row's colours while focus is elsewhere in the sidebar (the
@@ -492,7 +525,7 @@
         <onup>9001</onup>
         <onright condition="!String.IsEmpty(Window.Property(server.unavailable))">2600</onright><onright>50</onright>
         <ondown>noop</ondown>
-        <texturefocus colordiffuse="33FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <label> </label>
         <onunfocus condition="!String.IsEmpty(Window.Property(show.servers))">SetFocus(260)</onunfocus>
@@ -515,7 +548,7 @@
         </control>
         <!-- secure -->
         <control type="image">
-            <visible>!String.IsEmpty(Window.Property(server.iconmod))</visible>
+            <visible>!String.IsEmpty(Window.Property(server.iconmod)) + !Control.HasFocus(201)</visible>
             <posx>4</posx>
             <posy>{{ vscale(16) }}</posy>
             <width>14</width>
@@ -523,9 +556,18 @@
             <texture>$INFO[Window.Property(server.iconmod2)]</texture>
             <colordiffuse>FFEEEEEE</colordiffuse>
         </control>
+        <control type="image">
+            <visible>!String.IsEmpty(Window.Property(server.iconmod)) + Control.HasFocus(201)</visible>
+            <posx>4</posx>
+            <posy>{{ vscale(16) }}</posy>
+            <width>14</width>
+            <height>{{ vscale(12) }}</height>
+            <texture>$INFO[Window.Property(server.iconmod2)]</texture>
+            <colordiffuse>FF000000</colordiffuse>
+        </control>
         <!-- local -->
         <control type="image">
-            <visible>String.IsEmpty(Window.Property(server.iconmod))</visible>
+            <visible>String.IsEmpty(Window.Property(server.iconmod)) + !Control.HasFocus(201)</visible>
             <posx>4</posx>
             <posy>{{ vscale(30) }}</posy>
             <width>14</width>
@@ -533,9 +575,18 @@
             <texture>$INFO[Window.Property(server.iconmod2)]</texture>
             <colordiffuse>FFEEEEEE</colordiffuse>
         </control>
+        <control type="image">
+            <visible>String.IsEmpty(Window.Property(server.iconmod)) + Control.HasFocus(201)</visible>
+            <posx>4</posx>
+            <posy>{{ vscale(30) }}</posy>
+            <width>14</width>
+            <height>{{ vscale(12) }}</height>
+            <texture>$INFO[Window.Property(server.iconmod2)]</texture>
+            <colordiffuse>FF000000</colordiffuse>
+        </control>
         <!-- Server name (expanded only) -->
         <control type="label">
-            <visible>ControlGroup(9000).HasFocus(0)</visible>
+            <visible>ControlGroup(9000).HasFocus(0) + !Control.HasFocus(201)</visible>
             <animation effect="fade" start="0" end="100" time="200">Visible</animation>
             <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
             <posx>55</posx>
@@ -546,6 +597,18 @@
             <align>left</align>
             <aligny>center</aligny>
             <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[Window.Property(server.name)]</label>
+        </control>
+        <control type="label">
+            <visible>Control.HasFocus(201)</visible>
+            <posx>55</posx>
+            <posy>0</posy>
+            <width>210</width>
+            <height>{{ vscale(50) }}</height>
+            <font>font10</font>
+            <align>left</align>
+            <aligny>center</aligny>
+            <textcolor>FF000000</textcolor>
             <label>$INFO[Window.Property(server.name)]</label>
         </control>
     </control>

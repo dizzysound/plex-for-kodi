@@ -1070,7 +1070,7 @@
                                     <width>224</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>E60A0F1A</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                 </control>
                                 <control type="image">
                                     <posx>0</posx>
@@ -1192,7 +1192,7 @@
                                         <width>224</width>
                                         <height>{{ vscale(5) }}</height>
                                         <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>E60A0F1A</colordiffuse>
+                                        <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                     </control>
                                     <control type="image">
                                         <posx>0</posx>
@@ -1360,7 +1360,7 @@
                                     <width>224</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>E60A0F1A</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                 </control>
                                 <control type="image">
                                     <posx>0</posx>
@@ -1479,7 +1479,7 @@
                                         <width>224</width>
                                         <height>{{ vscale(5) }}</height>
                                         <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>E60A0F1A</colordiffuse>
+                                        <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                     </control>
                                     <control type="image">
                                         <posx>0</posx>
@@ -1646,7 +1646,7 @@
                                     <width>224</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>E60A0F1A</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                 </control>
                                 <control type="image">
                                     <posx>0</posx>
@@ -1765,7 +1765,7 @@
                                         <width>224</width>
                                         <height>{{ vscale(5) }}</height>
                                         <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>E60A0F1A</colordiffuse>
+                                        <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                     </control>
                                     <control type="image">
                                         <posx>0</posx>
@@ -1931,7 +1931,7 @@
                                     <width>224</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>E60A0F1A</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                 </control>
                                 <control type="image">
                                     <posx>0</posx>
@@ -2050,7 +2050,7 @@
                                         <width>224</width>
                                         <height>{{ vscale(5) }}</height>
                                         <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>E60A0F1A</colordiffuse>
+                                        <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                     </control>
                                     <control type="image">
                                         <posx>0</posx>

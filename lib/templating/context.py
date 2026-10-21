@@ -18,8 +18,8 @@ TEMPLATE_CONTEXTS = {
             "INHERIT": "base",
             "use_unwatched": False,
             "hide_aw_bg": False,
-            "watched_bg": "CC000000",
-            "unwatched_count_bg": "CC000000",
+            "watched_bg": "99000000",
+            "unwatched_count_bg": "99000000",
             "textcolor": "FFFFFFFF",
             "assets": {
                 "watched": "watched.png"
@@ -34,16 +34,18 @@ TEMPLATE_CONTEXTS = {
     },
     "themes": {
         "base": {
-            # colors, ARGB hex; the skin's amber. One name per role so a theme can recolor a role
-            # without touching the others. accentDark is the darker amber (inactive-state
-            # tints, slider mid-fill, avatar/rounded-pill backgrounds) that has no role of its own yet.
+            # colors, ARGB hex; the skin's amber plus the white progress bar and translucent badge.
+            # One name per role so a theme can recolor a role without touching the others.
+            # accentDark is the darker amber (inactive-state tints, slider mid-fill,
+            # avatar/rounded-pill backgrounds) that has no role of its own yet.
             "colors": {
                 "accent": "FFE5A00D",
                 "accentDark": "FFCC7B19",
                 "focusFill": "FFE5A00D",
                 "focusText": "FFE5A00D",
-                "badgeBg": "FFCC7B19",
-                "progressFill": "FFE5A00D",
+                "badgeBg": "99000000",
+                "progressFill": "FFFFFFFF",
+                "progressTrack": "66000000",
             },
 
             # general config

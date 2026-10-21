@@ -91,7 +91,7 @@
             <width>{{ art_w - 12 }}</width>
             <height>{{ vscale(6) }}</height>
             <texture diffuse="script.plex/masks/progress-bar-mask.png">script.plex/white-square.png</texture>
-            <colordiffuse>E60A0F1A</colordiffuse>
+            <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
         </control>
         <control type="image">
             <posx>0</posx>
@@ -102,7 +102,7 @@
             <colordiffuse>{{ theme.colors.progressFill }}</colordiffuse>
         </control>
     </control>
-    {% include "includes/watched_indicator.xml.tpl" with xoff=art_x+art_w & yoff=10 & uw_size=24 & wbg_w=24 & wbg_h=24 %}
+    {% include "includes/watched_indicator.xml.tpl" with xoff=art_x+art_w & yoff=10 & inset=4 & uw_size=24 & wbg_w=24 & wbg_h=24 %}
 {% endif %}
 
     <!-- Title, twice for the now-playing tint (album_track_row.xml.tpl's reasoning, including the

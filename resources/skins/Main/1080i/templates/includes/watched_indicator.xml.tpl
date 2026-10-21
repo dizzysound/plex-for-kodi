@@ -1,5 +1,6 @@
     {% if indicators.show %}
-    {% with xoff = xoff|default(158) & yoff = yoff|default(0) & uw_size = uw_size|default(32) & wbg_w = wbg_w|default(32) & wbg_h = wbg_h|default(32) & count_zoom = count_zoom|default(40) %}
+    {% with xoff = xoff|default(158) & yoff = yoff|default(0) & inset = inset|default(8) & uw_size = uw_size|default(32) & wbg_w = wbg_w|default(32) & wbg_h = wbg_h|default(32) & count_zoom = count_zoom|default(40) %}
+    {% with xoff = xoff - inset & yoff = yoff + inset %}
         <control type="group">
             <visible>!String.IsEmpty({{ itemref|default("ListItem") }}.Property(watched)) + String.IsEmpty({{ itemref|default("ListItem") }}.Property(unwatched.count))</visible>
             <posx>{{ xoff - wbg_w }}</posx>
@@ -10,8 +11,8 @@
                 <posy>0</posy>
                 <width>{{ wbg_w }}</width>
                 <height>{{ wbg_h|vscale }}</height>
-                <texture diffuse="{{ wbg|default('script.plex/masks/badge-mask-tr.png') }}">script.plex/white-square.png</texture>
-                <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
+                <texture diffuse="{{ wbg|default('script.plex/masks/badge-mask-round.png') }}">script.plex/white-square.png</texture>
+                <colordiffuse>{{ indicators.watched_bg|default("99000000") }}</colordiffuse>
             </control>
             {% endif %}
             <control type="image">
@@ -31,7 +32,7 @@
                 <posy>{{ yoff|vscale }}</posy>
                 <width>{{ wbg_w }}</width>
                 <height>{{ wbg_h|vscale }}</height>
-                <texture diffuse="{{ wbg|default('script.plex/masks/badge-mask-tr.png') }}">script.plex/white-square.png</texture>
+                <texture diffuse="{{ wbg|default('script.plex/masks/badge-mask-round.png') }}">script.plex/white-square.png</texture>
                 <colordiffuse>{{ indicators.unwatched_count_bg|default(theme.colors.badgeBg) }}</colordiffuse>
             </control>
             <control type="image">
@@ -40,7 +41,7 @@
                 <posy>{{ yoff|vscale }}</posy>
                 <width>{{ wbg_w + 16 }}</width>
                 <height>{{ wbg_h|vscale }}</height>
-                <texture diffuse="{{ wbg|default('script.plex/masks/badge-mask-tr.png') }}">script.plex/white-square.png</texture>
+                <texture diffuse="{{ wbg|default('script.plex/masks/badge-mask-round-wide.png') }}">script.plex/white-square.png</texture>
                 <colordiffuse>{{ indicators.unwatched_count_bg|default(theme.colors.badgeBg) }}</colordiffuse>
             </control>
             {# The count is drawn at font32_title's 32px and zoomed down, so this label has to hold the
@@ -79,5 +80,6 @@
             </control>
         </control>
         {% endif %}
+    {% endwith %}
     {% endwith %}
 {% endif %}

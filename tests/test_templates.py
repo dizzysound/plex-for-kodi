@@ -382,6 +382,29 @@ class WhiteFocusScreensTest(KodiTestCase):
                 self.assertRegex(text, r"<colordiffuse>FFFFFFFF</colordiffuse>\s*<texture border=\"10\">script.plex/white-square-rounded.png")
 
 
+class DropdownPanelTest(KodiTestCase):
+    """Dropdown panels use the larger corner radius; focus fill is white while the accent stays amber."""
+
+    PANELS = ("script-plex-dropdown.xml.tpl", "script-plex-dropdown_header.xml.tpl", "includes/sidebar_dropdowns.xml.tpl")
+    TEXTURE_RE = re.compile(r'<texture [^>]*border="(\d+)">script\.plex/(white-square-(?:top-)?rounded(?:-r24)?)\.png')
+
+    def test_panel_corners_use_the_r24_textures(self):
+        for name in self.PANELS:
+            with self.subTest(template=name):
+                with open(os.path.join(TEMPLATE_DIR, name), "r", encoding="utf-8") as fp:
+                    found = self.TEXTURE_RE.findall(fp.read())
+                self.assertTrue(found)
+                for border, texture in found:
+                    self.assertEqual(("24", True), (border, texture.endswith("-r24")))
+        for texture in ("white-square-rounded-r24.png", "white-square-top-rounded-r24.png"):
+            self.assertTrue(os.path.isfile(os.path.join(MEDIA_DIR, "script.plex", texture)), texture)
+
+    def test_focus_fill_is_white_and_accent_is_amber(self):
+        colors = TEMPLATE_CONTEXTS["themes"]["base"]["colors"]
+        self.assertEqual("FFFFFFFF", colors["focusFill"])
+        self.assertEqual("FFE5A00D", colors["accent"])
+
+
 class TemplateWriteTest(KodiTestCase):
     def test_write_confirms_the_file_landed_at_full_size(self):
         """

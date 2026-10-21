@@ -50,7 +50,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="D3111111" border="10">script.plex/white-square-top-rounded.png</texture>
+                <texture colordiffuse="D3111111" border="24">script.plex/white-square-top-rounded-r24.png</texture>
             </control>
             <control type="image">
                 <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only))</visible>
@@ -66,7 +66,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture flipy="true" colordiffuse="D3111111" border="10">script.plex/white-square-top-rounded.png</texture>
+                <texture flipy="true" colordiffuse="D3111111" border="24">script.plex/white-square-top-rounded-r24.png</texture>
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(only))</visible>
@@ -74,7 +74,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="D3111111" border="10">script.plex/white-square-rounded.png</texture>
+                <texture colordiffuse="D3111111" border="24">script.plex/white-square-rounded-r24.png</texture>
             </control>
             <control type="label">
                 <visible>String.IsEmpty(ListItem.Property(with.indicator))</visible>
@@ -130,7 +130,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="{{ theme.colors.focusFill }}" border="10">script.plex/white-square-top-rounded.png</texture>
+                <texture colordiffuse="{{ theme.colors.focusFill }}" border="24">script.plex/white-square-top-rounded-r24.png</texture>
             </control>
             <control type="image">
                 <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only))</visible>
@@ -146,7 +146,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture flipy="true" colordiffuse="{{ theme.colors.focusFill }}" border="10">script.plex/white-square-top-rounded.png</texture>
+                <texture flipy="true" colordiffuse="{{ theme.colors.focusFill }}" border="24">script.plex/white-square-top-rounded-r24.png</texture>
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(only))</visible>
@@ -154,7 +154,7 @@
                 <posy>0</posy>
                 <width>300</width>
                 <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="{{ theme.colors.focusFill }}" border="10">script.plex/white-square-rounded.png</texture>
+                <texture colordiffuse="{{ theme.colors.focusFill }}" border="24">script.plex/white-square-rounded-r24.png</texture>
             </control>
             <control type="label">
                 <visible>String.IsEmpty(ListItem.Property(with.indicator))</visible>

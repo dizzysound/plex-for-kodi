@@ -574,8 +574,8 @@
                                 <aspectratio scalediffuse="false">scale</aspectratio>
                             </control>
                             <!-- Season name panel, top-right corner (mirrors the episode-number badge's own
-                                 position/height below) - background color and (via two purpose-built wider
-                                 masks, see below) corner-pairing behavior both match that badge exactly.
+                                 position/height below) - background color and rounded shape (badge-mask-round-372.png,
+                                 inset 8px from the corner) match that badge exactly.
                                  186px = ~33% wider than an earlier 140px pass here, on request - comfortably
                                  fits real season names at font8 (e.g. "Season 12"), with a scrolling label as
                                  the overflow fallback rather than a truly content-sized one - see this panel's
@@ -586,36 +586,13 @@
                                  objects, only the list control itself (id 400) is addressable that way. -->
                             <control type="group">
                                 <visible>!String.IsEmpty(ListItem.Property(is.season.card))</visible>
-                                <posx>326</posx>
-                                <posy>0</posy>
+                                <posx>318</posx>
+                                <posy>{{ vscale(8) }}</posy>
                                 <control type="image">
-                                    <!-- Paired look: this card's own watched indicator (further below, xoff=326
-                                         for the season-card case) sits to the left when shown, so only the outer
-                                         corner (top-right, touching the art's own edge) needs rounding - exact
-                                         same condition as the episode-number badge's own paired mask below, since
-                                         createSeasonCardItem() sets the same watched/unwatched/unwatched.count
-                                         properties a real episode would. badge-mask-tr-only-wide.png: same
-                                         derivation as badge-mask-tr-wide.png below (cut badge-mask-tr-only.png at
-                                         a safe column, widen by duplicating it) - badge-mask-tr-only.png has no
-                                         border scaling either, so a direct stretch would distort its own single
-                                         corner curve the same way. -->
-                                    <visible>{% if indicators.use_unwatched %}[!String.IsEmpty(ListItem.Property(unwatched)) + String.IsEmpty(ListItem.Property(watched))] | !String.IsEmpty(ListItem.Property(unwatched.count)){% else %}!String.IsEmpty(ListItem.Property(watched)) | !String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
                                     <width>186</width>
                                     <height>{{ vscale(32) }}</height>
-                                    <texture diffuse="script.plex/masks/badge-mask-tr-only-wide.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
-                                </control>
-                                <control type="image">
-                                    <!-- Standalone look: no watched indicator to seam against, so round both the
-                                         diagonal corners (badge-mask-tr-wide.png, matching badge-mask-tr.png's own
-                                         diagonal style below) for a self-contained shape - exact negation of the
-                                         sibling control's own condition above, same as the episode-number badge's
-                                         own pairing. -->
-                                    <visible>{% if indicators.use_unwatched %}[String.IsEmpty(ListItem.Property(unwatched)) | !String.IsEmpty(ListItem.Property(watched))] + String.IsEmpty(ListItem.Property(unwatched.count)){% else %}String.IsEmpty(ListItem.Property(watched)) + String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
-                                    <width>186</width>
-                                    <height>{{ vscale(32) }}</height>
-                                    <texture diffuse="script.plex/masks/badge-mask-tr-wide.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
+                                    <texture diffuse="script.plex/masks/badge-mask-round-372.png">script.plex/white-square.png</texture>
+                                    <colordiffuse>{{ indicators.watched_bg|default("99000000") }}</colordiffuse>
                                 </control>
                                 <control type="label">
                                     <posx>12</posx>
@@ -651,7 +628,7 @@
                                     <width>496</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask-496.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>E60A0F1A</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                 </control>
                                 <control type="image">
                                     <posx>0</posx>
@@ -664,37 +641,15 @@
                             </control>
                             <control type="group">
                                 <visible>!String.IsEmpty(ListItem.Property(episode.number))</visible>
-                                <posx>472</posx>
-                                <posy>0</posy>
+                                <posx>464</posx>
+                                <posy>{{ vscale(8) }}</posy>
                                 <control type="image">
-                                    <!-- Paired look: watched-indicator badge is present to the left, so only the
-                                         outer corner touching the poster needs rounding; the inner corner stays
-                                         square for a flush seam between the two badges. Mirrors
-                                         watched_indicator.xml.tpl's own two mutually-exclusive branches (dot style
-                                         vs checkmark/count style, indicators.use_unwatched) plus its independent
-                                         with_count block - not just a flat property check - since e.g. the
-                                         'unwatched' property is set on every unwatched episode regardless of which
-                                         style is active, but only actually drives a visible control under the dot
-                                         style. -->
-                                    <visible>{% if indicators.use_unwatched %}[!String.IsEmpty(ListItem.Property(unwatched)) + String.IsEmpty(ListItem.Property(watched))] | !String.IsEmpty(ListItem.Property(unwatched.count)){% else %}!String.IsEmpty(ListItem.Property(watched)) | !String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
                                     <posx>0</posx>
                                     <posy>0</posy>
                                     <width>40</width>
                                     <height>{{ vscale(32) }}</height>
-                                    <texture diffuse="script.plex/masks/badge-mask-tr-only.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
-                                </control>
-                                <control type="image">
-                                    <!-- Standalone look: no watched-indicator badge to its left, so round both
-                                         corners for a self-contained pill shape instead of a flush-seam pairing.
-                                         Exact negation of the sibling control's own condition above. -->
-                                    <visible>{% if indicators.use_unwatched %}[String.IsEmpty(ListItem.Property(unwatched)) | !String.IsEmpty(ListItem.Property(watched))] + String.IsEmpty(ListItem.Property(unwatched.count)){% else %}String.IsEmpty(ListItem.Property(watched)) + String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
-                                    <posx>0</posx>
-                                    <posy>0</posy>
-                                    <width>40</width>
-                                    <height>{{ vscale(32) }}</height>
-                                    <texture diffuse="script.plex/masks/badge-mask-tr.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
+                                    <texture diffuse="script.plex/masks/badge-mask-round.png">script.plex/white-square.png</texture>
+                                    <colordiffuse>{{ indicators.watched_bg|default("99000000") }}</colordiffuse>
                                 </control>
                                 <control type="label">{# rendered big then zoomed down so it never truncates/ellipsizes at the badge's actual width #}
                                     <animation effect="zoom" start="33" end="33" time="0" reversible="false" center="auto" condition="true">Conditional</animation>
@@ -711,15 +666,15 @@
                             </control>
                             <control type="group">
                                 <visible>String.IsEmpty(ListItem.Property(is.season.card))</visible>
-                                {% include "includes/watched_indicator.xml.tpl" with xoff=472 & uw_size=35 & wbg_w=40 & wbg="script.plex/masks/badge-mask-bl-only.png" %}
+                                {% include "includes/watched_indicator.xml.tpl" with xoff=468 & uw_size=35 & wbg_w=40 %}
                             </control>
                             <control type="group">
-                                <!-- Season card's own watched indicator - same include, xoff=326 instead of
-                                     472 to sit flush against the season-name panel's own left edge (its own
+                                <!-- Season card's own watched indicator - same include, xoff=322 instead of
+                                     468 to sit 4px left of the season-name panel's own left edge (its own
                                      posx above) rather than the episode-number badge's, which the season card
                                      doesn't render. -->
                                 <visible>!String.IsEmpty(ListItem.Property(is.season.card))</visible>
-                                {% include "includes/watched_indicator.xml.tpl" with xoff=326 & uw_size=35 & wbg_w=40 & wbg="script.plex/masks/badge-mask-bl-only.png" %}
+                                {% include "includes/watched_indicator.xml.tpl" with xoff=322 & uw_size=35 & wbg_w=40 %}
                             </control>
 
                             <control type="group">
@@ -827,23 +782,13 @@
                                      above for the full reasoning. -->
                                 <control type="group">
                                     <visible>!String.IsEmpty(ListItem.Property(is.season.card))</visible>
-                                    <posx>326</posx>
-                                    <posy>0</posy>
+                                    <posx>318</posx>
+                                    <posy>{{ vscale(8) }}</posy>
                                     <control type="image">
-                                        <!-- Paired/standalone corner pairing - see itemlayout's own copy of these
-                                             two controls for the full reasoning. -->
-                                        <visible>{% if indicators.use_unwatched %}[!String.IsEmpty(ListItem.Property(unwatched)) + String.IsEmpty(ListItem.Property(watched))] | !String.IsEmpty(ListItem.Property(unwatched.count)){% else %}!String.IsEmpty(ListItem.Property(watched)) | !String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
                                         <width>186</width>
                                         <height>{{ vscale(32) }}</height>
-                                        <texture diffuse="script.plex/masks/badge-mask-tr-only-wide.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
-                                    </control>
-                                    <control type="image">
-                                        <visible>{% if indicators.use_unwatched %}[String.IsEmpty(ListItem.Property(unwatched)) | !String.IsEmpty(ListItem.Property(watched))] + String.IsEmpty(ListItem.Property(unwatched.count)){% else %}String.IsEmpty(ListItem.Property(watched)) + String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
-                                        <width>186</width>
-                                        <height>{{ vscale(32) }}</height>
-                                        <texture diffuse="script.plex/masks/badge-mask-tr-wide.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
+                                        <texture diffuse="script.plex/masks/badge-mask-round-372.png">script.plex/white-square.png</texture>
+                                        <colordiffuse>{{ indicators.watched_bg|default("99000000") }}</colordiffuse>
                                     </control>
                                     <control type="label">
                                         <posx>12</posx>
@@ -871,7 +816,7 @@
                                         <width>496</width>
                                         <height>{{ vscale(5) }}</height>
                                         <texture diffuse="script.plex/masks/progress-bar-mask-496.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>E60A0F1A</colordiffuse>
+                                        <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                     </control>
                                     <control type="image">
                                         <posx>0</posx>
@@ -884,26 +829,15 @@
                                 </control>
                                 <control type="group">
                                     <visible>!String.IsEmpty(ListItem.Property(episode.number))</visible>
-                                    <posx>472</posx>
-                                    <posy>0</posy>
+                                    <posx>464</posx>
+                                    <posy>{{ vscale(8) }}</posy>
                                     <control type="image">
-                                        <!-- See itemlayout's own copy of these two controls for the full reasoning. -->
-                                        <visible>{% if indicators.use_unwatched %}[!String.IsEmpty(ListItem.Property(unwatched)) + String.IsEmpty(ListItem.Property(watched))] | !String.IsEmpty(ListItem.Property(unwatched.count)){% else %}!String.IsEmpty(ListItem.Property(watched)) | !String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
                                         <posx>0</posx>
                                         <posy>0</posy>
                                         <width>40</width>
                                         <height>{{ vscale(32) }}</height>
-                                        <texture diffuse="script.plex/masks/badge-mask-tr-only.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
-                                    </control>
-                                    <control type="image">
-                                        <visible>{% if indicators.use_unwatched %}[String.IsEmpty(ListItem.Property(unwatched)) | !String.IsEmpty(ListItem.Property(watched))] + String.IsEmpty(ListItem.Property(unwatched.count)){% else %}String.IsEmpty(ListItem.Property(watched)) + String.IsEmpty(ListItem.Property(unwatched.count)){% endif %}</visible>
-                                        <posx>0</posx>
-                                        <posy>0</posy>
-                                        <width>40</width>
-                                        <height>{{ vscale(32) }}</height>
-                                        <texture diffuse="script.plex/masks/badge-mask-tr.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>{{ indicators.watched_bg|default("CC000000") }}</colordiffuse>
+                                        <texture diffuse="script.plex/masks/badge-mask-round.png">script.plex/white-square.png</texture>
+                                        <colordiffuse>{{ indicators.watched_bg|default("99000000") }}</colordiffuse>
                                     </control>
                                     <control type="label">{# rendered big then zoomed down so it never truncates/ellipsizes at the badge's actual width #}
                                         <animation effect="zoom" start="33" end="33" time="0" reversible="false" center="auto" condition="true">Conditional</animation>
@@ -920,13 +854,13 @@
                                 </control>
                                 <control type="group">
                                     <visible>String.IsEmpty(ListItem.Property(is.season.card))</visible>
-                                    {% include "includes/watched_indicator.xml.tpl" with xoff=472 & uw_size=35 & wbg_w=40 & wbg="script.plex/masks/badge-mask-bl-only.png" %}
+                                    {% include "includes/watched_indicator.xml.tpl" with xoff=468 & uw_size=35 & wbg_w=40 %}
                                 </control>
                                 <control type="group">
                                     <!-- Season card's own watched indicator - see itemlayout's own copy of
                                          this control/comment above for the full reasoning. -->
                                     <visible>!String.IsEmpty(ListItem.Property(is.season.card))</visible>
-                                    {% include "includes/watched_indicator.xml.tpl" with xoff=326 & uw_size=35 & wbg_w=40 & wbg="script.plex/masks/badge-mask-bl-only.png" %}
+                                    {% include "includes/watched_indicator.xml.tpl" with xoff=322 & uw_size=35 & wbg_w=40 %}
                                 </control>
 
                                 <control type="group">
@@ -1607,7 +1541,7 @@
                                     <width>224</width>
                                     <height>{{ vscale(5) }}</height>
                                     <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>E60A0F1A</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                 </control>
                                 <control type="image">
                                     <posx>0</posx>
@@ -1717,7 +1651,7 @@
                                         <width>224</width>
                                         <height>{{ vscale(5) }}</height>
                                         <texture diffuse="script.plex/masks/progress-bar-mask-224.png">script.plex/white-square.png</texture>
-                                        <colordiffuse>E60A0F1A</colordiffuse>
+                                        <colordiffuse>{{ theme.colors.progressTrack }}</colordiffuse>
                                     </control>
                                     <control type="image">
                                         <posx>0</posx>

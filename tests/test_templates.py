@@ -243,7 +243,7 @@ class TemplateContextTest(KodiTestCase):
         self.assertEqual("watched_2024.png", indicators["assets"]["watched"])
         # from modern (there was a use_scaling assertion here too, but that key was dropped
         # from the indicators context in f4ddffdc and exists nowhere in the addon any more)
-        self.assertEqual("CC000000", indicators["watched_bg"])
+        self.assertEqual("99000000", indicators["watched_bg"])
         # from base
         self.assertTrue(indicators["show"])
 
@@ -295,6 +295,39 @@ class TemplateColorTokenTest(KodiTestCase):
                     with open(path, "r", encoding="utf-8") as fp:
                         self.assertIsNone(self.AMBER_RE.search(fp.read()),
                                           "use a theme.colors.* token instead of an amber literal")
+
+    def test_progress_tracks_use_the_token(self):
+        for fn in ("includes/hub_itemlayout_poster.xml.tpl", "script-plex-seasons.xml.tpl"):
+            with self.subTest(template=fn):
+                with open(os.path.join(TEMPLATE_DIR, fn), "r", encoding="utf-8") as fp:
+                    text = fp.read()
+                self.assertNotIn("E60A0F1A", text)
+                self.assertIn("theme.colors.progressTrack", text)
+
+    def test_no_template_hardcodes_the_old_progress_track(self):
+        # the music player's seek bar keeps its own track on purpose
+        for root, _dirs, files in os.walk(TEMPLATE_DIR):
+            for fn in files:
+                if not fn.endswith(".tpl") or fn == "script-plex-music_player.xml.tpl":
+                    continue
+                with self.subTest(template=fn):
+                    with open(os.path.join(root, fn), "r", encoding="utf-8") as fp:
+                        self.assertNotIn("E60A0F1A", fp.read())
+
+    def test_indicator_inset_is_applied_and_zero_is_not_swallowed(self):
+        # `default` is truthy-based, so a caller cannot ask for inset=0; callers that want
+        # the corner position pass the shifted xoff/yoff instead.
+        for fn in os.listdir(TEMPLATE_DIR):
+            if fn.endswith(".tpl"):
+                with open(os.path.join(TEMPLATE_DIR, fn), "r", encoding="utf-8") as fp:
+                    self.assertNotRegex(fp.read(), r"watched_indicator[^%]*\binset=0\b")
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        context["indicators"]["START"] = {"INHERIT": "modern", "style": "modern", "hide_aw_bg": False,
+                                          "use_scaling": True}
+        text = render_theme(make_engine(self.mktemp(), context=context), "modern-colored")["listview-square"]
+        # include xoff=923 yoff=0 with the default inset of 8 and a 32px badge: x 923-8-32, y 0+8,
+        # the position the count badge had before the inset existed
+        self.assertRegex(text, r"<posx>883</posx>\s*<posy>8</posy>")
 
     def test_default_tokens_render_the_amber(self):
         rendered = render_theme(make_engine(self.mktemp()), "modern-colored")

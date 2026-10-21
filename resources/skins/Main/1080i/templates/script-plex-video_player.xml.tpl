@@ -146,7 +146,7 @@
                             <width>518</width>
                             <height>{{ vscale(294) }}</height>
                             <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                            <colordiffuse>FFE9A20D</colordiffuse>
+                            <colordiffuse>FFFFFFFF</colordiffuse>
                         </control>
                     </control>
                     <control type="button" id="101">
@@ -268,7 +268,7 @@
                                 <width>518</width>
                                 <height>{{ vscale(294) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                         </control>
                         <control type="button" id="102">
@@ -592,7 +592,7 @@
                                     <width>518</width>
                                     <height>{{ vscale(294) }}</height>
                                     <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>FFE9A20D</colordiffuse>
+                                    <colordiffuse>FFFFFFFF</colordiffuse>
                                 </control>
                             </control>
                         </control>
@@ -849,7 +849,7 @@
                                     <width>246</width>
                                     <height>{{ vscale(366) }}</height>
                                     <texture diffuse="script.plex/masks/ring-mask-poster.png">script.plex/white-square.png</texture>
-                                    <colordiffuse>FFE9A20D</colordiffuse>
+                                    <colordiffuse>FFFFFFFF</colordiffuse>
                                 </control>
                             </control>
                         </control>

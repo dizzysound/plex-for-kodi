@@ -591,7 +591,7 @@
                                 <width>246</width>
                                 <height>{{ vscale(366) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-poster.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                         </control>
                     </control>
@@ -919,7 +919,7 @@
                             </control>
                             <!-- Ring-mask focus indicator, not the old bordered selected.png overlay -
                                  matches Pre-play's own extras row exactly: ring-mask-ar16x9.png diffused
-                                 over white-square.png, tinted FFE9A20D, plain-stretched with no border,
+                                 over white-square.png, tinted FFFFFFFF, plain-stretched with no border,
                                  3px overflow past the art on every side. -->
                             <control type="image">
                                 <visible>Control.HasFocus(402)</visible>
@@ -928,7 +928,7 @@
                                 <width>518</width>
                                 <height>{{ vscale(294) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                         </control>
                     </control>
@@ -1160,7 +1160,7 @@
                                 <width>246</width>
                                 <height>{{ vscale(366) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-poster.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                             <control type="group">
                                 <visible>!String.IsEmpty(ListItem.Property(is.boundary))</visible>

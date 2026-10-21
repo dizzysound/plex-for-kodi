@@ -45,7 +45,7 @@ TEMPLATE_CONTEXTS = {
                 "useFocusColor": True,
                 "useNoFocusColor": True,
                 "zoomPlayButton": False,
-                "focusColor": None,
+                "focusColor": "FFFFFFFF",
                 "noFocusColor": None
             },
 

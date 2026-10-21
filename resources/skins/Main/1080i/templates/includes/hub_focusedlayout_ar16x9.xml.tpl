@@ -2,7 +2,7 @@
      hub_itemlayout_ar16x9.xml.tpl (see its own header comment), plus the episode screen's focus
      treatment (script-plex-episodes.xml.tpl's focusedlayout): 104% zoom about the art's own
      centre and a 518x294 ring-mask-ar16x9.png ring (art + the 6px ring-to-image margin the whole
-     card recipe uses) tinted FFE9A20D - not the old 110% zoom / home/selected.png 9-slice border.
+     card recipe uses) tinted FFFFFFFF - not the old 110% zoom / home/selected.png 9-slice border.
      The ring is still gated on Control.HasFocus (this layout renders for the selected item of
      every row, focused or not - only the focused row should show a ring). The shadow is not
      gated, matching the episode screen and the square hub tiles. -->
@@ -138,7 +138,7 @@
                 <width>518</width>
                 <height>{{ vscale(294) }}</height>
                 <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                <colordiffuse>FFE9A20D</colordiffuse>
+                <colordiffuse>FFFFFFFF</colordiffuse>
             </control>
         </control>
         {% include "includes/hub_see_more_pill.xml.tpl" with px=3 & py=122 & focused=True %}

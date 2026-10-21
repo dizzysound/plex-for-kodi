@@ -311,7 +311,7 @@
                 <aspectratio scalediffuse="false">scale</aspectratio>
             </control>
             {# Focus ring: the music grid's recipe (script-plex-squares.xml.tpl) - a flat white square diffused
-               through an RGBA ring mask, tinted FFE9A20D, in a box 6px larger than the art at -3 on both axes.
+               through an RGBA ring mask, tinted FFFFFFFF, in a box 6px larger than the art at -3 on both axes.
                Its own mask rather than the shared ring-mask-square.png, though: that one is a 3px ring at its
                488px authored size, which scales to ~0.4px in a 69px box and all but disappears. This mask is
                authored at 69px native with a 2px ring, its corner radius square-mask.png's own (~2px at 63px)
@@ -324,7 +324,7 @@
                 <width>69</width>
                 <height>{{ vscale(69) }}</height>
                 <texture diffuse="script.plex/masks/ring-mask-square-69.png">script.plex/white-square.png</texture>
-                <colordiffuse>FFE9A20D</colordiffuse>
+                <colordiffuse>FFFFFFFF</colordiffuse>
             </control>
         </control>
 

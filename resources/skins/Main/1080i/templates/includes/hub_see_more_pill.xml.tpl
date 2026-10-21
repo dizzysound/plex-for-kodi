@@ -70,7 +70,7 @@
         <width>143</width>
         <height>{{ vscale(56) }}</height>
         <texture diffuse="script.plex/masks/ring-mask-pill.png">script.plex/white-square.png</texture>
-        <colordiffuse>FFE9A20D</colordiffuse>
+        <colordiffuse>FFFFFFFF</colordiffuse>
     </control>
     {% endif %}
 </control>

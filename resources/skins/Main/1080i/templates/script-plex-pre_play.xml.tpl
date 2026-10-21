@@ -724,7 +724,7 @@
                         <!-- Ring-mask focus indicator, not a bordered selected.png overlay - matches how
                              ar16x9 art shows focus elsewhere (script-plex-episodes.xml.tpl's episode
                              cards): the same ring-mask-ar16x9.png diffused over white-square.png and
-                             tinted the same orange (FFE9A20D), plain-stretched with no border, sized ~3px
+                             tinted the same white (FFFFFFFF), plain-stretched with no border, sized ~3px
                              larger than the card on every side so the ring traces just outside it. -->
                         <control type="image">
                             <visible>Control.HasFocus(401)</visible>
@@ -733,7 +733,7 @@
                             <width>511</width>
                             <height>{{ vscale(246) }}</height>
                             <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                            <colordiffuse>FFE9A20D</colordiffuse>
+                            <colordiffuse>FFFFFFFF</colordiffuse>
                         </control>
                     </control>
                 </focusedlayout>
@@ -964,7 +964,7 @@
                             <!-- Ring-mask focus indicator, not the old bordered selected.png overlay -
                                  matches how ar16x9 art actually does this on the episode screens
                                  (script-plex-episodes.xml.tpl): same ring-mask-ar16x9.png diffused over
-                                 white-square.png, tinted FFE9A20D, plain-stretched with no border, and
+                                 white-square.png, tinted FFFFFFFF, plain-stretched with no border, and
                                  the same 3px overflow past the art on every side (episodes.xml.tpl uses
                                  5,5.5->445,250 art against a 0,0.5->451,255.5 ring - a 3px gap; this art
                                  sits at 5,5, so posx/posy=2 gives the same 3px gap here). Not identical
@@ -981,7 +981,7 @@
                                 <width>518</width>
                                 <height>{{ vscale(294) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-ar16x9.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                         </control>
                     </control>
@@ -1236,7 +1236,7 @@
                                 <width>246</width>
                                 <height>{{ vscale(366) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-poster.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                             <control type="group">
                                 <visible>!String.IsEmpty(ListItem.Property(is.boundary))</visible>
@@ -1522,7 +1522,7 @@
                                 <width>246</width>
                                 <height>{{ vscale(366) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-poster.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                             <control type="group">
                                 <visible>!String.IsEmpty(ListItem.Property(is.boundary))</visible>
@@ -1808,7 +1808,7 @@
                                 <width>246</width>
                                 <height>{{ vscale(366) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-poster.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                             <control type="group">
                                 <visible>!String.IsEmpty(ListItem.Property(is.boundary))</visible>
@@ -2093,7 +2093,7 @@
                                 <width>246</width>
                                 <height>{{ vscale(366) }}</height>
                                 <texture diffuse="script.plex/masks/ring-mask-poster.png">script.plex/white-square.png</texture>
-                                <colordiffuse>FFE9A20D</colordiffuse>
+                                <colordiffuse>FFFFFFFF</colordiffuse>
                             </control>
                             <control type="group">
                                 <visible>!String.IsEmpty(ListItem.Property(is.boundary))</visible>

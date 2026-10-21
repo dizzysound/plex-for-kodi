@@ -22,7 +22,7 @@
     <width>1502</width>
     <height>{{ vscale(530) }}</height>
     <font>font13</font>
-    <textcolor>FFFFFFFF</textcolor>
+    <textcolor>{{ theme.colors.text }}</textcolor>
     <align>left</align>
     <label>[B]$INFO[Window.Property(message)][/B]</label>
 </control>
@@ -33,8 +33,8 @@
     <width>1920</width>
     <height>1080</height>
     <font>font20</font>
-    <textcolor>FFFFFFFF</textcolor>
-    <focusedcolor>FFFFFFFF</focusedcolor>
+    <textcolor>{{ theme.colors.text }}</textcolor>
+    <focusedcolor>{{ theme.colors.text }}</focusedcolor>
     <align>center</align>
     <aligny>center</aligny>
     <texturefocus>-</texturefocus>

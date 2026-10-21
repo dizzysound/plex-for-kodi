@@ -8,7 +8,7 @@
     <font>font12</font>
     <align>left</align>
     <aligny>center</aligny>
-    <textcolor>FFFFFFFF</textcolor>
+    <textcolor>{{ theme.colors.text }}</textcolor>
     <label>[UPPERCASE]$ADDON[script.plexmod 32333][/UPPERCASE]</label>
 </control>
 {% endblock %}
@@ -70,7 +70,7 @@
             <font>font12</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$ADDON[script.plexmod 32048][/UPPERCASE]</label>
         </control>
         <control type="list" id="101">
@@ -114,7 +114,7 @@
                             <height>{{ vscale(40) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>FFFFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text }}</textcolor>
                             <label>$INFO[ListItem.Label]</label>
                         </control>
                         <control type="label">
@@ -124,7 +124,7 @@
                             <height>{{ vscale(40) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>FFFFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text }}</textcolor>
                             <label>$INFO[ListItem.Label2]</label>
                         </control>
                     </control>
@@ -175,7 +175,7 @@
                                 <height>{{ vscale(40) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                             </control>
                             <control type="label">
@@ -185,7 +185,7 @@
                                 <height>{{ vscale(40) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
                             </control>
                         </control>
@@ -228,7 +228,7 @@
             <font>font12</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$ADDON[script.plexmod 32053][/UPPERCASE]</label>
         </control>
         <control type="list" id="301">
@@ -271,7 +271,7 @@
                             <height>{{ vscale(40) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>FFFFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text }}</textcolor>
                             <label>$INFO[ListItem.Label]</label>
                         </control>
                         <control type="label">
@@ -281,7 +281,7 @@
                             <height>{{ vscale(40) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>FFFFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text }}</textcolor>
                             <label>$INFO[ListItem.Label2]</label>
                         </control>
                     </control>
@@ -332,7 +332,7 @@
                                 <height>{{ vscale(40) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                             </control>
                             <control type="label">
@@ -342,7 +342,7 @@
                                 <height>{{ vscale(40) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Label2]</label>
                             </control>
                         </control>

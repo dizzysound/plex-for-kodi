@@ -14,11 +14,11 @@
             <font>font12</font>
             <align>center</align>
             <aligny>center</aligny>
-            <focusedcolor>FFFFFFFF</focusedcolor>
-            <textcolor>FFFFFFFF</textcolor>
+            <focusedcolor>{{ theme.colors.text }}</focusedcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <textoffsetx>15</textoffsetx>
-            <texturefocus colordiffuse="40000000" border="8">script.plex/white-square-rounded-top-padded.png</texturefocus>
-            <texturenofocus colordiffuse="40000000" border="8">script.plex/white-square-rounded-top-padded.png</texturenofocus>
+            <texturefocus colordiffuse="{{ theme.colors.shade }}" border="8">script.plex/white-square-rounded-top-padded.png</texturefocus>
+            <texturenofocus colordiffuse="{{ theme.colors.shade }}" border="8">script.plex/white-square-rounded-top-padded.png</texturenofocus>
             <label>[UPPERCASE]$ADDON[script.plexmod 34005][/UPPERCASE]</label>
         </control>
         <control type="label">
@@ -27,7 +27,7 @@
             <font>font12</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <scroll>true</scroll>
             <scrollspeed>10</scrollspeed>
             <label>$INFO[Window.Property(wl_server_availability_verbose)]</label>

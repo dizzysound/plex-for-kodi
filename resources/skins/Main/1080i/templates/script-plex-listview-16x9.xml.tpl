@@ -24,7 +24,7 @@
         <width max="300">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font10</font>
-        <textcolor>A0FFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text_a0 }}</textcolor>
         <focusedcolor>A0FFFFFF</focusedcolor>
         <disabledcolor>A0FFFFFF</disabledcolor>
         <align>center</align>
@@ -40,11 +40,11 @@
         <width max="400">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font10</font>
-        <textcolor>A0FFFFFF</textcolor>
-        <focusedcolor>FF000000</focusedcolor>
+        <textcolor>{{ theme.colors.text_a0 }}</textcolor>
+        <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
         <align>center</align>
         <aligny>center</aligny>
-        <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <textoffsetx>20</textoffsetx>
         <textoffsety>0</textoffsety>
@@ -56,9 +56,9 @@
         <width max="300">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font12</font>
-        <textcolor>FFFFFFFF</textcolor>
-        <focusedcolor>FFFFFFFF</focusedcolor>
-        <disabledcolor>FFFFFFFF</disabledcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
+        <focusedcolor>{{ theme.colors.text }}</focusedcolor>
+        <disabledcolor>{{ theme.colors.text }}</disabledcolor>
         <align>center</align>
         <aligny>center</aligny>
         <texturenofocus>-</texturenofocus>
@@ -72,12 +72,12 @@
         <width max="300">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font12</font>
-        <textcolor>FFFFFFFF</textcolor>
-        <focusedcolor>FF000000</focusedcolor>
-        <disabledcolor>FFFFFFFF</disabledcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
+        <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+        <disabledcolor>{{ theme.colors.text }}</disabledcolor>
         <align>center</align>
         <aligny>center</aligny>
-        <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <textoffsetx>20</textoffsetx>
         <textoffsety>0</textoffsety>
@@ -88,11 +88,11 @@
         <width max="300">auto</width>
         <height>{{ vscale(65) }}</height>
         <font>font10</font>
-        <textcolor>A0FFFFFF</textcolor>
-        <focusedcolor>FF000000</focusedcolor>
+        <textcolor>{{ theme.colors.text_a0 }}</textcolor>
+        <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
         <align>center</align>
         <aligny>center</aligny>
-        <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <textoffsetx>20</textoffsetx>
         <textoffsety>0</textoffsety>
@@ -133,7 +133,7 @@
         <font>font12</font>
         <align>left</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>[B]$INFO[Container(101).ListItem.Label][/B]</label>
     </control>
     <control type="label">
@@ -144,7 +144,7 @@
         <font>font12</font>
         <align>right</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>[B]$INFO[Container(101).ListItem.Label2][/B]</label>
     </control>
     <control type="image">
@@ -153,7 +153,7 @@
         <width>630</width>
         <height>{{ vscale(2) }}</height>
         <texture>script.plex/white-square.png</texture>
-        <colordiffuse>40000000</colordiffuse>
+        <colordiffuse>{{ theme.colors.shade }}</colordiffuse>
     </control>
     <control type="textbox">
         <posx>0</posx>
@@ -191,7 +191,7 @@
             <usecontrolcoords>true</usecontrolcoords>
             <visible>!String.IsEmpty(Window.Property(initialized))</visible>
 
-            {% with attr = {"width": 126, "height": 100} & template = "includes/themed_button.xml.tpl" & hitrect = {"x": 20, "y": 20, "w": 86, "h": 60} %}
+            {% with attr = {"width": 126, "height": 100} & template = "includes/themed_button.xml.tpl" & navids=[301,302,303,304] & navup=200 & navdown=101 & navl=210 & navr=600 & hitrect = {"x": 20, "y": 20, "w": 86, "h": 60} %}
                 {% include template with name="play" & id=301 & visible="String.IsEmpty(Window.Property(disable_playback)) + [!String.IsEqual(Window(10000).Property(script.plex.item.type),collection) | String.IsEqual(Window.Property(media),collection)]" %}
                 {% include template with name="shuffle" & id=302 & visible="String.IsEmpty(Window.Property(disable_playback)) + [!String.IsEqual(Window(10000).Property(script.plex.item.type),collection) | String.IsEqual(Window.Property(media),collection)]" %}
                 {% include template with name="more" & id=303 & visible="String.IsEmpty(Window.Property(disable_playback)) + [String.IsEmpty(Window.Property(no.options)) | Player.HasAudio]" %}
@@ -247,7 +247,7 @@
                                 <height>{{ vscale(72) }}</height>
                                 <font>font10</font>
                                 <align>left</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>[B]$INFO[ListItem.Label][/B]</label>
                             </control>
                             <control type="label">
@@ -258,7 +258,7 @@
                                 <height>{{ vscale(72) }}</height>
                                 <font>font10</font>
                                 <align>left</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>[B]$INFO[ListItem.Property(year)][/B]</label>
                             </control>
                         </control>
@@ -270,7 +270,7 @@
                         <width>915</width>
                         <height>{{ vscale(2) }}</height>
                         <texture>script.plex/white-square.png</texture>
-                        <colordiffuse>40000000</colordiffuse>
+                        <colordiffuse>{{ theme.colors.shade }}</colordiffuse>
                     </control>
                 </control>
             </itemlayout>
@@ -294,7 +294,7 @@
                                     <height>{{ vscale(72) }}</height>
                                     <font>font10</font>
                                     <align>left</align>
-                                    <textcolor>FFFFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text }}</textcolor>
                                     <label>[B]$INFO[ListItem.Label][/B]</label>
                                 </control>
                                 <control type="label">
@@ -305,7 +305,7 @@
                                     <height>{{ vscale(72) }}</height>
                                     <font>font10</font>
                                     <align>left</align>
-                                    <textcolor>FFFFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text }}</textcolor>
                                     <label>[B]$INFO[ListItem.Property(year)][/B]</label>
                                 </control>
                             </control>
@@ -317,7 +317,7 @@
                             <width>915</width>
                             <height>{{ vscale(2) }}</height>
                             <texture>script.plex/white-square.png</texture>
-                            <colordiffuse>40000000</colordiffuse>
+                            <colordiffuse>{{ theme.colors.shade }}</colordiffuse>
                         </control>
                     </control>
 
@@ -338,7 +338,7 @@
                             <width>1005</width>
                             <height>{{ vscale(76) }}</height>
                             <texture border="12">script.plex/white-square-rounded.png</texture>
-                            <colordiffuse>FFE5A00D</colordiffuse>
+                            <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                         </control>
 
                         <control type="group">
@@ -383,9 +383,9 @@
         <height>910</height>
         <onleft>151</onleft>
         <visible>true</visible>
-        <texturesliderbackground colordiffuse="40000000" border="5">script.plex/white-square-rounded.png</texturesliderbackground>
+        <texturesliderbackground colordiffuse="{{ theme.colors.shade }}" border="5">script.plex/white-square-rounded.png</texturesliderbackground>
         <texturesliderbar colordiffuse="77FFFFFF" border="5">script.plex/white-square-rounded.png</texturesliderbar>
-        <texturesliderbarfocus colordiffuse="FFE5A00D" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
+        <texturesliderbarfocus colordiffuse="{{ theme.colors.focus }}" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
         <textureslidernib>-</textureslidernib>
         <textureslidernibfocus>-</textureslidernibfocus>
         <pulseonselect>false</pulseonselect>
@@ -427,7 +427,7 @@
                         <font>font10</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>99FFFFFF</textcolor>
+                        <textcolor>{{ theme.colors.text_99 }}</textcolor>
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                     <control type="label">
@@ -439,7 +439,7 @@
                         <font>font10</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>FFE5A00D</textcolor>
+                        <textcolor>{{ theme.colors.accent }}</textcolor>
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                 </control>
@@ -463,7 +463,7 @@
                         <font>font10</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>99FFFFFF</textcolor>
+                        <textcolor>{{ theme.colors.text_99 }}</textcolor>
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                     <control type="label">
@@ -475,7 +475,7 @@
                         <font>font10</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>FFE5A00D</textcolor>
+                        <textcolor>{{ theme.colors.accent }}</textcolor>
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                 </control>
@@ -490,7 +490,7 @@
                         <posy>0</posy>
                         <width>34</width>
                         <height>{{ vscale(34) }}</height>
-                        <colordiffuse>FFE5A00D</colordiffuse>
+                        <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                         <texture border="12">script.plex/white-outline-rounded.png</texture>
                     </control>
                 </control>

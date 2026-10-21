@@ -24,7 +24,7 @@
             <scrolltime tween="quadratic" easing="out">200</scrolltime>
             <usecontrolcoords>true</usecontrolcoords>
 
-            {% with attr = {"width": 126, "height": 100} & template = "includes/themed_button.xml.tpl" & hitrect = {"x": 20, "y": 20, "w": 86, "h": 60} %}
+            {% with attr = {"width": 126, "height": 100} & template = "includes/themed_button.xml.tpl" & navids=[301,302,303,304] & navup=200 & navdown=101 & navl=210 & navr=600 & hitrect = {"x": 20, "y": 20, "w": 86, "h": 60} %}
                 {% include template with name="play" & id=301 & visible="String.IsEmpty(Window.Property(disable_playback)) + [!String.IsEqual(Window(10000).Property(script.plex.item.type),collection) | String.IsEqual(Window.Property(media),collection)]" %}
                 {% include template with name="shuffle" & id=302 & visible="String.IsEmpty(Window.Property(disable_playback)) + [!String.IsEqual(Window(10000).Property(script.plex.item.type),collection) | String.IsEqual(Window.Property(media),collection)]" %}
                 {% include template with name="more" & id=303 & visible="String.IsEmpty(Window.Property(disable_playback)) + [String.IsEmpty(Window.Property(no.options)) | Player.HasAudio]" %}
@@ -67,35 +67,35 @@
                             <posy>0</posy>
                             <width>244</width>
                             <height>{{ vscale(361) }}</height>
-                            <texture>$INFO[ListItem.Property(thumb.fallback)]</texture>
+                            <texture{% if theme.plx %} diffuse="script.plex/plx/mask-poster.png"{% endif %}>$INFO[ListItem.Property(thumb.fallback)]</texture>
                         </control>
                         <control type="image">
                             <posx>0</posx>
                             <posy>0</posy>
                             <width>244</width>
                             <height>{{ vscale(361) }}</height>
-                            <texture background="true">$INFO[ListItem.Thumb]</texture>
+                            <texture background="true"{% if theme.plx %} diffuse="script.plex/plx/mask-poster.png"{% endif %}>$INFO[ListItem.Thumb]</texture>
                             <aspectratio>scale</aspectratio>
                         </control>
                         <control type="group">
                             <visible>!String.IsEmpty(ListItem.Property(progress))</visible>
-                            <posx>0</posx>
+                            <posx>{% if theme.plx %}14{% else %}0{% endif %}</posx>
                             <posy>{{ vscale(351) }}</posy>
                             <control type="image">
                                 <posx>0</posx>
                                 <posy>0</posy>
-                                <width>244</width>
+                                <width>{% if theme.plx %}216{% else %}244{% endif %}</width>
                                 <height>{{ vscale(10) }}</height>
                                 <texture>script.plex/white-square.png</texture>
-                                <colordiffuse>C0000000</colordiffuse>
+                                <colordiffuse>{{ theme.colors.scrim }}</colordiffuse>
                             </control>
                             <control type="image">
                                 <posx>0</posx>
                                 <posy>1</posy>
-                                <width>244</width>
+                                <width>{% if theme.plx %}216{% else %}244{% endif %}</width>
                                 <height>{{ vscale(8) }}</height>
                                 <texture>$INFO[ListItem.Property(progress)]</texture>
-                                <colordiffuse>FFCC7B19</colordiffuse>
+                                <colordiffuse>{{ theme.colors.accent_alt }}</colordiffuse>
                             </control>
                         </control>
                         {% include "includes/watched_indicator.xml.tpl" with xoff=244 & uw_size=45 & with_count=True & scale="medium" %}
@@ -107,7 +107,7 @@
                             <height>{{ vscale(72) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>FFFFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text }}</textcolor>
                             <label>$INFO[ListItem.Label]</label>
                         </control>
                         <control type="label">
@@ -119,7 +119,7 @@
                             <height>{{ vscale(72) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>A0FFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text_a0 }}</textcolor>
                             <label>$INFO[ListItem.Property(subtitle)]</label>
                         </control>
                         <control type="label">
@@ -131,7 +131,7 @@
                             <height>{{ vscale(72) }}</height>
                             <font>font10</font>
                             <align>center</align>
-                            <textcolor>A0FFFFFF</textcolor>
+                            <textcolor>{{ theme.colors.text_a0 }}</textcolor>
                             <label>$INFO[ListItem.Property(year)]</label>
                         </control>
                     </control>
@@ -164,35 +164,35 @@
                                 <posy>0</posy>
                                 <width>244</width>
                                 <height>{{ vscale(361) }}</height>
-                                <texture>$INFO[ListItem.Property(thumb.fallback)]</texture>
+                                <texture{% if theme.plx %} diffuse="script.plex/plx/mask-poster.png"{% endif %}>$INFO[ListItem.Property(thumb.fallback)]</texture>
                             </control>
                             <control type="image">
                                 <posx>0</posx>
                                 <posy>0</posy>
                                 <width>244</width>
                                 <height>{{ vscale(361) }}</height>
-                                <texture background="true">$INFO[ListItem.Thumb]</texture>
+                                <texture background="true"{% if theme.plx %} diffuse="script.plex/plx/mask-poster.png"{% endif %}>$INFO[ListItem.Thumb]</texture>
                                 <aspectratio>scale</aspectratio>
                             </control>
                             <control type="group">
                                 <visible>!String.IsEmpty(ListItem.Property(progress))</visible>
-                                <posx>0</posx>
+                                <posx>{% if theme.plx %}14{% else %}0{% endif %}</posx>
                                 <posy>{{ vscale(351) }}</posy>
                                 <control type="image">
                                     <posx>0</posx>
                                     <posy>0</posy>
-                                    <width>244</width>
+                                    <width>{% if theme.plx %}216{% else %}244{% endif %}</width>
                                     <height>{{ vscale(10) }}</height>
                                     <texture>script.plex/white-square.png</texture>
-                                    <colordiffuse>C0000000</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.scrim }}</colordiffuse>
                                 </control>
                                 <control type="image">
                                     <posx>0</posx>
                                     <posy>1</posy>
-                                    <width>244</width>
+                                    <width>{% if theme.plx %}216{% else %}244{% endif %}</width>
                                     <height>{{ vscale(8) }}</height>
                                     <texture>$INFO[ListItem.Property(progress)]</texture>
-                                    <colordiffuse>FFCC7B19</colordiffuse>
+                                    <colordiffuse>{{ theme.colors.accent_alt }}</colordiffuse>
                                 </control>
                             </control>
                             {% include "includes/watched_indicator.xml.tpl" with xoff=244 & uw_size=45 & with_count=True & scale="medium" %}
@@ -204,7 +204,7 @@
                                 <height>{{ vscale(72) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                             </control>
                             <control type="label">
@@ -216,7 +216,7 @@
                                 <height>{{ vscale(72) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>A0FFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text_a0 }}</textcolor>
                                 <label>$INFO[ListItem.Property(subtitle)]</label>
                             </control>
                             <control type="label">
@@ -228,7 +228,7 @@
                                 <height>{{ vscale(72) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>A0FFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text_a0 }}</textcolor>
                                 <label>$INFO[ListItem.Property(year)]</label>
                             </control>
                         </control>
@@ -238,7 +238,7 @@
                             <posy>0</posy>
                             <width>254</width>
                             <height>{{ vscale(371) }}</height>
-                            <texture border="10">script.plex/home/selected.png</texture>
+                            <texture border="{% if theme.plx %}20{% else %}10{% endif %}"{% if theme.plx %} colordiffuse="{{ theme.colors.focus }}"{% endif %}>{% if theme.plx %}script.plex/plx/card-outline.png{% else %}script.plex/home/selected.png{% endif %}</texture>
                         </control>
                     </control>
                 </control>
@@ -282,7 +282,7 @@
                         <font>font10</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>99FFFFFF</textcolor>
+                        <textcolor>{{ theme.colors.text_99 }}</textcolor>
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                     <control type="label">
@@ -294,7 +294,7 @@
                         <font>font10</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>FFE5A00D</textcolor>
+                        <textcolor>{{ theme.colors.accent }}</textcolor>
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                 </control>
@@ -318,7 +318,7 @@
                         <font>font10</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>99FFFFFF</textcolor>
+                        <textcolor>{{ theme.colors.text_99 }}</textcolor>
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                     <control type="label">
@@ -330,7 +330,7 @@
                         <font>font10</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>FFE5A00D</textcolor>
+                        <textcolor>{{ theme.colors.accent }}</textcolor>
                         <label>$INFO[ListItem.Label]</label>
                     </control>
                 </control>
@@ -345,7 +345,7 @@
                         <posy>0</posy>
                         <width>34</width>
                         <height>{{ vscale(34) }}</height>
-                        <colordiffuse>FFE5A00D</colordiffuse>
+                        <colordiffuse>{{ theme.colors.accent }}</colordiffuse>
                         <texture border="12">script.plex/white-outline-rounded.png</texture>
                     </control>
                 </control>
@@ -362,9 +362,9 @@
     <height>910</height>
     <visible>true</visible>
     <animation effect="zoom" time="200" start="1860,{{ vscale(150) }},12,910" end="1860,16,12,1055" tween="quadratic" easing="out" condition="Integer.IsGreater(Container(101).ListItem.Property(index),5) + String.IsEmpty(Window.Property(content.filling))">Conditional</animation>
-    <texturesliderbackground colordiffuse="40000000" border="5">script.plex/white-square-rounded.png</texturesliderbackground>
+    <texturesliderbackground colordiffuse="{{ theme.colors.shade }}" border="5">script.plex/white-square-rounded.png</texturesliderbackground>
     <texturesliderbar colordiffuse="77FFFFFF" border="5">script.plex/white-square-rounded.png</texturesliderbar>
-    <texturesliderbarfocus colordiffuse="FFE5A00D" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
+    <texturesliderbarfocus colordiffuse="{{ theme.colors.focus }}" border="5">script.plex/white-square-rounded.png</texturesliderbarfocus>
     <textureslidernib>-</textureslidernib>
     <textureslidernibfocus>-</textureslidernibfocus>
     <pulseonselect>false</pulseonselect>

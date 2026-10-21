@@ -30,7 +30,7 @@
                 <font>font10</font>
                 <align>center</align>
                 <aligny>center</aligny>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <label>$INFO[ListItem.Label]</label>
             </control>
         </control>
@@ -82,7 +82,7 @@
                     <font>font10</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <textcolor>FFFFFFFF</textcolor>
+                    <textcolor>{{ theme.colors.text }}</textcolor>
                     <label>$INFO[ListItem.Label]</label>
                 </control>
             </control>

@@ -1,3 +1,12 @@
+{% if theme.plx %}
+<control type="image">
+    <posx>0</posx>
+    <posy>0</posy>
+    <width>1920</width>
+    <height>1080</height>
+    <texture colordiffuse="{{ theme.colors.bg }}">script.plex/white-square.png</texture>
+</control>
+{% else %}
 <control type="group">
     <visible>String.IsEmpty(Window.Property(use_solid_background))</visible>
     <control type="image">
@@ -37,3 +46,4 @@
         {% include "includes/scale_background.xml.tpl" %}
     </control>
 </control>
+{% endif %}

@@ -151,6 +151,17 @@ class TemplateRenderTest(KodiTestCase):
                 self.assertIsNone(leftover, "unrendered ibis syntax at offset {0} in {1}".format(
                     leftover.start() if leftover else -1, name))
 
+    def test_no_unevaluated_expressions_survive_rendering(self):
+        """
+        vscale(a - b) is not evaluated by the engine and renders as a Python
+        list repr or a literal call; (a - b)|vscale must be used instead.
+        """
+        for theme in THEMES:
+            for name, xml in sorted(render_theme(make_engine(self.mktemp()), theme).items()):
+                with self.subTest(theme=theme, template=name):
+                    self.assertNotIn("vscale(", xml)
+                    self.assertIsNone(re.search(r"\[\s*'[A-Za-z_]+'\s*\]", xml))
+
     def test_every_indicator_style_renders(self):
         """
         Watched/unwatched indicator styles are a separate inheritance axis from
@@ -189,6 +200,17 @@ class TemplateRenderTest(KodiTestCase):
         for name in sorted(scaled):
             with self.subTest(template=name):
                 ET.fromstring(scaled[name])
+
+    def test_plx_renders_scaled(self):
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        context["core"]["resolution"] = (1280, 1024)
+        context["core"]["needs_scaling"] = True
+        scaled = render_theme(make_engine(self.mktemp(), context=context), "plx")
+        for name, xml in sorted(scaled.items()):
+            with self.subTest(template=name):
+                self.assertNotIn("vscale(", xml)
+                self.assertIsNone(re.search(r"\[\s*'[A-Za-z_]+'\s*\]", xml))
+                ET.fromstring(xml)
 
     def test_hub_count_flows_into_the_home_template(self):
         base = copy.deepcopy(TEMPLATE_CONTEXTS)
@@ -247,6 +269,18 @@ class TemplateContextTest(KodiTestCase):
         self.assertEqual("CC000000", indicators["watched_bg"])
         # from base
         self.assertTrue(indicators["show"])
+
+    def test_every_theme_defines_every_color_token(self):
+        context = copy.deepcopy(TEMPLATE_CONTEXTS)
+        tokens = set(context["themes"]["base"]["colors"])
+        for theme in THEMES:
+            resolved = prepare_template_data(theme, copy.deepcopy(TEMPLATE_CONTEXTS))
+            self.assertEqual(tokens, set(resolved["theme"]["colors"]), theme)
+
+    def test_only_the_plx_theme_sets_the_plx_flag(self):
+        for theme in THEMES:
+            resolved = prepare_template_data(theme, copy.deepcopy(TEMPLATE_CONTEXTS))
+            self.assertEqual(theme == "plx", bool(resolved["theme"].get("plx")), theme)
 
     def test_unknown_theme_is_a_hard_error(self):
         engine = make_engine(self.mktemp())

@@ -24,8 +24,8 @@
     <onup>200</onup>
     <ondown>101</ondown>
     <font>font13</font>
-    <textcolor>FFFFFFFF</textcolor>
-    <focusedcolor>FFFFFFFF</focusedcolor>
+    <textcolor>{{ theme.colors.text }}</textcolor>
+    <focusedcolor>{{ theme.colors.text }}</focusedcolor>
     <align>center</align>
     <aligny>center</aligny>
     <texturefocus>-</texturefocus>
@@ -43,7 +43,7 @@
     <onup>100</onup>
     <font>font12</font>
     <textcolor>B3FFFFFF</textcolor>
-    <focusedcolor>FFFFFFFF</focusedcolor>
+    <focusedcolor>{{ theme.colors.text }}</focusedcolor>
     <align>center</align>
     <aligny>center</aligny>
     <texturefocus>-</texturefocus>

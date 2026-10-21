@@ -35,7 +35,7 @@
         <font>font12</font>
         <align>center</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>[B][UPPERCASE]$INFO[Window.Property(heading)][/UPPERCASE][/B]</label>
     </control>
     <control type="list" id="100">
@@ -58,7 +58,7 @@
                 <font>font12</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <scroll>true</scroll>
                 <scrollspeed>15</scrollspeed>
                 <label>$INFO[ListItem.Label]</label>
@@ -72,7 +72,7 @@
                 <font>font12</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <scroll>true</scroll>
                 <scrollspeed>15</scrollspeed>
                 <label>$INFO[ListItem.Label]</label>
@@ -97,7 +97,7 @@
                 <posy>0</posy>
                 <width>600</width>
                 <height>{{ vscale(100) }}</height>
-                <texture colordiffuse="FFE5A00D">script.plex/white-square.png</texture>
+                <texture colordiffuse="{{ theme.colors.accent }}">script.plex/white-square.png</texture>
             </control>
             <control type="label">
                 <visible>String.IsEmpty(ListItem.Label2)</visible>
@@ -108,7 +108,7 @@
                 <font>font12</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FF000000</textcolor>
+                <textcolor>{{ theme.colors.text_inv }}</textcolor>
                 <scroll>true</scroll>
                 <scrollspeed>15</scrollspeed>
                 <label>$INFO[ListItem.Label]</label>
@@ -122,7 +122,7 @@
                 <font>font12</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FF000000</textcolor>
+                <textcolor>{{ theme.colors.text_inv }}</textcolor>
                 <scroll>true</scroll>
                 <scrollspeed>15</scrollspeed>
                 <label>$INFO[ListItem.Label]</label>

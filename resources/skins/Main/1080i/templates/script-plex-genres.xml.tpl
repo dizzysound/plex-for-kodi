@@ -51,7 +51,7 @@
                     <font>font13</font>
                     <align>center</align>
                     <aligny>center</aligny>
-                    <textcolor>FFFFFFFF</textcolor>
+                    <textcolor>{{ theme.colors.text }}</textcolor>
                     <shadowcolor>DD000000</shadowcolor>
                     <label>$INFO[ListItem.Label]</label>
                 </control>
@@ -94,7 +94,7 @@
                         <font>font13</font>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <textcolor>FFFFFFFF</textcolor>
+                        <textcolor>{{ theme.colors.text }}</textcolor>
                         <shadowcolor>DD000000</shadowcolor>
                         <label>$INFO[ListItem.Label]</label>
                     </control>

@@ -65,6 +65,31 @@ TEMPLATE_CONTEXTS = {
                     "focusSuffix": "-focus",
                 }
             },
+            # Color tokens used by the templates. The stock look is the base theme;
+            # other themes override single values.
+            "colors": {
+                "accent": "FFE5A00D",
+                "accent_alt": "FFCC7B19",
+                "focus": "FFE5A00D",
+                "text": "FFFFFFFF",
+                "text_inv": "FF000000",
+                "text_on_focus": "FF000000",
+                "text_d8": "D8FFFFFF",
+                "text_b8": "B8FFFFFF",
+                "text_aa": "AAFFFFFF",
+                "text_a0": "A0FFFFFF",
+                "text_99": "99FFFFFF",
+                "surface": "FF1F1F1F",
+                "surface_hi": "FF404040",
+                "surface_33": "FF333333",
+                "scrim": "C0000000",
+                "shade": "40000000",
+                "bg": "FF000000",
+                "bg_d9": "D9000000",
+                "glass": "66000000",
+                "glass_hi": "33FFFFFF",
+                "progress": "FFCC7B19"
+            },
             "buttons": {
                 "useFocusColor": True,
                 "useNoFocusColor": True,
@@ -215,6 +240,35 @@ TEMPLATE_CONTEXTS = {
             "buttons": {
                 "useFocusColor": False,
                 "zoomPlayButton": False,
+            }
+        },
+        # Restyled look: cool dark surfaces, white focus pills, hero-led home screen.
+        # `plx` gates the structural changes in the templates; stock themes leave it unset.
+        "plx": {
+            "INHERIT": "modern",
+            "plx": True,
+            "colors": {
+                "accent": "FFFFFFFF",
+                "accent_alt": "FFC9C2BB",
+                "focus": "FFFFFFFF",
+                "text_on_focus": "FF14110F",
+                "text_inv": "FF14110F",
+                "surface": "FF221F1D",
+                "surface_hi": "FF38332F",
+                "surface_33": "FF2B2724",
+                "scrim": "CC0C0A09",
+                "bg": "FF161412",
+                "bg_d9": "D9161412",
+                "glass": "66000000",
+                "glass_hi": "33FFFFFF",
+                "progress": "FFE5A00D"
+            },
+            "buttons": {
+                "useFocusColor": False,
+                "zoomPlayButton": False,
+            },
+            "episodes": {
+                "use_button_bg": False,
             }
         }
     }

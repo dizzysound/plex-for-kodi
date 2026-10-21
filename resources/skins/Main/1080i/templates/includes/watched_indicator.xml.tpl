@@ -53,7 +53,7 @@
                 <width>{{ wbg_w }}</width>
                 <height>{{ wbg_h|vscale }}</height>
                 <texture>script.plex/white-square.png</texture>
-                <colordiffuse>{{ indicators.unwatched_count_bg|default("FFCC7B19") }}</colordiffuse>
+                <colordiffuse>{{ indicators.unwatched_count_bg|default(theme.colors.accent_alt) }}</colordiffuse>
             </control>
             {% else %}
             <control type="image">
@@ -63,7 +63,7 @@
                 <width>{{ wbg_w }}</width>
                 <height>{{ wbg_h|vscale }}</height>
                 <texture>{{ wbg|default("script.plex/white-square-bl-rounded_w.png") }}</texture>
-                <colordiffuse>{{ indicators.unwatched_count_bg|default("FFCC7B19") }}</colordiffuse>
+                <colordiffuse>{{ indicators.unwatched_count_bg|default(theme.colors.accent_alt) }}</colordiffuse>
             </control>
             <control type="image">
                 <visible>!String.IsEmpty({{ itemref|default("ListItem") }}.Property(unwatched.count.large))</visible>
@@ -72,7 +72,7 @@
                 <width>{{ wbg_w + 16 }}</width>
                 <height>{{ wbg_h|vscale }}</height>
                 <texture>{{ wbg|default("script.plex/white-square-bl-rounded_w.png") }}</texture>
-                <colordiffuse>{{ indicators.unwatched_count_bg|default("FFCC7B19") }}</colordiffuse>
+                <colordiffuse>{{ indicators.unwatched_count_bg|default(theme.colors.accent_alt) }}</colordiffuse>
             </control>
             {% endif %}
             <control type="label">{# this label uses a nasty hack to get a smaller fitting font size: use a larger font, increase the label size, then zoom it down #}

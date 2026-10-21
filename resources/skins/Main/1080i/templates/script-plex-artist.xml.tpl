@@ -28,7 +28,7 @@
             <scrolltime tween="quadratic" easing="out">200</scrolltime>
             <usecontrolcoords>true</usecontrolcoords>
 
-            {% with attr = {"width": 174, "height": 139} & template = "includes/themed_button.xml.tpl" & hitrect = {"w": 94, "h": 59} %}
+            {% with attr = {"width": 174, "height": 139} & template = "includes/themed_button.xml.tpl" & navids=[301,302,303,304] & navup=200 & navdown=400 & hitrect = {"w": 94, "h": 59} %}
                 {% include template with name="info" & id=301 %}
                 {% include template with name="play" & id=302 %}
                 {% include template with name="shuffle" & id=303 %}
@@ -59,7 +59,7 @@
             <font>font13</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>$INFO[Window.Property(artist.title)]</label>
         </control>
         <control type="label">
@@ -144,7 +144,7 @@
                                 <height>{{ vscale(30) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                             </control>
                             <control type="label">
@@ -154,7 +154,7 @@
                                 <height>{{ vscale(30) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Property(year)]</label>
                             </control>
                         </control>
@@ -207,7 +207,7 @@
                                     <height>{{ vscale(30) }}</height>
                                     <font>font10</font>
                                     <align>center</align>
-                                    <textcolor>FFFFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text }}</textcolor>
                                     <label>$INFO[ListItem.Label]</label>
                                 </control>
                                 <control type="label">
@@ -217,7 +217,7 @@
                                     <height>{{ vscale(30) }}</height>
                                     <font>font10</font>
                                     <align>center</align>
-                                    <textcolor>FFFFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text }}</textcolor>
                                     <label>$INFO[ListItem.Property(year)]</label>
                                 </control>
                             </control>
@@ -252,7 +252,7 @@
             <font>font12</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
             <label>[UPPERCASE]$INFO[Window.Property(related.header)][/UPPERCASE]</label>
         </control>
         <control type="list" id="401">
@@ -300,7 +300,7 @@
                                 <height>{{ vscale(30) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Label]</label>
                             </control>
                             <control type="label">
@@ -310,7 +310,7 @@
                                 <height>{{ vscale(30) }}</height>
                                 <font>font10</font>
                                 <align>center</align>
-                                <textcolor>FFFFFFFF</textcolor>
+                                <textcolor>{{ theme.colors.text }}</textcolor>
                                 <label>$INFO[ListItem.Property(year)]</label>
                             </control>
                         </control>
@@ -321,7 +321,7 @@
                                 <posy>0</posy>
                                 <width>215</width>
                                 <height>{{ vscale(215) }}</height>
-                                <texture colordiffuse="FF404040">script.plex/white-square.png</texture>
+                                <texture colordiffuse="{{ theme.colors.surface_hi }}">script.plex/white-square.png</texture>
                             </control>
                             <control type="image">
                                 <visible>String.IsEmpty(ListItem.Property(is.updating)) + !String.IsEmpty(ListItem.Property(right.boundary))</visible>
@@ -329,7 +329,7 @@
                                 <posy>{{ vscale(57.5) }}</posy>
                                 <width>61</width>
                                 <height>{{ vscale(100) }}</height>
-                                <texture colordiffuse="40000000">script.plex/indicators/chevron-white.png</texture>
+                                <texture colordiffuse="{{ theme.colors.shade }}">script.plex/indicators/chevron-white.png</texture>
                             </control>
                             <control type="image">
                                 <visible>String.IsEmpty(ListItem.Property(is.updating)) + !String.IsEmpty(ListItem.Property(left.boundary))</visible>
@@ -337,7 +337,7 @@
                                 <posy>{{ vscale(57.5) }}</posy>
                                 <width>61</width>
                                 <height>{{ vscale(100) }}</height>
-                                <texture colordiffuse="40000000">script.plex/indicators/chevron-white-l.png</texture>
+                                <texture colordiffuse="{{ theme.colors.shade }}">script.plex/indicators/chevron-white-l.png</texture>
                             </control>
                             <control type="image">
                                 <visible>!String.IsEmpty(ListItem.Property(is.updating))</visible>
@@ -397,7 +397,7 @@
                                     <height>{{ vscale(30) }}</height>
                                     <font>font10</font>
                                     <align>center</align>
-                                    <textcolor>FFFFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text }}</textcolor>
                                     <label>$INFO[ListItem.Label]</label>
                                 </control>
                                 <control type="label">
@@ -407,7 +407,7 @@
                                     <height>{{ vscale(30) }}</height>
                                     <font>font10</font>
                                     <align>center</align>
-                                    <textcolor>FFFFFFFF</textcolor>
+                                    <textcolor>{{ theme.colors.text }}</textcolor>
                                     <label>$INFO[ListItem.Property(year)]</label>
                                 </control>
                             </control>
@@ -427,7 +427,7 @@
                                 <posy>0</posy>
                                 <width>215</width>
                                 <height>{{ vscale(215) }}</height>
-                                <texture colordiffuse="FF404040">script.plex/white-square.png</texture>
+                                <texture colordiffuse="{{ theme.colors.surface_hi }}">script.plex/white-square.png</texture>
                             </control>
                             <control type="image">
                                 <visible>String.IsEmpty(ListItem.Property(is.updating)) + !String.IsEmpty(ListItem.Property(right.boundary))</visible>
@@ -435,7 +435,7 @@
                                 <posy>{{ vscale(57.5) }}</posy>
                                 <width>61</width>
                                 <height>{{ vscale(100) }}</height>
-                                <texture colordiffuse="40000000">script.plex/indicators/chevron-white.png</texture>
+                                <texture colordiffuse="{{ theme.colors.shade }}">script.plex/indicators/chevron-white.png</texture>
                             </control>
                             <control type="image">
                                 <visible>String.IsEmpty(ListItem.Property(is.updating)) + !String.IsEmpty(ListItem.Property(left.boundary))</visible>
@@ -443,7 +443,7 @@
                                 <posy>{{ vscale(57.5) }}</posy>
                                 <width>61</width>
                                 <height>{{ vscale(100) }}</height>
-                                <texture colordiffuse="40000000">script.plex/indicators/chevron-white-l.png</texture>
+                                <texture colordiffuse="{{ theme.colors.shade }}">script.plex/indicators/chevron-white-l.png</texture>
                             </control>
                             <control type="image">
                                 <visible>!String.IsEmpty(ListItem.Property(is.updating))</visible>

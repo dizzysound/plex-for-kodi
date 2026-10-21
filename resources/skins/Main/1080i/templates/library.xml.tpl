@@ -19,53 +19,61 @@
         <width>1920</width>
         <height>{{ vscale(135) }}</height>
         <texture>script.plex/white-square.png</texture>
-        <colordiffuse>C0000000</colordiffuse>
+        <colordiffuse>{{ theme.colors.scrim }}</colordiffuse>
     </control>
     {% endblock %}
     <control type="grouplist">
         <posx>60</posx>
-        <posy>{{ vscale(47.5) }}</posy>
+        <posy>{% if theme.plx %}{{ vscale(35.5) }}{% else %}{{ vscale(47.5) }}{% endif %}</posy>
         <width>1000</width>
-        <height>{{ vscale(40) }}</height>
+        <height>{% if theme.plx %}{{ vscale(64) }}{% else %}{{ vscale(40) }}{% endif %}</height>
         <align>left</align>
         <itemgap>60</itemgap>
         <orientation>horizontal</orientation>
         <ondown condition="String.IsEmpty(Window.Property(no.content.filtered))">50</ondown>
         <ondown condition="!String.IsEmpty(Window.Property(no.content.filtered))">600</ondown>
         <control type="group">
-            <width>40</width>
-            <height>{{ vscale(40) }}</height>
+            <width>{% if theme.plx %}64{% else %}40{% endif %}</width>
+            <height>{% if theme.plx %}{{ vscale(64) }}{% else %}{{ vscale(40) }}{% endif %}</height>
+            {% if theme.plx %}
+            {% with chip = "201" %}{% include "includes/plx/chip.xml.tpl" %}{% endwith %}
+            {% endif %}
             <control type="button" id="201">
-                <animation effect="zoom" start="100" end="144" time="100" center="20,{{ vscale(20) }}" reversible="false">Focus</animation>
-                <animation effect="zoom" start="144" end="100" time="100" center="20,{{ vscale(20) }}" reversible="false">UnFocus</animation>
+                <animation effect="zoom" start="100" end="144" time="100" center="{% if theme.plx %}32,{{ vscale(32) }}{% else %}20,{{ vscale(20) }}{% endif %}" reversible="false">Focus</animation>
+                <animation effect="zoom" start="144" end="100" time="100" center="{% if theme.plx %}32,{{ vscale(32) }}{% else %}20,{{ vscale(20) }}{% endif %}" reversible="false">UnFocus</animation>
+                {% if theme.plx %}<posx>12</posx><posy>{{ vscale(12) }}</posy>{% endif %}
                 <width>40</width>
                 <height>{{ vscale(40) }}</height>
                 <onright>202</onright>
                 <ondown condition="String.IsEmpty(Window.Property(no.content.filtered))">50</ondown>
                 <ondown condition="!String.IsEmpty(Window.Property(no.content.filtered))">600</ondown>
                 <font>font12</font>
-                <focusedcolor>FF000000</focusedcolor>
-                <texturefocus colordiffuse="FFE5A00D">script.plex/buttons/home-focus.png</texturefocus>
+                <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                <texturefocus colordiffuse="{% if theme.plx %}{{ theme.colors.text_on_focus }}{% else %}{{ theme.colors.focus }}{% endif %}">script.plex/buttons/home-focus.png</texturefocus>
                 <texturenofocus colordiffuse="99FFFFFF">script.plex/buttons/home.png</texturenofocus>
                 <label> </label>
             </control>
         </control>
         <control type="label">
             <width max="300">auto</width>
-            <height>{{ vscale(40) }}</height>
-            <font>font12</font>
+            <height>{% if theme.plx %}{{ vscale(64) }}{% else %}{{ vscale(40) }}{% endif %}</height>
+            <font>{% if theme.plx %}font13{% else %}font12{% endif %}</font>
             <align>left</align>
             <aligny>center</aligny>
-            <textcolor>FFFFFFFF</textcolor>
-            <label>[UPPERCASE]$INFO[Window.Property(screen.title)][/UPPERCASE][COLOR=gray]$INFO[Window.Property(items.count),  (,)][/COLOR]</label>
+            <textcolor>{{ theme.colors.text }}</textcolor>
+            <label>{% if theme.plx %}[B]$INFO[Window.Property(screen.title)][/B][COLOR=gray]$INFO[Window.Property(items.count),  (,)][/COLOR]{% else %}[UPPERCASE]$INFO[Window.Property(screen.title)][/UPPERCASE][COLOR=gray]$INFO[Window.Property(items.count),  (,)][/COLOR]{% endif %}</label>
             <scroll>true</scroll>
         </control>
         <control type="group">
-            <width>40</width>
-            <height>{{ vscale(40) }}</height>
+            <width>{% if theme.plx %}64{% else %}40{% endif %}</width>
+            <height>{% if theme.plx %}{{ vscale(64) }}{% else %}{{ vscale(40) }}{% endif %}</height>
+            {% if theme.plx %}
+            {% with chip = "202" %}{% include "includes/plx/chip.xml.tpl" %}{% endwith %}
+            {% endif %}
             <control type="button" id="202">
-                <animation effect="zoom" start="100" end="144" time="100" center="20,{{ vscale(20) }}" reversible="false">Focus</animation>
-                <animation effect="zoom" start="144" end="100" time="100" center="20,{{ vscale(20) }}" reversible="false">UnFocus</animation>
+                <animation effect="zoom" start="100" end="144" time="100" center="{% if theme.plx %}32,{{ vscale(32) }}{% else %}20,{{ vscale(20) }}{% endif %}" reversible="false">Focus</animation>
+                <animation effect="zoom" start="144" end="100" time="100" center="{% if theme.plx %}32,{{ vscale(32) }}{% else %}20,{{ vscale(20) }}{% endif %}" reversible="false">UnFocus</animation>
+                {% if theme.plx %}<posx>12</posx><posy>{{ vscale(12) }}</posy>{% endif %}
                 <width>40</width>
                 <height>{{ vscale(40) }}</height>
                 <onright condition="String.IsEmpty(Window.Property(no.content.filtered))">204</onright>
@@ -74,8 +82,8 @@
                 <ondown condition="String.IsEmpty(Window.Property(no.content.filtered))">50</ondown>
                 <ondown condition="!String.IsEmpty(Window.Property(no.content.filtered))">600</ondown>
                 <font>font12</font>
-                <focusedcolor>FF000000</focusedcolor>
-                <texturefocus colordiffuse="FFE5A00D">script.plex/buttons/search-focus.png</texturefocus>
+                <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+                <texturefocus colordiffuse="{% if theme.plx %}{{ theme.colors.text_on_focus }}{% else %}{{ theme.colors.focus }}{% endif %}">script.plex/buttons/search-focus.png</texturefocus>
                 <texturenofocus colordiffuse="99FFFFFF">script.plex/buttons/search.png</texturenofocus>
                 <label> </label>
             </control>
@@ -94,12 +102,17 @@
             <onleft>202</onleft>
             <ondown>50</ondown>
             <font>font12</font>
-            <textcolor>FFFFFFFF</textcolor>
-            <focusedcolor>FF000000</focusedcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
+            <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
             <align>right</align>
             <aligny>center</aligny>
-            <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+            {% if theme.plx %}
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="32">script.plex/plx/pill.png</texturefocus>
+            <texturenofocus colordiffuse="{{ theme.colors.glass }}" border="32">script.plex/plx/pill.png</texturenofocus>
+            {% else %}
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
             <texturenofocus>-</texturenofocus>
+            {% endif %}
             <textoffsetx>100</textoffsetx>
             <textoffsety>0</textoffsety>
             <label> </label>
@@ -122,7 +135,7 @@
                 <font>font10</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <info>MusicPlayer.Artist</info>
             </control>
             <control type="label">
@@ -133,7 +146,7 @@
                 <font>font10</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FFFFFFFF</textcolor>
+                <textcolor>{{ theme.colors.text }}</textcolor>
                 <info>MusicPlayer.Title</info>
             </control>
         </control>
@@ -147,7 +160,7 @@
                 <font>font10</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FF000000</textcolor>
+                <textcolor>{{ theme.colors.text_inv }}</textcolor>
                 <info>MusicPlayer.Artist</info>
             </control>
             <control type="label">
@@ -158,7 +171,7 @@
                 <font>font10</font>
                 <align>left</align>
                 <aligny>center</aligny>
-                <textcolor>FF000000</textcolor>
+                <textcolor>{{ theme.colors.text_inv }}</textcolor>
                 <info>MusicPlayer.Title</info>
             </control>
         </control>
@@ -171,7 +184,7 @@
             <height>{{ vscale(1) }}</height>
             <texturebg colordiffuse="9AFFFFFF">script.plex/white-square-1px.png</texturebg>
             <lefttexture>-</lefttexture>
-            <midtexture colordiffuse="FFCC7B19">script.plex/white-square-1px.png</midtexture>
+            <midtexture colordiffuse="{{ theme.colors.accent_alt }}">script.plex/white-square-1px.png</midtexture>
             <righttexture>-</righttexture>
             <overlaytexture>-</overlaytexture>
             <info>Player.Progress</info>
@@ -185,12 +198,12 @@
         {% block filteropts_animation %}
             <animation effect="fade" start="0" end="100" time="200" reversible="true">VisibleChange</animation>
         {% endblock %}
-        <right>170</right>
+        <right>{% if theme.plx %}100{% else %}170{% endif %}</right>
         <posy>{{ vscale(135) }}</posy>
         <width>1000</width>
         <height>{{ vscale(65) }}</height>
         <align>right</align>
-        <itemgap>30</itemgap>
+        <itemgap>{% if theme.plx %}14{% else %}30{% endif %}</itemgap>
         <orientation>horizontal</orientation>
         <onleft condition="String.IsEmpty(Window.Property(no.content.filtered))">304</onleft>
         <onleft condition="!String.IsEmpty(Window.Property(no.content.filtered))">200</onleft>
@@ -202,30 +215,35 @@
             <width max="300">auto</width>
             <height>{{ vscale(65) }}</height>
             <font>font12</font>
-            <textcolor>FFFFFFFF</textcolor>
-            <focusedcolor>FFFFFFFF</focusedcolor>
-            <disabledcolor>FFFFFFFF</disabledcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
+            <focusedcolor>{{ theme.colors.text }}</focusedcolor>
+            <disabledcolor>{{ theme.colors.text }}</disabledcolor>
             <align>center</align>
             <aligny>center</aligny>
             <texturefocus>-</texturefocus>
             <texturenofocus>-</texturenofocus>
             <textoffsetx>0</textoffsetx>
             <textoffsety>0</textoffsety>
-            <label>[UPPERCASE]$INFO[Window.Property(filter2.display)][/UPPERCASE]</label>
+            <label>{% if theme.plx %}$INFO[Window.Property(filter2.display)]{% else %}[UPPERCASE]$INFO[Window.Property(filter2.display)][/UPPERCASE]{% endif %}</label>
         </control>
         <control type="button" id="211">
             <width max="500">auto</width>
             <height>{{ vscale(65) }}</height>
             <font>font12</font>
-            <textcolor>FFFFFFFF</textcolor>
-            <focusedcolor>FF000000</focusedcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
+            <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
             <align>center</align>
             <aligny>center</aligny>
-            <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+            {% if theme.plx %}
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="32">script.plex/plx/pill.png</texturefocus>
+            <texturenofocus colordiffuse="{{ theme.colors.glass }}" border="32">script.plex/plx/pill.png</texturenofocus>
+            {% else %}
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
             <texturenofocus>-</texturenofocus>
-            <textoffsetx>20</textoffsetx>
+            {% endif %}
+            <textoffsetx>{% if theme.plx %}28{% else %}20{% endif %}</textoffsetx>
             <textoffsety>0</textoffsety>
-            <label>[UPPERCASE]$INFO[Window.Property(filter1.display)][/UPPERCASE]</label>
+            <label>{% if theme.plx %}$INFO[Window.Property(filter1.display)]{% else %}[UPPERCASE]$INFO[Window.Property(filter1.display)][/UPPERCASE]{% endif %}</label>
         </control>
         <control type="button" id="310">
             <visible>!String.IsEqual(Window.Property(media),artist)</visible>
@@ -233,49 +251,60 @@
             <width max="300">auto</width>
             <height>{{ vscale(65) }}</height>
             <font>font12</font>
-            <textcolor>FFFFFFFF</textcolor>
-            <focusedcolor>FFFFFFFF</focusedcolor>
-            <disabledcolor>FFFFFFFF</disabledcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
+            <focusedcolor>{{ theme.colors.text }}</focusedcolor>
+            <disabledcolor>{{ theme.colors.text }}</disabledcolor>
             <align>center</align>
             <aligny>center</aligny>
             <texturenofocus>-</texturenofocus>
             <texturenofocus>-</texturenofocus>
-            <textoffsetx>20</textoffsetx>
+            <textoffsetx>{% if theme.plx %}28{% else %}20{% endif %}</textoffsetx>
             <textoffsety>0</textoffsety>
-            <label>[UPPERCASE]$INFO[Window.Property(media.type)][/UPPERCASE]</label>
+            <label>{% if theme.plx %}$INFO[Window.Property(media.type)]{% else %}[UPPERCASE]$INFO[Window.Property(media.type)][/UPPERCASE]{% endif %}</label>
         </control>
         <control type="button" id="312">
             <visible>String.IsEqual(Window.Property(media),artist)</visible>
             <width max="300">auto</width>
             <height>{{ vscale(65) }}</height>
             <font>font12</font>
-            <textcolor>FFFFFFFF</textcolor>
-            <focusedcolor>FF000000</focusedcolor>
-            <disabledcolor>FFFFFFFF</disabledcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
+            <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
+            <disabledcolor>{{ theme.colors.text }}</disabledcolor>
             <align>center</align>
             <aligny>center</aligny>
-            <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+            {% if theme.plx %}
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="32">script.plex/plx/pill.png</texturefocus>
+            <texturenofocus colordiffuse="{{ theme.colors.glass }}" border="32">script.plex/plx/pill.png</texturenofocus>
+            {% else %}
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
             <texturenofocus>-</texturenofocus>
-            <textoffsetx>20</textoffsetx>
+            {% endif %}
+            <textoffsetx>{% if theme.plx %}28{% else %}20{% endif %}</textoffsetx>
             <textoffsety>0</textoffsety>
-            <label>[UPPERCASE]$INFO[Window.Property(media.type)][/UPPERCASE]</label>
+            <label>{% if theme.plx %}$INFO[Window.Property(media.type)]{% else %}[UPPERCASE]$INFO[Window.Property(media.type)][/UPPERCASE]{% endif %}</label>
         </control>
         <control type="button" id="210">
             <width max="300">auto</width>
             <height>{{ vscale(65) }}</height>
             <font>font12</font>
-            <textcolor>FFFFFFFF</textcolor>
-            <focusedcolor>FF000000</focusedcolor>
+            <textcolor>{{ theme.colors.text }}</textcolor>
+            <focusedcolor>{{ theme.colors.text_on_focus }}</focusedcolor>
             <align>center</align>
             <aligny>center</aligny>
-            <texturefocus colordiffuse="FFE5A00D" border="10">script.plex/white-square-rounded.png</texturefocus>
+            {% if theme.plx %}
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="32">script.plex/plx/pill.png</texturefocus>
+            <texturenofocus colordiffuse="{{ theme.colors.glass }}" border="32">script.plex/plx/pill.png</texturenofocus>
+            {% else %}
+            <texturefocus colordiffuse="{{ theme.colors.focus }}" border="10">script.plex/white-square-rounded.png</texturefocus>
             <texturenofocus>-</texturenofocus>
-            <textoffsetx>20</textoffsetx>
+            {% endif %}
+            <textoffsetx>{% if theme.plx %}28{% else %}20{% endif %}</textoffsetx>
             <textoffsety>0</textoffsety>
-            <label>[UPPERCASE]$INFO[Window.Property(sort.display)][/UPPERCASE]</label>
+            <label>{% if theme.plx %}$INFO[Window.Property(sort.display)]{% else %}[UPPERCASE]$INFO[Window.Property(sort.display)][/UPPERCASE]{% endif %}</label>
         </control>
     </control>
     {% endblock filteropts_grouplist %}
+    {% if not theme.plx %}
     <control type="label">
         <right>213</right>
         <posy>{{ vscale(35) }}</posy>
@@ -284,7 +313,7 @@
         <font>font12</font>
         <align>right</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>$INFO[System.Time]</label>
     </control>
     <control type="image">
@@ -294,6 +323,7 @@
         <height>{{ vscale(43) }}</height>
         <texture>script.plex/home/plex.png</texture>
     </control>
+    {% endif %}
 </control>
 
 {% block no_content %}
@@ -309,7 +339,7 @@
         <height>{{ vscale(35) }}</height>
         <font>font13</font>
         <align>center</align>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>[B]$ADDON[script.plexmod 32452][/B]</label>
     </control>
     <control type="label">
@@ -337,7 +367,7 @@
         <height>{{ vscale(35) }}</height>
         <font>font13</font>
         <align>center</align>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>[B]$ADDON[script.plexmod 32454][/B]</label>
     </control>
     <control type="label">

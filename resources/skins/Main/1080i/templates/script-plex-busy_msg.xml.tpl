@@ -20,7 +20,7 @@
         <height>{{ vscale(150) }}</height>
         <align>center</align>
         <aligny>center</aligny>
-        <textcolor>FFFFFFFF</textcolor>
+        <textcolor>{{ theme.colors.text }}</textcolor>
         <label>$INFO[Window.Property(message)]</label>
         <font>font14</font>
         <shadowcolor>black</shadowcolor>

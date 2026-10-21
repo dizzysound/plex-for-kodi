@@ -30,7 +30,7 @@
         <onup>noop</onup>
         <ondown>9001</ondown>
         <onright condition="!String.IsEmpty(Window.Property(server.unavailable))">2600</onright><onright>50</onright>
-        <texturefocus colordiffuse="33FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <label> </label>
         <onunfocus condition="!String.IsEmpty(Window.Property(show.options))">SetFocus(250)</onunfocus>
@@ -54,7 +54,7 @@
         </control>
         <!-- Avatar letter fallback (always visible when no avatar) -->
         <control type="label">
-            <visible>String.IsEmpty(Window.Property(user.avatar))</visible>
+            <visible>String.IsEmpty(Window.Property(user.avatar)) + !Control.HasFocus(202)</visible>
             <posx>18</posx>
             <posy>{{ vscale(10) }}</posy>
             <width>44</width>
@@ -63,6 +63,18 @@
             <align>center</align>
             <aligny>center</aligny>
             <textcolor>FFFFFFFF</textcolor>
+            <label>[B]$INFO[Window.Property(user.avatar.letter)][/B]</label>
+        </control>
+        <control type="label">
+            <visible>String.IsEmpty(Window.Property(user.avatar)) + Control.HasFocus(202)</visible>
+            <posx>18</posx>
+            <posy>{{ vscale(10) }}</posy>
+            <width>44</width>
+            <height>{{ vscale(44) }}</height>
+            <font>font12</font>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>FF000000</textcolor>
             <label>[B]$INFO[Window.Property(user.avatar.letter)][/B]</label>
         </control>
         <control type="image">
@@ -76,7 +88,7 @@
         </control>
         <!-- Username label (expanded only) -->
         <control type="label">
-            <visible>ControlGroup(9000).HasFocus(0)</visible>
+            <visible>ControlGroup(9000).HasFocus(0) + !Control.HasFocus(202)</visible>
             <animation effect="fade" start="0" end="100" time="200">Visible</animation>
             <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
             <posx>75</posx>
@@ -87,6 +99,18 @@
             <align>left</align>
             <aligny>center</aligny>
             <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[Window.Property(user.name)]</label>
+        </control>
+        <control type="label">
+            <visible>Control.HasFocus(202)</visible>
+            <posx>75</posx>
+            <posy>{{ vscale(10) }}</posy>
+            <width>210</width>
+            <height>{{ vscale(44) }}</height>
+            <font>font12</font>
+            <align>left</align>
+            <aligny>center</aligny>
+            <textcolor>FF000000</textcolor>
             <label>$INFO[Window.Property(user.name)]</label>
         </control>
     </control>
@@ -501,7 +525,7 @@
         <onup>9001</onup>
         <onright condition="!String.IsEmpty(Window.Property(server.unavailable))">2600</onright><onright>50</onright>
         <ondown>noop</ondown>
-        <texturefocus colordiffuse="33FFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
+        <texturefocus colordiffuse="FFFFFFFF" border="10">script.plex/white-square-rounded.png</texturefocus>
         <texturenofocus>-</texturenofocus>
         <label> </label>
         <onunfocus condition="!String.IsEmpty(Window.Property(show.servers))">SetFocus(260)</onunfocus>
@@ -516,15 +540,25 @@
         <width>280</width>
         <height>{{ vscale(50) }}</height>
         <control type="image">
+            <visible>!Control.HasFocus(201)</visible>
             <posx>15</posx>
             <posy>{{ vscale(10) }}</posy>
             <width>30</width>
             <height>{{ vscale(30) }}</height>
             <texture>$INFO[Window.Property(server.icon)]</texture>
         </control>
+        <control type="image">
+            <visible>Control.HasFocus(201)</visible>
+            <posx>15</posx>
+            <posy>{{ vscale(10) }}</posy>
+            <width>30</width>
+            <height>{{ vscale(30) }}</height>
+            <texture>$INFO[Window.Property(server.icon)]</texture>
+            <colordiffuse>FF000000</colordiffuse>
+        </control>
         <!-- secure -->
         <control type="image">
-            <visible>!String.IsEmpty(Window.Property(server.iconmod))</visible>
+            <visible>!String.IsEmpty(Window.Property(server.iconmod)) + !Control.HasFocus(201)</visible>
             <posx>4</posx>
             <posy>{{ vscale(16) }}</posy>
             <width>14</width>
@@ -532,9 +566,18 @@
             <texture>$INFO[Window.Property(server.iconmod2)]</texture>
             <colordiffuse>FFEEEEEE</colordiffuse>
         </control>
+        <control type="image">
+            <visible>!String.IsEmpty(Window.Property(server.iconmod)) + Control.HasFocus(201)</visible>
+            <posx>4</posx>
+            <posy>{{ vscale(16) }}</posy>
+            <width>14</width>
+            <height>{{ vscale(12) }}</height>
+            <texture>$INFO[Window.Property(server.iconmod2)]</texture>
+            <colordiffuse>FF000000</colordiffuse>
+        </control>
         <!-- local -->
         <control type="image">
-            <visible>String.IsEmpty(Window.Property(server.iconmod))</visible>
+            <visible>String.IsEmpty(Window.Property(server.iconmod)) + !Control.HasFocus(201)</visible>
             <posx>4</posx>
             <posy>{{ vscale(30) }}</posy>
             <width>14</width>
@@ -542,9 +585,18 @@
             <texture>$INFO[Window.Property(server.iconmod2)]</texture>
             <colordiffuse>FFEEEEEE</colordiffuse>
         </control>
+        <control type="image">
+            <visible>String.IsEmpty(Window.Property(server.iconmod)) + Control.HasFocus(201)</visible>
+            <posx>4</posx>
+            <posy>{{ vscale(30) }}</posy>
+            <width>14</width>
+            <height>{{ vscale(12) }}</height>
+            <texture>$INFO[Window.Property(server.iconmod2)]</texture>
+            <colordiffuse>FF000000</colordiffuse>
+        </control>
         <!-- Server name (expanded only) -->
         <control type="label">
-            <visible>ControlGroup(9000).HasFocus(0)</visible>
+            <visible>ControlGroup(9000).HasFocus(0) + !Control.HasFocus(201)</visible>
             <animation effect="fade" start="0" end="100" time="200">Visible</animation>
             <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
             <posx>55</posx>
@@ -555,6 +607,18 @@
             <align>left</align>
             <aligny>center</aligny>
             <textcolor>FFFFFFFF</textcolor>
+            <label>$INFO[Window.Property(server.name)]</label>
+        </control>
+        <control type="label">
+            <visible>Control.HasFocus(201)</visible>
+            <posx>55</posx>
+            <posy>0</posy>
+            <width>210</width>
+            <height>{{ vscale(50) }}</height>
+            <font>font10</font>
+            <align>left</align>
+            <aligny>center</aligny>
+            <textcolor>FF000000</textcolor>
             <label>$INFO[Window.Property(server.name)]</label>
         </control>
     </control>

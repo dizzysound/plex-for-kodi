@@ -1889,13 +1889,12 @@
        (which defaults to the current season) renders in the "focused" white year-round, making the tab bar
        look focused even when focus actually sits on the play button, and keeps showing white on whatever tab
        was last highlighted after focus moves away. Splitting into two labels keyed off actual control focus
-       makes it fall back to the same grey as itemlayout the rest of the time; the current-season underline
+       makes it fall back to the same grey as itemlayout the rest of the time; the current-season faint pill
        below is unaffected since it never depended on focus. #}
     <focusedlayout width="200" height="{{ vscale(125) }}">
         <!-- Focus background, gated the same as the white-text label below (real window focus, not
-             just cursor position) - same 33FFFFFF rounded pill used elsewhere for a focus highlight
-             (e.g. the summary click-target, button-row label overlays). Drawn first so the label/
-             underline render on top of it. -->
+             just cursor position) - solid white rounded pill, the same focus look as the sidebar rows;
+             the label is dark on it. Drawn first so the label renders on top of it. -->
         <control type="image">
             <visible>Control.HasFocus(205)</visible>
             <posx>0</posx>

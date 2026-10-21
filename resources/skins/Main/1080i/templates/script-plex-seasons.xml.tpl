@@ -1214,11 +1214,11 @@
 
 {% block header_middle_add %}
 <!-- SEASON TABS -->
-<!-- "Show" (pinned, id-less/no dataSource, always the 'current'-underlined tab - see fillSeasonTabs(),
+<!-- "Show" (pinned, id-less/no dataSource, always the 'current' (faint pill) tab - see fillSeasonTabs(),
      subitems.py) followed by every real season, mirroring Episodes' own season-tab row
      (script-plex-episodes.xml.tpl) one level up: from here each tab actually opens that season's
      Episodes window (seasonTabClicked(), subitems.py), where the same row reappears with that season's
-     own tab underlined instead. A fixedlist with the focus in the first slot - see its own comment.
+     own tab marked instead. A fixedlist with the focus in the first slot - see its own comment.
      Not the old center-pinned carousel that file once used: "Show" has to sit at the visible left edge while the row fits, which a
      center-focus carousel can't guarantee. posx=115 matches the row/label/art baseline shared with the rest of this screen (season row,
      roles, extras, related - all absolute x=115) and Recommended's own hub rows.
@@ -1264,7 +1264,7 @@
     <orientation>horizontal</orientation>
     <!-- ITEM LAYOUT ########################################## -->
     <!-- 200, not 170: cell widened again on request (7 tabs visible instead of ~8.4). Label 170 (200-30,
-         same 30px total side margin as before) and underline 120 (25px margin each side of the label,
+         same 30px total side margin as before) and focus pill (25px margin each side of the label,
          unchanged) - both scaled to match, same as the earlier 170/160 tightenings. -->
     <itemlayout width="200" height="{{ vscale(125) }}">
         <control type="image">
@@ -1308,9 +1308,8 @@
          real window focus sits elsewhere (e.g. the play button). -->
     <focusedlayout width="200" height="{{ vscale(125) }}">
         <!-- Focus background, gated the same as the white-text label below (real window focus, not
-             just cursor position) - same 33FFFFFF rounded pill used elsewhere for a focus highlight
-             (e.g. the summary click-target, button-row label overlays). Drawn first so the label/
-             underline render on top of it. -->
+             just cursor position) - solid white rounded pill, the same focus look as the sidebar rows;
+             the label is dark on it. Drawn first so the label renders on top of it. -->
         <control type="image">
             <visible>Control.HasFocus(205)</visible>
             <posx>0</posx>

@@ -1078,8 +1078,8 @@
     <!-- SECTIONS: the type buttons (SearchWindow.SECTION_BUTTONS), six across - All, then
          an icon each for Movies, Shows, Music, Photos and People. Each a rounded tile in the
          Libraries picker's tracking grey at rest (script-plex-card_list.xml.tpl), as the keys
-         are, and focused two steps brighter than its focus grey (55 against 33 - the user,
-         2026-10-07); the selected type's label or icon in the sidebar's active orange. -->
+         are, and focused as a solid white pill with a dark glyph; the selected type, when not
+         focused, is a brighter pill than the rest. -->
     <control type="group">
         <posx>0</posx>
         <posy>{{ vscale(13) }}</posy>

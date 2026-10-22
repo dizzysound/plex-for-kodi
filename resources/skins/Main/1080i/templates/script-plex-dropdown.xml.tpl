@@ -106,6 +106,7 @@
                     <label>$INFO[ListItem.Label]</label>
                 </control>
                 <control type="image">
+                    <visible>!String.Contains(ListItem.Thumb,check.png)</visible>
                     <posx>254</posx>
                     <posy>{{ vscale(20) }}</posy>
                     <width>26</width>
@@ -113,47 +114,32 @@
                     <texture colordiffuse="FFFFFFFF">$INFO[ListItem.Thumb]</texture>
                     <aspectratio>keep</aspectratio>
                 </control>
+                <control type="image">
+                    <visible>String.Contains(ListItem.Thumb,check.png)</visible>
+                    <posx>254</posx>
+                    <posy>{{ vscale(20) }}</posy>
+                    <width>26</width>
+                    <height>{{ vscale(26) }}</height>
+                    <texture colordiffuse="{{ theme.colors.accent }}">$INFO[ListItem.Thumb]</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(separator))</visible>
-                <posx>0</posx>
+                <posx>20</posx>
                 <posy>{{ vscale(64) }}</posy>
-                <width>300</width>
+                <width>260</width>
                 <height>{{ vscale(2) }}</height>
-                <texture colordiffuse="FF000000">script.plex/white-square.png</texture>
+                <texture colordiffuse="33FFFFFF">script.plex/white-square.png</texture>
             </control>
         </itemlayout>
         <focusedlayout height="{{ vscale(66) }}">
             <control type="image">
-                <visible>!String.IsEmpty(ListItem.Property(first))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>300</width>
-                <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="{{ theme.colors.focusFill }}" border="24">script.plex/white-square-top-rounded-r24.png</texture>
-            </control>
-            <control type="image">
-                <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>300</width>
-                <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="{{ theme.colors.focusFill }}">script.plex/white-square.png</texture>
-            </control>
-            <control type="image">
-                <visible>!String.IsEmpty(ListItem.Property(last))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>300</width>
-                <height>{{ vscale(66) }}</height>
-                <texture flipy="true" colordiffuse="{{ theme.colors.focusFill }}" border="24">script.plex/white-square-top-rounded-r24.png</texture>
-            </control>
-            <control type="image">
-                <visible>!String.IsEmpty(ListItem.Property(only))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>300</width>
-                <height>{{ vscale(66) }}</height>
+                <visible>true</visible>
+                <posx>8</posx>
+                <posy>{{ vscale(4) }}</posy>
+                <width>284</width>
+                <height>{{ vscale(58) }}</height>
                 <texture colordiffuse="{{ theme.colors.focusFill }}" border="24">script.plex/white-square-rounded-r24.png</texture>
             </control>
             <control type="label">
@@ -196,11 +182,11 @@
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(separator))</visible>
-                <posx>0</posx>
+                <posx>20</posx>
                 <posy>{{ vscale(64) }}</posy>
-                <width>300</width>
+                <width>260</width>
                 <height>{{ vscale(2) }}</height>
-                <texture colordiffuse="FF000000">script.plex/white-square.png</texture>
+                <texture colordiffuse="33FFFFFF">script.plex/white-square.png</texture>
             </control>
         </focusedlayout>
     </control>

@@ -170,11 +170,21 @@
                     <aspectratio>keep</aspectratio>
                 </control>
                 <control type="image">
+                    <visible>!String.Contains(ListItem.Thumb,check.png)</visible>
                     <posx>20</posx>
                     <posy>{{ vscale(20) }}</posy>
                     <width>26</width>
                     <height>{{ vscale(26) }}</height>
                     <texture colordiffuse="FFFFFFFF">$INFO[ListItem.Thumb]</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
+                <control type="image">
+                    <visible>String.Contains(ListItem.Thumb,check.png)</visible>
+                    <posx>20</posx>
+                    <posy>{{ vscale(20) }}</posy>
+                    <width>26</width>
+                    <height>{{ vscale(26) }}</height>
+                    <texture colordiffuse="{{ theme.colors.accent }}">$INFO[ListItem.Thumb]</texture>
                     <aspectratio>keep</aspectratio>
                 </control>
             </control>
@@ -224,12 +234,21 @@
                     <label>$INFO[ListItem.Label]</label>
                 </control>
                 <control type="image">
-                    <visible>String.IsEmpty(ListItem.Property(heading)) + String.IsEmpty(ListItem.Property(indicator.dim))</visible>
+                    <visible>String.IsEmpty(ListItem.Property(heading)) + String.IsEmpty(ListItem.Property(indicator.dim)) + !String.Contains(ListItem.Thumb,check.png)</visible>
                     <posx>554</posx>
                     <posy>{{ vscale(20) }}</posy>
                     <width>26</width>
                     <height>{{ vscale(26) }}</height>
                     <texture colordiffuse="FFFFFFFF">$INFO[ListItem.Thumb]</texture>
+                    <aspectratio>keep</aspectratio>
+                </control>
+                <control type="image">
+                    <visible>String.IsEmpty(ListItem.Property(heading)) + String.IsEmpty(ListItem.Property(indicator.dim)) + String.Contains(ListItem.Thumb,check.png)</visible>
+                    <posx>554</posx>
+                    <posy>{{ vscale(20) }}</posy>
+                    <width>26</width>
+                    <height>{{ vscale(26) }}</height>
+                    <texture colordiffuse="{{ theme.colors.accent }}">$INFO[ListItem.Thumb]</texture>
                     <aspectratio>keep</aspectratio>
                 </control>
                 <control type="image">
@@ -244,78 +263,30 @@
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(separator))</visible>
-                <posx>0</posx>
+                <posx>20</posx>
                 <posy>{{ vscale(64) }}</posy>
-                <width>600</width>
+                <width>560</width>
                 <height>{{ vscale(2) }}</height>
-                <texture colordiffuse="FF000000">script.plex/white-square.png</texture>
+                <texture colordiffuse="33FFFFFF">script.plex/white-square.png</texture>
             </control>
         </itemlayout>
         <focusedlayout height="{{ vscale(66) }}">
             <!-- Normal focused state (white) - when not moving -->
             <control type="image">
-                <visible>!String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(moving))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>600</width>
-                <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="F3FFFFFF" border="24">script.plex/white-square-top-rounded-r24.png</texture>
-            </control>
-            <control type="image">
-                <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only)) + String.IsEmpty(ListItem.Property(moving))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>600</width>
-                <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="F3FFFFFF">script.plex/white-square.png</texture>
-            </control>
-            <control type="image">
-                <visible>!String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(moving))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>600</width>
-                <height>{{ vscale(66) }}</height>
-                <texture flipy="true" colordiffuse="{{ theme.colors.focusFill }}" border="24">script.plex/white-square-top-rounded-r24.png</texture>
-            </control>
-            <control type="image">
-                <visible>!String.IsEmpty(ListItem.Property(only)) + String.IsEmpty(ListItem.Property(moving))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>600</width>
-                <height>{{ vscale(66) }}</height>
+                <visible>String.IsEmpty(ListItem.Property(moving))</visible>
+                <posx>8</posx>
+                <posy>{{ vscale(4) }}</posy>
+                <width>584</width>
+                <height>{{ vscale(58) }}</height>
                 <texture colordiffuse="{{ theme.colors.focusFill }}" border="24">script.plex/white-square-rounded-r24.png</texture>
             </control>
             <!-- Moving state (muted gray, more opaque to prevent a white flash during move) -->
             <control type="image">
-                <visible>!String.IsEmpty(ListItem.Property(first)) + !String.IsEmpty(ListItem.Property(moving))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>600</width>
-                <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="CC555555" border="24">script.plex/white-square-top-rounded-r24.png</texture>
-            </control>
-            <control type="image">
-                <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only)) + !String.IsEmpty(ListItem.Property(moving))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>600</width>
-                <height>{{ vscale(66) }}</height>
-                <texture colordiffuse="CC555555">script.plex/white-square.png</texture>
-            </control>
-            <control type="image">
-                <visible>!String.IsEmpty(ListItem.Property(last)) + !String.IsEmpty(ListItem.Property(moving))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>600</width>
-                <height>{{ vscale(66) }}</height>
-                <texture flipy="true" colordiffuse="CC555555" border="24">script.plex/white-square-top-rounded-r24.png</texture>
-            </control>
-            <control type="image">
-                <visible>!String.IsEmpty(ListItem.Property(only)) + !String.IsEmpty(ListItem.Property(moving))</visible>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>600</width>
-                <height>{{ vscale(66) }}</height>
+                <visible>!String.IsEmpty(ListItem.Property(moving))</visible>
+                <posx>8</posx>
+                <posy>{{ vscale(4) }}</posy>
+                <width>584</width>
+                <height>{{ vscale(58) }}</height>
                 <texture colordiffuse="CC555555" border="24">script.plex/white-square-rounded-r24.png</texture>
             </control>
             <control type="label">
@@ -462,11 +433,11 @@
             </control>
             <control type="image">
                 <visible>!String.IsEmpty(ListItem.Property(separator))</visible>
-                <posx>0</posx>
+                <posx>20</posx>
                 <posy>{{ vscale(64) }}</posy>
-                <width>600</width>
+                <width>560</width>
                 <height>{{ vscale(2) }}</height>
-                <texture colordiffuse="FF000000">script.plex/white-square.png</texture>
+                <texture colordiffuse="33FFFFFF">script.plex/white-square.png</texture>
             </control>
         </focusedlayout>
     </control>

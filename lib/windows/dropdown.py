@@ -8,6 +8,8 @@ from lib import util
 from . import kodigui
 
 SEPARATOR = None
+DESTRUCTIVE_KEYS = ('delete',)
+DESTRUCTIVE_COLOR = 'FFD93636'
 
 
 class DropdownDialog(kodigui.BaseDialog):
@@ -463,6 +465,7 @@ class DropdownDialog(kodigui.BaseDialog):
         hadSub = False
         self.moveUpperBound = None  # Reset move boundary tracking
         first_separator_seen = False
+        destructive = []
 
         if self.selectItem:
             sids = self.selectItem.copy()
@@ -477,7 +480,14 @@ class DropdownDialog(kodigui.BaseDialog):
                 ds = o.copy()
                 # clear indicator for the dataSource so we can find it later
                 ds["indicator"] = ''
-                item = kodigui.ManagedListItem(o['display'], thumbnailImage=o.get('indicator', ''), data_source=ds)
+                isDestructive = o.get('key') in DESTRUCTIVE_KEYS
+                label = '[COLOR {}]{}[/COLOR]'.format(DESTRUCTIVE_COLOR, o['display']) if isDestructive else o['display']
+                item = kodigui.ManagedListItem(label, thumbnailImage=o.get('indicator', ''), data_source=ds)
+                if isDestructive:
+                    # set apart from the rows above it, and never the row a menu opens on
+                    if items:
+                        items[-1].setProperty('separator', '1')
+                    destructive.append(len(items))
                 item.setProperty('with.indicator', self.withIndicator and '1' or '')
                 item.setProperty('has.submenu', '1' if o.get('has_submenu') else '')
                 item.setProperty('align', self.alignItems)
@@ -514,6 +524,10 @@ class DropdownDialog(kodigui.BaseDialog):
         if self.selectIndex is not None:
             self.optionsList.setSelectedItemByPos(self.selectIndex)
             self.lastSelectedItem = self.selectIndex
+        elif sids is None and 0 in destructive and len(destructive) < len(items):
+            pos = next(i for i in range(len(items)) if i not in destructive)
+            self.optionsList.setSelectedItemByPos(pos)
+            self.lastSelectedItem = pos
         elif sids is not None:
             # select the wanted item and wait for it to actually be selected
             mli = self.optionsList.getListItemByDataSource(sids)

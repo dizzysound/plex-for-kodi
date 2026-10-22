@@ -200,3 +200,72 @@ class ManageHubsColumnsTest(KodiTestCase):
         self.assertEqual('pin', dlg.column)
         dlg.onAction(FakeAction(xbmcgui.ACTION_MOVE_RIGHT))
         self.assertEqual('move', dlg.column)
+
+
+class FakeOptionsList(object):
+    def __init__(self):
+        self.items = []
+        self.selected = None
+
+    def reset(self):
+        self.items = []
+
+    def addItems(self, items):
+        self.items = list(items)
+
+    def setSelectedItemByPos(self, pos):
+        self.selected = pos
+
+
+def built(options, select_index=None):
+    """A dialog that has run showOptions() over `options`."""
+    dlg = dialog()
+    dlg.options = options
+    dlg.selectItem = None
+    dlg.selectIndex = select_index
+    dlg.withIndicator = False
+    dlg.indicatorRight = False
+    dlg.alignItems = 'center'
+    dlg.optionsList = FakeOptionsList()
+    dlg.setFocusId = lambda _id: None
+    dlg.showOptions()
+    return dlg
+
+
+class DropdownDestructiveRowTest(KodiTestCase):
+    def test_delete_is_set_apart_from_the_rows_above(self):
+        dlg = built([{'key': 'a', 'display': 'A'}, {'key': 'b', 'display': 'B'},
+                     {'key': 'delete', 'display': 'Delete'}])
+        items = dlg.optionsList.items
+
+        self.assertEqual('', items[0].getProperty('separator'))
+        self.assertEqual('1', items[1].getProperty('separator'))
+        self.assertEqual('', items[2].getProperty('separator'))
+
+    def test_delete_is_marked_in_red_and_keeps_its_data(self):
+        dlg = built([{'key': 'a', 'display': 'A'}, {'key': 'delete', 'display': 'Delete'}])
+        item = dlg.optionsList.items[1]
+
+        self.assertEqual('[COLOR FFD93636]Delete[/COLOR]', item.label)
+        self.assertEqual('Delete', item.dataSource['display'])
+        self.assertEqual('delete', item.dataSource['key'])
+
+    def test_other_rows_keep_their_label(self):
+        dlg = built([{'key': 'a', 'display': 'A'}, {'key': 'delete', 'display': 'Delete'}])
+
+        self.assertEqual('A', dlg.optionsList.items[0].label)
+
+    def test_menu_does_not_open_on_delete(self):
+        dlg = built([{'key': 'delete', 'display': 'Delete'}, {'key': 'a', 'display': 'A'}])
+
+        self.assertEqual(1, dlg.optionsList.selected)
+
+    def test_a_menu_of_only_delete_still_opens(self):
+        dlg = built([{'key': 'delete', 'display': 'Delete'}])
+
+        self.assertIsNone(dlg.optionsList.selected)
+
+    def test_explicit_select_index_is_respected(self):
+        dlg = built([{'key': 'a', 'display': 'A'}, {'key': 'delete', 'display': 'Delete'}], select_index=0)
+
+        self.assertEqual(0, dlg.optionsList.selected)

@@ -271,6 +271,38 @@
             </control>
         </itemlayout>
         <focusedlayout height="{{ vscale(66) }}">
+            <control type="image">
+                <visible>!String.IsEmpty(ListItem.Property(first))</visible>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>600</width>
+                <height>{{ vscale(66) }}</height>
+                <texture colordiffuse="99111111" border="24">script.plex/white-square-top-rounded-r24.png</texture>
+            </control>
+            <control type="image">
+                <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only))</visible>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>600</width>
+                <height>{{ vscale(66) }}</height>
+                <texture colordiffuse="99111111">script.plex/white-square.png</texture>
+            </control>
+            <control type="image">
+                <visible>!String.IsEmpty(ListItem.Property(last))</visible>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>600</width>
+                <height>{{ vscale(66) }}</height>
+                <texture flipy="true" colordiffuse="99111111" border="24">script.plex/white-square-top-rounded-r24.png</texture>
+            </control>
+            <control type="image">
+                <visible>!String.IsEmpty(ListItem.Property(only))</visible>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>600</width>
+                <height>{{ vscale(66) }}</height>
+                <texture colordiffuse="99111111" border="24">script.plex/white-square-rounded-r24.png</texture>
+            </control>
             <!-- Normal focused state (white) - when not moving -->
             <control type="image">
                 <visible>String.IsEmpty(ListItem.Property(moving))</visible>

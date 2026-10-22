@@ -54,7 +54,7 @@
                     <posy>0</posy>
                     <width>500</width>
                     <height>{{ vscale(100) }}</height>
-                    <texture colordiffuse="D3111111" border="24">script.plex/white-square-top-rounded-r24.png</texture>
+                    <texture colordiffuse="D3111111" border="24">script.plex/white-square-rounded-r24.png</texture>
                 </control>
                 <control type="group">
                     <visible>!String.IsEmpty(ListItem.Label2)</visible>
@@ -159,6 +159,38 @@
 
             </itemlayout>
             <focusedlayout height="{{ vscale(100) }}">
+                <control type="image">
+                    <visible>!String.IsEmpty(ListItem.Property(first))</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>{{ vscale(100) }}</height>
+                    <texture colordiffuse="D3111111" border="24">script.plex/white-square-top-rounded-r24.png</texture>
+                </control>
+                <control type="image">
+                    <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only))</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>{{ vscale(100) }}</height>
+                    <texture colordiffuse="D3111111">script.plex/white-square.png</texture>
+                </control>
+                <control type="image">
+                    <visible>!String.IsEmpty(ListItem.Property(last))</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>{{ vscale(100) }}</height>
+                    <texture flipy="true" colordiffuse="D3111111" border="24">script.plex/white-square-top-rounded-r24.png</texture>
+                </control>
+                <control type="image">
+                    <visible>!String.IsEmpty(ListItem.Property(only))</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>500</width>
+                    <height>{{ vscale(100) }}</height>
+                    <texture colordiffuse="D3111111" border="24">script.plex/white-square-rounded-r24.png</texture>
+                </control>
                 <control type="image">
                     <visible>true</visible>
                     <posx>8</posx>
@@ -355,6 +387,38 @@
                 </control>
             </itemlayout>
             <focusedlayout height="{{ vscale(66) }}">
+                <control type="image">
+                    <visible>!String.IsEmpty(ListItem.Property(first))</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>300</width>
+                    <height>{{ vscale(66) }}</height>
+                    <texture colordiffuse="D3111111" border="24">script.plex/white-square-top-rounded-r24.png</texture>
+                </control>
+                <control type="image">
+                    <visible>String.IsEmpty(ListItem.Property(first)) + String.IsEmpty(ListItem.Property(last)) + String.IsEmpty(ListItem.Property(only))</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>300</width>
+                    <height>{{ vscale(66) }}</height>
+                    <texture colordiffuse="D3111111">script.plex/white-square.png</texture>
+                </control>
+                <control type="image">
+                    <visible>!String.IsEmpty(ListItem.Property(last))</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>300</width>
+                    <height>{{ vscale(66) }}</height>
+                    <texture flipy="true" colordiffuse="D3111111" border="24">script.plex/white-square-top-rounded-r24.png</texture>
+                </control>
+                <control type="image">
+                    <visible>!String.IsEmpty(ListItem.Property(only))</visible>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>300</width>
+                    <height>{{ vscale(66) }}</height>
+                    <texture colordiffuse="D3111111" border="24">script.plex/white-square-rounded-r24.png</texture>
+                </control>
                 <control type="image">
                     <visible>true</visible>
                     <posx>8</posx>
